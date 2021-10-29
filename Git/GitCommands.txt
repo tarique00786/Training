@@ -1,0 +1,20 @@
+cmd:git config --global user.name "name"        purpose: This command set the user name as given name 
+cmd:git config --global user.email "emailid"    purpose: This command set the user email as given emailid
+cmd:git config --list                           purpose: It will list all the configuration
+cmd:git init                                    purpose: git repository has been initialized
+cmd:ls -la .git                                 purpose: list everything inside .git
+cmd:git add.                                    purpose: add all changes that are in the current directory
+cmd:git add filename                            purpose: add specific file to the staging
+cmd:git commit -m "message"                     purpose: Commit with final message
+cmd:git log                                     purpose: see all the previous commits
+cmd:git help log                                purpose: you can see more information about log
+cmd:git help -n 5                               purpose: list 5 recent commits
+cmd:git log --since=date                        purpose: all commits til mentioned date
+cmd:git log --until=date                        purpose: all commits till mentioned date
+cmd:git log --author="name"                     purpose: Find commit done by specific user
+cmd:git status                                  purpose: list status of things 
+cmd:git diff                                    purpose: tells the difference between staging and working directory
+cmd:git diff --staged                           purpose: tells the difference between repository and staging directory
+cmd:git rm file_name                            purpose: to delete the file but we have to commit
+cmd:git mv oldname newnmae                      purpose: rename oldname with newname
+
