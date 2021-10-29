@@ -17,4 +17,11 @@ cmd:git diff                                    purpose: tells the difference be
 cmd:git diff --staged                           purpose: tells the difference between repository and staging directory
 cmd:git rm file_name                            purpose: to delete the file but we have to commit
 cmd:git mv oldname newnmae                      purpose: rename oldname with newname
+cmd:ssh-keygen -t rsa -b 4096 -C "email"        purpose: Creates a ssh key using the provided email
+cmd:eval "$(ssh-agent -s)"                      purpose: Start the ssh agent in the background
+cmd:git remote add origin                       purpose: Lets you add remote repository on your local repository
+cmd: git push origin                            purpose: Push your code on your github account
+cmd:git clone                                   purpose: Creating a copy of remote repository on local system
+cmd:git fork                                    purpose: Creating a copy of remote repository on your github account
+cmd:git pull                                    purpose: Allow you to copy all the files from remote repository to your local repository
 
