@@ -12,7 +12,7 @@ cmd:git help -n 5                               purpose: list 5 recent commits
 cmd:git log --since=date                        purpose: all commits til mentioned date
 cmd:git log --until=date                        purpose: all commits till mentioned date
 cmd:git log --author="name"                     purpose: Find commit done by specific user
-cmd:git status                                  purpose: list status of things 
+cmd:git status                                  purpose: list status of things & In which branch you are connected to
 cmd:git diff                                    purpose: tells the difference between staging and working directory
 cmd:git diff --staged                           purpose: tells the difference between repository and staging directory
 cmd:git rm file_name                            purpose: to delete the file but we have to commit
@@ -24,4 +24,9 @@ cmd: git push origin                            purpose: Push your code on your 
 cmd:git clone                                   purpose: Creating a copy of remote repository on local system
 cmd:git fork                                    purpose: Creating a copy of remote repository on your github account
 cmd:git pull                                    purpose: Allow you to copy all the files from remote repository to your local repository
-
+cmd:git branch                                  purpose: List out all the branches available 
+git branch branch_name                          purpose: New branch is created
+cmd:git checkout branch_name                    purpose: Switch to branch named branch_name
+cmd:git show commit_id                          purpose: List the details about commit_id
+cmd:git ls-files                                purpose: List all the files which are being tracked by your repository
+cmd:git remote -v                               purpose: Shows URLs of remote repositories when listing your current remote connections
