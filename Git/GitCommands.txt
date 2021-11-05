@@ -8,6 +8,8 @@ cmd:git add.                                    purpose: add all changes that ar
 cmd:git add filename                            purpose: add specific file to the staging
 cmd:git commit -m "message"                     purpose: Commit with final message
 cmd:git log                                     purpose: see all the previous commits
+cmd:git shortlog                                purpose: List out short summary of previous commits
+cmd:git show commit_id                          purpose: Show the details about specific commit
 cmd:git help log                                purpose: you can see more information about log
 cmd:git help -n 5                               purpose: list 5 recent commits
 cmd:git log --since=date                        purpose: all commits til mentioned date
@@ -36,4 +38,6 @@ cmd:git show commit_id                          purpose: List the details about 
 cmd:git ls-files                                purpose: List all the files which are being tracked by your repository
 cmd:git branch -m old new                       purpose: Rename the old branch with new branch
 cmd:git remote -v                               purpose: Shows URLs of remote repositories when listing your current remote connections
+cmd:git merge                                   purpose: Helps you to merge the branch into selected branch
+cmd:git help command                            purpose: All information about command
 
