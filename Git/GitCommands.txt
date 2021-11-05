@@ -1,3 +1,4 @@
+cmd:git --version                               purpose: Tells about the git version on your machine.
 cmd:git config --global user.name "name"        purpose: This command set the user name as given name 
 cmd:git config --global user.email "emailid"    purpose: This command set the user email as given emailid
 cmd:git config --list                           purpose: It will list all the configuration
@@ -21,12 +22,18 @@ cmd:ssh-keygen -t rsa -b 4096 -C "email"        purpose: Creates a ssh key using
 cmd:eval "$(ssh-agent -s)"                      purpose: Start the ssh agent in the background
 cmd:git remote add origin                       purpose: Lets you add remote repository on your local repository
 cmd: git push origin                            purpose: Push your code on your github account
-cmd:git clone                                   purpose: Creating a copy of remote repository on local system
+cmd:git clone url                               purpose: Creating a copy of remote repository on local system
 cmd:git fork                                    purpose: Creating a copy of remote repository on your github account
 cmd:git pull                                    purpose: Allow you to copy all the files from remote repository to your local repository
 cmd:git branch                                  purpose: List out all the branches available 
 git branch branch_name                          purpose: New branch is created
+gii push <remote> branch                        purpose: Push new branch to the remote repository
+git push origin --delete branch_name            purpose: Delete branch from remote repository
+git branch -d branch_name                       purpose: Delete branch from local repository
 cmd:git checkout branch_name                    purpose: Switch to branch named branch_name
+cmd:git checkout -b branch_name                 purpose: Create a new branch and switch into it
 cmd:git show commit_id                          purpose: List the details about commit_id
 cmd:git ls-files                                purpose: List all the files which are being tracked by your repository
+cmd:git branch -m old new                       purpose: Rename the old branch with new branch
 cmd:git remote -v                               purpose: Shows URLs of remote repositories when listing your current remote connections
+
