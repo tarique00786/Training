@@ -39,5 +39,6 @@ cmd:git ls-files                                purpose: List all the files whic
 cmd:git branch -m old new                       purpose: Rename the old branch with new branch
 cmd:git remote -v                               purpose: Shows URLs of remote repositories when listing your current remote connections
 cmd:git merge                                   purpose: Helps you to merge the branch into selected branch
-cmd:git help command                            purpose: All information about any command
+cmd:git help command                            purpose: All information about commands
+
 
