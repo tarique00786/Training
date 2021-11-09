@@ -1,0 +1,4 @@
+ .....................................................................................PostgreSQL commands and Syntax....................................................................................
+1. PostgreSQL installation
+                      >sudo apt update
+                      >sudo apt install postgresql postgresql-contrib
