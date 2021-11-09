@@ -1,4 +1,238 @@
- .....................................................................................PostgreSQL commands and Syntax....................................................................................
+ ..........................................................................PostgreSQL commands and Syntax....................................................................................
 1. PostgreSQL installation
-                      >sudo apt update
-                      >sudo apt install postgresql postgresql-contrib
+
+                     step1. sudo apt update
+                     step2. sudo apt install postgresql postgresql-contrib
+
+
+2.Access the PSQL command prompt
+
+                cmd: sudo -u postgres psql
+
+                output:
+[sudo] password for aziz: 
+psql (12.8 (Ubuntu 12.8-0ubuntu0.20.04.1))
+Type "help" for help.
+
+
+
+3.Come out from PSQL command prompt
+
+               cmd: \q
+
+
+4.List out the available databases 
+
+               cmd: \l
+
+
+             output:
+
+ List of databases
+   Name    |  Owner   | Encoding | Collate | Ctype |   Access privileges   
+-----------+----------+----------+---------+-------+-----------------------
+ postgres  | postgres | UTF8     | en_IN   | en_IN | 
+ template0 | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+           |          |          |         |       | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+           |          |          |         |       | postgres=CTc/postgres
+(3 rows)
+
+
+
+5.List out all the users 
+
+               cmd: \du
+
+           output:
+
+          List of roles
+ Role name |                         Attributes                         | Member of 
+-----------+------------------------------------------------------------+-----------
+ Aziz      | Superuser, Create role, Create DB                          | {}
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+
+
+
+6. Show help about psql command line arguments
+
+                cmd: \?
+
+7. Create databse 
+
+              syntax: CREATE DATABASE name;
+
+              example:  CREATE DATABASE test;
+
+          output:
+ CREATE DATABASE
+
+
+8. Connect to the databases
+
+          cmd: \c database_name
+
+          example:  \c test
+output:
+You are now connected to database "test" as user "postgres".
+
+
+
+10. DROP database completely (Everything will be deleted in database)
+
+         syntax: DROP DATABASE databse_name;
+         example:  DROP DATABASE test;
+output:
+ DROP DATABASE
+
+
+11. Create a table in PSQL
+
+          syntax: CREATE TABLE table_name(
+                  column1  datatype  constraints,
+                  column2  datatype  constraonts,
+                  .
+                  .
+                  columnN datatype constraints,
+                  PRIMARY KEY (One or more columns)
+                  );
+
+
+      example:CREATE TABLE TEACHER (
+ id INT NOT NULL,
+ name VARCHAR(50) NOT NULL,
+ subject VARCHAR(50) NOT NULL,
+ date_of_birth DATE NOT NULL,
+ salary INT NOT NULL,
+ PRIMARY KEY (id)
+ );
+
+output:
+CREATE TABLE
+
+
+
+12. Check all the table inside database
+
+             cmd: \d  or \dt
+
+output:
+  List of relations
+ Schema |  Name   | Type  |  Owner   
+--------+---------+-------+----------
+ public | teacher | table | postgres
+(1 row)
+
+
+
+13. To see the table details
+
+           syntax: \d table_name
+           example: \d teacher
+
+output:
+ Table "public.teacher"
+    Column     |         Type          | Collation | Nullable | Default 
+---------------+-----------------------+-----------+----------+---------
+ id            | integer               |           | not null | 
+ name          | character varying(50) |           | not null | 
+ subject       | character varying(50) |           | not null | 
+ date_of_birth | date                  |           | not null | 
+ salary        | integer               |           | not null | 
+Indexes:
+    "teacher_pkey" PRIMARY KEY, btree (id)
+ 
+
+
+
+
+14. Drop a table from database
+
+             syntax: drop table table_name;
+             example: drop table department;
+
+output:
+DROP TABLE
+
+
+15. Creating a Schema 
+
+            syntax: CREATE SCHEMA name;
+            example: CREATE SCHEMA TableSchemai;
+
+output:
+CREATE SCHEMA
+
+
+
+16. Create a table in Schema 
+
+             syntax:create table myschema.company(
+   ID   INT              NOT NULL,
+   NAME VARCHAR (20)     NOT NULL,
+   AGE  INT              NOT NULL,
+   ADDRESS  CHAR (25),
+   SALARY   DECIMAL (18, 2),
+   PRIMARY KEY (ID)
+);
+
+
+17. Check the table created in schema 
+
+               syntax: select * from myschema.company;
+
+output:
+ id | name | age | address | salary 
+----+------+-----+---------+--------
+(0 rows)
+
+
+
+
+18. Insert into a table
+
+            syntax: INSERT INTO TABLE_NAME (column1, column2, column3,...columnN)
+                    VALUES (value1, value2, value3,...valueN);  
+
+            example:INSERT INTO TEACHER (id,name,subject,date_of_birth,salary) VALUES(1,'RAHUL','MATHS','2007-12-13',50000),
+                    (2,'MUKESH','ENGLISH','2008-12-13',55000),
+                    (3,'RAVI','HINDI','2007-10-13',60000),
+                    (4,'PRAKASH','SCIENCE','2009-12-23',40000);
+
+output:
+INSERT 0 4
+
+
+
+19. To display the tables(All columns) 
+
+            syntax: SELECT * FROM table_name;
+            example:SELECT * FROM teacher;
+output:
+id |  name   | subject | date_of_birth | salary 
+----+---------+---------+---------------+--------
+  1 | RAHUL   | MATHS   | 2007-12-13    |  50000
+  2 | MUKESH  | ENGLISH | 2008-12-13    |  55000
+  3 | RAVI    | HINDI   | 2007-10-13    |  60000
+  4 | PRAKASH | SCIENCE | 2009-12-23    |  40000
+(4 rows)
+
+
+
+20. To select particular columns 
+
+            syntax: SELECT COLUMN1,COLUMN2,.....,COLUMNn FROM table_name;
+            example: SELECT id,salary FROM teacher;
+
+output:
+
+id | salary 
+----+--------
+  1 |  50000
+  2 |  55000
+  3 |  60000
+  4 |  40000
+(4 rows)
+
+
