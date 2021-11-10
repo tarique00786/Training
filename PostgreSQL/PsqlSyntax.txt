@@ -1,0 +1,228 @@
+-----ALTER TABLES-----
+
+1.Rename a table 
+
+        syntax: ALTER TABLE table_name
+                RENAME TO new_name;
+        example:ALTER TABLE table_name
+                RENAME TO all_users;
+
+output:
+
+ALTER TABLE
+
+\d users:
+Did not find any relation named "users".
+
+
+                           Table "public.all_users"
+  Column  |     Type      | Collation | Nullable |              Default              
+----------+---------------+-----------+----------+-----------------------------------
+ id       | integer       |           | not null | nextval('users_id_seq'::regclass)
+ username | character(25) |           |          | 
+ enabled  | boolean       |           |          | true
+Indexes:
+    "users_id_key" UNIQUE CONSTRAINT, btree (id)
+
+
+
+select* from all_users;
+output:
+
+id | full_name | enabled 
+----+-----------+---------
+(0 rows)
+
+
+
+
+2.Rename a column
+
+          syntax: ALTER TABLE table_name
+                  RENAME COLUMN column_name TO new_name;
+          example:ALTER TABLE all_users
+                   RENAME COLUMN fullname TO username;
+output:
+ALTER TABLE
+
+select * from all_users;
+ id | username | enabled 
+----+----------+---------
+(0 rows)
+
+
+
+
+4.Changin data type of a column:
+
+           syntax:ALTER TABLE table_name
+                  ALTER COLUMN username TYPE varchar(25);
+
+output of \d all_users:
+
+Table "public.all_users"
+  Column  |         Type          | Collation | Nullable |              Default              
+----------+-----------------------+-----------+----------+-----------------------------------
+ id       | integer               |           | not null | nextval('users_id_seq'::regclass)
+ username | character varying(25) |           |          | 
+ enabled  | boolean               |           |          | true
+Indexes:
+    "users_id_key" UNIQUE CONSTRAINT, btree (id)
+
+
+
+
+5.Adding a constraints
+
+          syntax:ALTER TABLE table
+                 ALTER COLUMN column
+                 SET constraints;
+          example:ALTER TABLE all_users
+                  ALTER COLUMN user_name
+                  SET NOT NULL;
+        
+
+utput for \d all_users:
+
+                                  Table "public.all_users"
+  Column  |         Type          | Collation | Nullable |              Default              
+----------+-----------------------+-----------+----------+-----------------------------------
+ id       | integer               |           | not null | nextval('users_id_seq'::regclass)
+ username | character varying(25) |           | not null | 
+ enabled  | boolean               |           |          | true
+Indexes:
+    "users_id_key" UNIQUE CONSTRAINT, btree (id)
+
+
+
+
+
+6.Removing a constraints:
+
+          syntax:ALTER TABLE table_name
+      DROP CONSTRAINT constraint_name;
+
+          example:ALTER TABLE all_users
+      ALTER COLUMN id
+      DROP DEFAULT;
+
+output for \d all_users:
+
+                     Table "public.all_users"
+  Column  |         Type          | Collation | Nullable | Default 
+----------+-----------------------+-----------+----------+---------
+ id       | integer               |           | not null | 
+ username | character varying(25) |           | not null | 
+ enabled  | boolean               |           |          | true
+Indexes:
+    "users_id_key" UNIQUE CONSTRAINT, btree (id)
+
+
+
+
+7.Adding a column:
+  
+ALTER TABLE all_users
+      ADD COLUMN last_login timestamp
+                 NOT NULL
+                 DEFAULT NOW();
+
+output for \d all_users:
+
+                         Table "public.all_users"
+   Column   |            Type             | Collation | Nullable | Default 
+------------+-----------------------------+-----------+----------+---------
+ id         | integer                     |           | not null | 
+ username   | character varying(25)       |           | not null | 
+ enabled    | boolean                     |           |          | true
+ last_login | timestamp without time zone |           | not null | now()
+Indexes:
+    "users_id_key" UNIQUE CONSTRAINT, btree (id)
+
+
+
+
+8.Deleting a column:
+
+           syntax: ALTER TABLE table DROP COLUMN column;
+
+           example:ALTER TABLE all_users DROP COLUMN enabled;
+
+output for \d all_users:
+
+ Table "public.all_users"
+   Column   |            Type             | Collation | Nullable | Default 
+------------+-----------------------------+-----------+----------+---------
+ id         | integer                     |           | not null | 
+ username   | character varying(25)       |           | not null | 
+ last_login | timestamp without time zone |           | not null | now()
+Indexes:
+    "users_id_key" UNIQUE CONSTRAINT, btree (id)
+
+           
+
+ 
+
+------------------CREATED A BOOKREVIEW DATABSE AND IN THAT DATABASE I AM GOING TO CREATE FIVE TABLES----------------------------
+
+
+-----------TABLE USERS->User is someone who is using book to read------------
+-----------TABLE BOOKS->Details of books available--------------------------
+-----------TABLE REVIEWS->User will  be able to leave reviews of books they've read-----------
+-----------TABLE CHECKOUTS->users can do is to checkout books----------------------
+-----------TABLE ADDRESS->Stores the address information about users------------------------
+
+
+
+
+
+
+1.Inserting in Users table
+
+
+
+INSERT INTO USERS (first_name,last_name,enabled,last_login) VALUES ('rohit','sharma',false,'2020-10-10');
+
+
+uotput for select * from users:
+
+id | first_name | last_name | enabled | last_login 
+----+------------+-----------+---------+------------
+  1 | rohit      | sharma    | f       | 2020-10-10
+(1 row)
+
+
+
+--many insertion---
+
+INSERT INTO USERS (first_name,last_name,enabled,last_login) VALUES ('virat','kohli',true,'2020-11-10'),
+('surya','yadav',true,'2020-11-19'),
+('ishan','kishan',false,'2020-11-10'),
+('hardik','pandya',false,'2019-11-10'),
+('ishant','sharma',true,'2019-08-10'),
+('tarique','aziz',false,'2020-07-10'),
+('aman','chohan',true,'2020-11-10'),
+('nitish','kumar',false,'2018-11-10'),
+('darvesh','sharma',true,'2020-01-10');
+
+
+output for select * from users;
+
+id | first_name | last_name | enabled | last_login 
+----+------------+-----------+---------+------------
+  1 | rohit      | sharma    | f       | 2020-10-10
+  2 | virat      | kohli     | t       | 2020-11-10
+  3 | surya      | yadav     | t       | 2020-11-19
+  4 | ishan      | kishan    | f       | 2020-11-10
+  5 | hardik     | pandya    | f       | 2019-11-10
+  6 | ishant     | sharma    | t       | 2019-08-10
+  7 | tarique    | aziz      | f       | 2020-07-10
+  8 | aman       | chohan    | t       | 2020-11-10
+  9 | nitish     | kumar     | f       | 2018-11-10
+ 10 | darvesh    | sharma    | t       | 2020-01-10
+(10 rows)
+
+
+
+ 
+
