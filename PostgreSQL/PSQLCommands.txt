@@ -236,3 +236,281 @@ id | salary
 (4 rows)
 
 
+
+
+
+21. select * from company;
+output:
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  1 | Paul   |  32 | California                                         |  20000 | 2001-07-13
+  2 | Allen  |  25 | Texas                                              |        | 2007-12-13
+  3 | Teddy  |  23 | Norway                                             |  20000 | 
+  4 | Mark   |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman   |  24 | Norway                                             |  70000 | 2008-12-15
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  7 | Messi  |  25 | Texas                                              |  32000 | 2011-12-13
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+(9 rows)
+
+
+
+
+
+
+
+
+
+22.  WHERE Clause: used to specify a condition while fetching the data from single table or joining with multiple tables.
+
+                      syntax:SELECT column1, column2, columnN
+                             FROM table_name
+                             WHERE [search_condition]
+                      example: select * from company where age>25;
+output:
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  1 | Paul   |  32 | California                                         |  20000 | 2001-07-13
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+(4 rows)
+
+    
+
+
+23.   SELECT * FROM COMPANY WHERE AGE >= 25 OR SALARY >= 65000;
+
+output:
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  1 | Paul   |  32 | California                                         |  20000 | 2001-07-13
+  2 | Allen  |  25 | Texas                                              |        | 2007-12-13
+  4 | Mark   |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman   |  24 | Norway                                             |  70000 | 2008-12-15
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  7 | Messi  |  25 | Texas                                              |  32000 | 2011-12-13
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+(8 rows)
+
+
+
+
+24.Update query with where clause;
+                 
+                  syntax:UPDATE table_name
+                  SET column1 = value1, column2 = value2...., columnN = valueN
+                  WHERE [condition];
+
+                  example:UPDATE COMPANY SET join_date = '2002-07-09' WHERE ID = 3;
+OUTPUT:
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  1 | Paul   |  32 | California                                         |  20000 | 2001-07-13
+  4 | Mark   |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman   |  24 | Norway                                             |  70000 | 2008-12-15
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  7 | Messi  |  25 | Texas                                              |  32000 | 2011-12-13
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+  2 | Allen  |  25 | Texas                                              |  15000 | 2002-07-08
+  3 | Teddy  |  23 | Norway                                             |  20000 | 2002-07-09
+
+
+
+
+25. Delete query 
+
+          syntax: DELETE FROM table_name  WHERE condition;
+          example:DELETE FROM company WHERE id=2;
+output after query select * from company:
+
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  1 | Paul   |  32 | California                                         |  20000 | 2001-07-13
+  4 | Mark   |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman   |  24 | Norway                                             |  70000 | 2008-12-15
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  7 | Messi  |  25 | Texas                                              |  32000 | 2011-12-13
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+  3 | Teddy  |  23 | Norway                                             |  20000 | 2002-07-09
+
+
+
+26. LIKE Clause:The PostgreSQL LIKE operator is used to match text values against a pattern using wildcards.
+                        
+                              syntax: SELECT FROM table_name
+                                      WHERE column LIKE 'aa%'
+
+                              example:SELECT * FROM COMPANY WHERE AGE::text LIKE '2%'; /* list the record in which age is starting with 2*/
+ output:
+id | name  | age |                      address                       | salary | join_date  
+----+-------+-----+----------------------------------------------------+--------+------------
+  4 | Mark  |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  5 | David |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman  |  24 | Norway                                             |  70000 | 2008-12-15
+  7 | Messi |  25 | Texas                                              |  32000 | 2011-12-13
+  3 | Teddy |  23 | Norway                                             |  20000 | 2002-07-09
+(5 rows)
+
+
+
+
+                            syntax: SELECT FROM table_name
+                                    WHERE column LIKE '%XXXX%'
+                            example:SELECT * FROM COMPANY WHERE ADDRESS  LIKE '%-%'; /* it will display the records in which address contains - */ 
+output:
+
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  4 | Mark   |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+(3 rows)
+
+
+
+27. LIMIT clause: LIMIT clause is used to limit the data amount returned by the SELECT statement.
+
+                        syntax: SELECT column1, column2, columnN
+                                FROM table_name
+                                LIMIT [no of rows]
+
+                        example: SELECT * FROM COMPANY LIMIT 4;
+output:
+id | name  | age |                      address                       | salary | join_date  
+----+-------+-----+----------------------------------------------------+--------+------------
+  1 | Paul  |  32 | California                                         |  20000 | 2001-07-13
+  4 | Mark  |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  5 | David |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman  |  24 | Norway                                             |  70000 | 2008-12-15
+
+
+                       syntax: SELECT column1, column2, columnN
+                               FROM table_name
+                               LIMIT [no of rows] OFFSET [row num]
+                       example: SELECT * FROM COMPANY LIMIT 3 OFFSET 2;
+output:
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  9 | Aman   |  24 | Norway                                             |  70000 | 2008-12-15
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+(3 rows)
+
+
+
+
+28.ORDER by:ORDER BY clause is used to sort the data in ascending or descending order.
+              
+                   syntax:SELECT column-list
+                          FROM table_name
+                          [WHERE condition]
+                          [ORDER BY column1, column2, .. columnN] [ASC | DESC];
+ 
+                  exapmle:SELECT * FROM COMPANY ORDER BY NAME, SALARY ASC;
+
+output:
+
+id |  name  | age |                      address                       | salary | join_date  
+----+--------+-----+----------------------------------------------------+--------+------------
+  9 | Aman   |  24 | Norway                                             |  70000 | 2008-12-15
+  5 | David  |  27 | Texas                                              |  85000 | 2007-12-13
+  4 | Mark   |  25 | Rich-Mond                                          |  65000 | 2007-12-13
+  7 | Messi  |  25 | Texas                                              |  32000 | 2011-12-13
+  6 | Nitish |  30 | Rich-Mond                                          |  45000 | 2010-12-13
+  1 | Paul   |  32 | California                                         |  20000 | 2001-07-13
+  3 | Teddy  |  23 | Norway                                             |  20000 | 2002-07-09
+  8 | xavi   |  32 | Rich-Mond                                          |  40000 | 2012-12-13
+(8 rows)
+
+
+
+
+29.GROUP BY: GROUP BY clause is used in collaboration with the SELECT statement to group together those rows in a table that have identical data.
+
+                                        syntax:SELECT column-list
+                                               FROM table_name
+                                               WHERE [ conditions ]
+                                               GROUP BY column1, column2....columnN
+                                               ORDER BY column1, column2....columnN
+
+                                        example: SELECT address, COUNT(*)FROM COMPANY GROUP BY address;
+output:
+
+                      address                       | count 
+----------------------------------------------------+-------
+ Rich-Mond                                          |     3
+ California                                         |     1
+ Norway                                             |     2
+ Texas                                              |     2
+(4 rows)
+
+
+30. WITH clause:the WITH query provides a way to write auxiliary statements for use in a larger query.
+
+                         syntax: WITH
+                                 name_for_summary_data AS (
+                                        SELECT Statement)
+                                        SELECT columns
+                                        FROM name_for_summary_data
+                                        WHERE conditions <=> (
+                                        SELECT column
+                                        FROM name_for_summary_data)
+               
+                         example:WITH RECURSIVE t(n) AS (
+                                 VALUES (0)
+                                 UNION ALL
+                                 SELECT SALARY FROM COMPANY WHERE SALARY < 50000
+                                 )
+                                 SELECT sum(n) FROM t;
+
+output:
+ sum   
+--------
+ 157000
+(1 row)
+
+
+31.HAVING clause: The HAVING clause allows us to pick out particular rows where the function's result meets some condition.
+
+                         syntax:SELECT column1, column2
+                                FROM table1, table2
+                                WHERE [ conditions ]
+                                GROUP BY column1, column2
+                                HAVING [ conditions ]
+                                ORDER BY column1, column2
+
+                         example:SELECT NAME FROM COMPANY GROUP BY name HAVING count(name) > 1;
+output:
+ name 
+------
+ Paul
+(1 row)
+
+
+
+
+
+32. DISTINCT : DISTINCT keyword is used in conjunction with SELECT statement to eliminate all the duplicate records and fetching only unique records.
+
+                      syntax: SELECT DISTINCT column1, column2,.....columnN
+                              FROM table_name
+                              WHERE [condition]
+                      example:SELECT DISTINCT name FROM COMPANY;
+output:
+ name  
+--------
+ Teddy
+ David
+ Paul
+ Mark
+ Aman
+ Nitish
+ Messi
+ xavi
+(8 rows)
+
