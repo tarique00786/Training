@@ -1,0 +1,154 @@
+--------------------------QueriesPractice------------------------
+
+1. --Listing all tables-----
+
+
+
+bookreview=# select * from users;
+
+ id | first_name | last_name | enabled | last_login 
+----+------------+-----------+---------+------------
+  1 | rohit      | sharma    | f       | 2020-10-10
+  2 | virat      | kohli     | t       | 2020-11-10
+  3 | surya      | yadav     | t       | 2020-11-19
+  4 | ishan      | kishan    | f       | 2020-11-10
+  5 | hardik     | pandya    | f       | 2019-11-10
+  6 | ishant     | sharma    | t       | 2019-08-10
+  7 | tarique    | aziz      | f       | 2020-07-10
+  8 | aman       | chohan    | t       | 2020-11-10
+  9 | nitish     | kumar     | f       | 2018-11-10
+ 10 | darvesh    | sharma    | t       | 2020-01-10
+(10 rows)
+
+
+
+bookreview=# select * from addresses;
+
+ user_id |       street       |    city     |     state     
+---------+--------------------+-------------+---------------
+       1 | 1 shastri nagar    | south delhi | delhi
+       2 | 1 nehru nagar      | west delhi  | delhi
+       3 | 2 jawahar nagar    | north delhi | delhi
+       4 | stefen street      | mandi       | mumbai
+       5 | babatpur road      | varanasi    | uttar pradesh
+       6 | gb road            | ballia      | uttar pradesh
+       7 | 23 transport nagar | jaipur      | rajasthan
+       8 | cp choraha         | jodhpur     | rajasthan
+(8 rows)
+
+
+
+bookreview=# select * from reviews;
+
+ id | book_id | reviewer_name |  content   | rating | published_date 
+----+---------+---------------+------------+--------+----------------
+  1 |       1 | rohit         | great book |      8 | 2017-12-10
+  2 |       2 | virat         | average    |      5 | 2017-10-13
+  3 |       2 | aman          | not good   |      4 | 2017-10-22
+  4 |       6 | tarique       | not good   |      5 | 2017-10-22
+  5 |      10 | nitish        | excellent  |      9 | 2017-10-22
+  6 |      10 | darvesh       | great book |      8 | 2017-12-12
+  7 |       2 | virat         | very good  |      8 | 2017-10-13
+  8 |       2 | surya         | not good   |      4 | 2017-11-22
+  9 |       6 | tarique       | not good   |      5 | 2017-10-22
+ 10 |       8 | ishan         | excellent  |      9 | 2016-10-22
+(10 rows)
+
+
+
+bookreview=# select * from books;
+
+ id |      title       |   author    | published_date |     isbn     
+----+------------------+-------------+----------------+--------------
+  1 | Data Structure   | Mary Parker | 2012-02-22     | 981483029127
+  2 | Algorithm        | John Mayer  | 1972-07-03     | 857300923713
+  3 | Computer network | Cary Flint  | 2015-10-18     | 523120967812
+  4 | database         | hary Parker | 2012-02-22     | 981433029127
+  5 | architecture     | John flint  | 1972-07-03     | 857311923713
+  6 | compiler design  | Cary Flint  | 2015-10-18     | 523102096781
+  7 | aptitude         | rd sharma   | 2012-02-22     | 980483029127
+  8 | machine learning | Andrew NG   | 1972-07-03     | 857700923713
+  9 | Deep learning    | Cary Flint  | 2015-10-18     | 523220967812
+ 10 | rocket science   | elon musk   | 2011-03-25     | 123456789123
+(10 rows)
+
+  
+
+bookreview=# select * from checkouts;
+
+ id | user_id | book_id | checkout_date | return_date 
+----+---------+---------+---------------+-------------
+  1 |       1 |       1 | 2017-10-15    | 2017-12-15
+  2 |       1 |       2 | 2017-10-05    | 2017-11-13
+  3 |       2 |       2 | 2017-05-18    | 2018-10-22
+  4 |       5 |       3 | 2017-10-15    | 2018-01-21
+  5 |       1 |       6 | 2019-10-15    | 2020-05-20
+  6 |       2 |       5 | 2019-10-05    | 2019-10-13
+  7 |       2 |       2 | 2019-08-15    | 2017-10-22
+  8 |       5 |       3 | 2018-10-15    | 2018-12-16
+  9 |       7 |       4 | 2020-04-25    | 2020-06-30
+ 10 |       6 |       5 | 2019-05-15    | 2019-07-30
+(10 rows)
+
+
+
+
+Q1. Select all the users who are enabled.
+
+query:  select first_name,last_name from users where enabled=true;
+output:
+
+ first_name | last_name 
+------------+-----------
+ virat      | kohli
+ surya      | yadav
+ ishant     | sharma
+ aman       | chohan
+ darvesh    | sharma
+(5 rows)
+
+
+Q2.Count the number of users who are not enabled.
+
+query: select Count(*) as "No of users not enabled" from users where enabled=false;
+output:
+
+ No of users not enabled 
+-------------------------
+                       5
+(1 row)
+ 
+
+Q3. List out all the users who belongs to uttar pradesh.
+
+query: select u.first_name,u.last_name from users as u
+       INNER JOIN addresses as a
+       ON u.id=a.user_id
+       where a.state='uttar pradesh'
+output:
+
+ first_name | last_name 
+------------+-----------
+ hardik     | pandya
+ ishant     | sharma
+(2 rows)
+
+
+Q4.List out the users name,content and ratings who gave more than 5 rating to a book.
+
+query:select u.first_name,u.last_name,r.content,r.rating from users as u
+bookreview-# INNER JOIN reviews as r
+bookreview-# ON u.id=r.book_id
+bookreview-# WHERE rating>5;
+output:
+
+ first_name | last_name |  content   | rating 
+------------+-----------+------------+--------
+ rohit      | sharma    | great book |      8
+ darvesh    | sharma    | excellent  |      9
+ darvesh    | sharma    | great book |      8
+ virat      | kohli     | very good  |      8
+ aman       | chohan    | excellent  |      9
+(5 rows)
+
+  
