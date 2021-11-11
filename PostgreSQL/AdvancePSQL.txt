@@ -461,12 +461,229 @@ bookreview=# select * from checkouts;
 (10 rows)
 
 
+----Deleted 2 last rows from addresses for better understanding for JOINS------------
 
-------------------JOINS--------------
+bookreview=# select * from addresses;
+ user_id |       street       |    city     |     state     
+---------+--------------------+-------------+---------------
+       1 | 1 shastri nagar    | south delhi | delhi
+       2 | 1 nehru nagar      | west delhi  | delhi
+       3 | 2 jawahar nagar    | north delhi | delhi
+       4 | stefen street      | mandi       | mumbai
+       5 | babatpur road      | varanasi    | uttar pradesh
+       6 | gb road            | ballia      | uttar pradesh
+       7 | 23 transport nagar | jaipur      | rajasthan
+       8 | cp choraha         | jodhpur     | rajasthan
+(8 rows)
+
+
+
+
+--------JOINS-------
+
 
 Joins clause is used to combine records from two or more tables in a database. A JOIN is a means for combining fields from two tables by using values common to each.
 
 
-1. INNER JOIN
+1. INNER JOIN->The query compares each row of table1 with each row of table2 to find all pairs of rows, which satisfy the join-predicate.
 
-             syntax: 
+            syntax: SELECT table_nameN.column_name, ...
+                    FROM table_name1
+                    INNER JOIN table_name2
+                       ON join_condition;
+
+            example:SELECT users.*, addresses.*
+                     FROM users
+                     INNER JOIN addresseS
+                     ON users.id = addresses.user_id;
+
+
+OUTPUT:
+
+ id | first_name | last_name | enabled | last_login | user_id |       street       |    city     |     state
+----+------------+-----------+---------+------------+---------+--------------------+-------------+---------------
+  1 | rohit      | sharma    | f       | 2020-10-10 |       1 | 1 shastri nagar    | south delhi | delhi
+  2 | virat      | kohli     | t       | 2020-11-10 |       2 | 1 nehru nagar      | west delhi  | delhi
+  3 | surya      | yadav     | t       | 2020-11-19 |       3 | 2 jawahar nagar    | north delhi | delhi
+  4 | ishan      | kishan    | f       | 2020-11-10 |       4 | stefen street      | mandi       | mumbai
+  5 | hardik     | pandya    | f       | 2019-11-10 |       5 | babatpur road      | varanasi    | uttar pradesh
+  6 | ishant     | sharma    | t       | 2019-08-10 |       6 | gb road            | ballia      | uttar pradesh
+  7 | tarique    | aziz      | f       | 2020-07-10 |       7 | 23 transport nagar | jaipur      | rajasthan
+  8 | aman       | chohan    | t       | 2020-11-10 |       8 | cp choraha         | jodhpur     | rajasthan
+(8 rows)
+
+
+
+2. LEFT JOIN 
+
+
+                SYNTAX:SELECT table_nameN.column_name, ...
+                    FROM table_name1
+                    LEFT JOIN table_name2
+                       ON join_condition;
+             
+                EXAMPLE:SELECT users.*, addresses.*
+       FROM users
+       LEFT JOIN addresses
+            ON users.id = addresses.user_id;
+
+OUTPUT:
+
+id | first_name | last_name | enabled | last_login | user_id |       street       |    city     |     state     
+----+------------+-----------+---------+------------+---------+--------------------+-------------+---------------
+  1 | rohit      | sharma    | f       | 2020-10-10 |       1 | 1 shastri nagar    | south delhi | delhi
+  2 | virat      | kohli     | t       | 2020-11-10 |       2 | 1 nehru nagar      | west delhi  | delhi
+  3 | surya      | yadav     | t       | 2020-11-19 |       3 | 2 jawahar nagar    | north delhi | delhi
+  4 | ishan      | kishan    | f       | 2020-11-10 |       4 | stefen street      | mandi       | mumbai
+  5 | hardik     | pandya    | f       | 2019-11-10 |       5 | babatpur road      | varanasi    | uttar pradesh
+  6 | ishant     | sharma    | t       | 2019-08-10 |       6 | gb road            | ballia      | uttar pradesh
+  7 | tarique    | aziz      | f       | 2020-07-10 |       7 | 23 transport nagar | jaipur      | rajasthan
+  8 | aman       | chohan    | t       | 2020-11-10 |       8 | cp choraha         | jodhpur     | rajasthan
+ 10 | darvesh    | sharma    | t       | 2020-01-10 |         |                    |             | 
+  9 | nitish     | kumar     | f       | 2018-11-10 |         |                    |             | 
+(10 rows)
+
+
+
+  
+  
+3.RIGHT JOIN
+   
+       syntax:SELECT table_nameN.column_name, ...
+                    FROM table_name1
+                    RIGHT JOIN table_name2
+                       ON join_condition;
+
+
+        example: SELECT reviews.book_id, reviews.content,
+               reviews.rating, reviews.published_date,
+               books.id, books.title, books.author
+               FROM reviews
+                RIGHT JOIN books
+                      ON reviews.book_id = books.id;
+
+       
+OUTPUT:
+
+book_id |  content   | rating | published_date | id |      title       |   author    
+---------+------------+--------+----------------+----+------------------+-------------
+       1 | great book |      8 | 2017-12-10     |  1 | Data Structure   | Mary Parker
+       2 | not good   |      4 | 2017-11-22     |  2 | Algorithm        | John Mayer
+       2 | very good  |      8 | 2017-10-13     |  2 | Algorithm        | John Mayer
+       2 | not good   |      4 | 2017-10-22     |  2 | Algorithm        | John Mayer
+       2 | average    |      5 | 2017-10-13     |  2 | Algorithm        | John Mayer
+         |            |        |                |  3 | Computer network | Cary Flint
+         |            |        |                |  4 | database         | hary Parker
+         |            |        |                |  5 | architecture     | John flint
+       6 | not good   |      5 | 2017-10-22     |  6 | compiler design  | Cary Flint
+       6 | not good   |      5 | 2017-10-22     |  6 | compiler design  | Cary Flint
+         |            |        |                |  7 | aptitude         | rd sharma
+       8 | excellent  |      9 | 2016-10-22     |  8 | machine learning | Andrew NG
+         |            |        |                |  9 | Deep learning    | Cary Flint
+      10 | great book |      8 | 2017-12-12     | 10 | rocket science   | elon musk
+      10 | excellent  |      9 | 2017-10-22     | 10 | rocket science   | elon musk
+(15 rows)
+
+
+
+
+4.FULL JOIN->ESSENTIALLY A COMBINATION OF LEFT JOIN AND RIGHT JOIN
+
+            EXAMPLE:ELECT reviews.book_id, reviews.content,
+               reviews.rating, reviews.published_date,
+               books.id, books.title, books.author
+               FROM reviews
+                FUL JOIN books
+                      ON reviews.book_id = books.id;
+
+ 
+output:
+
+
+ book_id |  content   | rating | published_date | id |      title       |   author    
+---------+------------+--------+----------------+----+------------------+-------------
+       1 | great book |      8 | 2017-12-10     |  1 | Data Structure   | Mary Parker
+       2 | not good   |      4 | 2017-11-22     |  2 | Algorithm        | John Mayer
+       2 | very good  |      8 | 2017-10-13     |  2 | Algorithm        | John Mayer
+       2 | not good   |      4 | 2017-10-22     |  2 | Algorithm        | John Mayer
+       2 | average    |      5 | 2017-10-13     |  2 | Algorithm        | John Mayer
+         |            |        |                |  3 | Computer network | Cary Flint
+         |            |        |                |  4 | database         | hary Parker
+         |            |        |                |  5 | architecture     | John flint
+       6 | not good   |      5 | 2017-10-22     |  6 | compiler design  | Cary Flint
+       6 | not good   |      5 | 2017-10-22     |  6 | compiler design  | Cary Flint
+         |            |        |                |  7 | aptitude         | rd sharma
+       8 | excellent  |      9 | 2016-10-22     |  8 | machine learning | Andrew NG
+         |            |        |                |  9 | Deep learning    | Cary Flint
+      10 | great book |      8 | 2017-12-12     | 10 | rocket science   | elon musk
+      10 | excellent  |      9 | 2017-10-22     | 10 | rocket science   | elon musk
+(15 rows)
+
+
+
+5.Cross Join -> It Cartesian JOIN, returns all rows from one table crossed with every row from the second table
+
+
+
+
+6.Multiple joins
+
+
+SELECT users.first_name,users.last_name, books.title,
+       checkouts.checkout_date
+    FROM users
+    INNER JOIN checkouts
+          ON users.id = checkouts.user_id
+    INNER JOIN books
+          ON books.id = checkouts.book_id;
+
+
+output:
+
+first_name | last_name |      title       | checkout_date 
+------------+-----------+------------------+---------------
+ rohit      | sharma    | Data Structure   | 2017-10-15
+ rohit      | sharma    | Algorithm        | 2017-10-05
+ virat      | kohli     | Algorithm        | 2017-05-18
+ hardik     | pandya    | Computer network | 2017-10-15
+ rohit      | sharma    | compiler design  | 2019-10-15
+ virat      | kohli     | architecture     | 2019-10-05
+ virat      | kohli     | Algorithm        | 2019-08-15
+ hardik     | pandya    | Computer network | 2018-10-15
+ tarique    | aziz      | database         | 2020-04-25
+ ishant     | sharma    | architecture     | 2019-05-15
+(10 rows)
+
+
+
+
+---------------ALIASING-----------------
+
+Aliasing allows us to specify another name for a column or table and then use that name in later parts of a query to allow for more concise syntax.
+
+
+example:     SELECT u.first_name, b.title, c.checkout_date
+             FROM users AS u
+             INNER JOIN checkouts AS c
+              ON u.id = c.user_id
+             INNER JOIN books AS b
+              ON b.id = c.book_id;
+
+output:
+
+ first_name |      title       | checkout_date 
+------------+------------------+---------------
+ rohit      | Data Structure   | 2017-10-15
+ rohit      | Algorithm        | 2017-10-05
+ virat      | Algorithm        | 2017-05-18
+ hardik     | Computer network | 2017-10-15
+ rohit      | compiler design  | 2019-10-15
+ virat      | architecture     | 2019-10-05
+ virat      | Algorithm        | 2019-08-15
+ hardik     | Computer network | 2018-10-15
+ tarique    | database         | 2020-04-25
+ ishant     | architecture     | 2019-05-15
+(10 rows)
+
+
+
