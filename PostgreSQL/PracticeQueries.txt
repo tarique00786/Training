@@ -151,4 +151,344 @@ output:
  aman       | chohan    | excellent  |      9
 (5 rows)
 
-  
+
+
+Q5. select first_name,last_name ,city name ,checkout_date,return_date,book title,and reviewer name joining all the tables;
+
+Query:
+bookreview=# select u.first_name,u.last_name,a.city,c.checkout_date,c.return_date,b.title,r.reviewer_name  
+FROM users as u
+INNER JOIN addresses as a
+ON u.id=a.user_id
+INNER JOIN checkouts as c
+ON u.id=c.user_id
+INNER JOIN books as b
+ON c.book_id=b.id
+INNER JOIN reviews as r
+ON b.id=r.book_id;
+
+Output:
+
+ first_name | last_name |    city     | checkout_date | return_date |      title      | reviewer_name 
+------------+-----------+-------------+---------------+-------------+-----------------+---------------
+ rohit      | sharma    | south delhi | 2017-10-15    | 2017-12-15  | Data Structure  | rohit
+ rohit      | sharma    | south delhi | 2017-10-05    | 2017-11-13  | Algorithm       | virat
+ rohit      | sharma    | south delhi | 2017-10-05    | 2017-11-13  | Algorithm       | aman
+ rohit      | sharma    | south delhi | 2017-10-05    | 2017-11-13  | Algorithm       | virat
+ rohit      | sharma    | south delhi | 2017-10-05    | 2017-11-13  | Algorithm       | surya
+ virat      | kohli     | west delhi  | 2017-05-18    | 2018-10-22  | Algorithm       | virat
+ virat      | kohli     | west delhi  | 2017-05-18    | 2018-10-22  | Algorithm       | aman
+ virat      | kohli     | west delhi  | 2017-05-18    | 2018-10-22  | Algorithm       | virat
+ virat      | kohli     | west delhi  | 2017-05-18    | 2018-10-22  | Algorithm       | surya
+ rohit      | sharma    | south delhi | 2019-10-15    | 2020-05-20  | compiler design | tarique
+ rohit      | sharma    | south delhi | 2019-10-15    | 2020-05-20  | compiler design | tarique
+ virat      | kohli     | west delhi  | 2019-08-15    | 2017-10-22  | Algorithm       | virat
+ virat      | kohli     | west delhi  | 2019-08-15    | 2017-10-22  | Algorithm       | aman
+ virat      | kohli     | west delhi  | 2019-08-15    | 2017-10-22  | Algorithm       | virat
+ virat      | kohli     | west delhi  | 2019-08-15    | 2017-10-22  | Algorithm       | surya
+
+
+Q6.Write a query to  Count the number of books a user have.
+Query:
+
+Output:
+
+select u.first_name,u.last_name,count(c.book_id) from users as u,checkouts as c ,reviews as r WHERE u.id=c.user_id AND c.book_id=r.id GROUP BY u.first_name,u.last_name;
+ first_name | last_name | count 
+------------+-----------+-------
+ ishant     | sharma    |     1
+ hardik     | pandya    |     2
+ virat      | kohli     |     3
+ rohit      | sharma    |     3
+ tarique    | aziz      |     1
+
+
+===========================UPDTAES THE VALUE OF CHECKOUTS================ 
+
+bookreview=# ALTER TABLE checkouts
+bookreview-# UPDATE checkouts
+bookreview-# SET checkot_date ='2020-11-10'
+bookreview-# WHERE id=1;
+ERROR:  syntax error at or near "UPDATE"
+LINE 2: UPDATE checkouts
+        ^
+bookreview=# ALTER TABLE checkouts
+UPDATE checkouts
+UPDATE checkot_date ='2020-11-10'
+WHERE id=1;
+ERROR:  syntax error at or near "UPDATE"
+LINE 2: UPDATE checkouts
+        ^
+bookreview=# ALTER TABLE checkouts
+UPDATE checkouts
+SET checkout_date ='2020-11-10'
+WHERE id=1;
+ERROR:  syntax error at or near "UPDATE"
+LINE 2: UPDATE checkouts
+        ^
+bookreview=# ALTER TABLE checkouts
+UPDATE checkouts
+SET checkout_date ='2020-11-10'
+WHERE id=1;
+ERROR:  syntax error at or near "UPDATE"
+LINE 2: UPDATE checkouts
+        ^
+bookreview=# UPDATE checkouts
+bookreview-# SET checkout_date='2020-11-10'
+bookreview-# WHERE id=1;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2020-11-12'
+WHERE id=2;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2020-11-26'
+WHERE id=3;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2020-12-22'
+WHERE id=4;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2019-12-05'
+WHERE id=5;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2019-09-15'
+WHERE id=6;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2019-08-11'
+WHERE id=7;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2020-08-11'
+WHERE id=7;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2020-11-29'
+WHERE id=8;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2019-03-10'
+WHERE id=9;
+UPDATE 1
+bookreview=# UPDATE checkouts
+SET checkout_date='2020-06-09'
+WHERE id=10;
+UPDATE 1
+bookreview=# select * from checkouts;
+ id | user_id | book_id | checkout_date | return_date 
+----+---------+---------+---------------+-------------
+  1 |       1 |       1 | 2020-11-10    | 2017-12-15
+  2 |       1 |       2 | 2020-11-12    | 2017-11-13
+  3 |       2 |       2 | 2020-11-26    | 2018-10-22
+  4 |       5 |       3 | 2020-12-22    | 2018-01-21
+  5 |       1 |       6 | 2019-12-05    | 2020-05-20
+  6 |       2 |       5 | 2019-09-15    | 2019-10-13
+  7 |       2 |       2 | 2020-08-11    | 2017-10-22
+  8 |       5 |       3 | 2020-11-29    | 2018-12-16
+  9 |       7 |       4 | 2019-03-10    | 2020-06-30
+ 10 |       6 |       5 | 2020-06-09    | 2019-07-30
+(10 rows)
+
+
+
+Q7. Select all users who lives in states other than uttar prades; 
+Query:
+
+bookreview=# select u.first_name,u.last_name,a.state from users as u,addresses as a WHERE u.id=a.user_id AND NOT a.state='uttar pradesh'; 
+ first_name | last_name |   state   
+------------+-----------+-----------
+ rohit      | sharma    | delhi
+ virat      | kohli     | delhi
+ surya      | yadav     | delhi
+ ishan      | kishan    | mumbai
+ tarique    | aziz      | rajasthan
+ aman       | chohan    | rajasthan
+(6 rows)
+
+
+
+Q8. Select the first_name ,review content ,rating which is more than 5 given by any userwho lives in delhi.
+Query:
+bookreview=# select u.first_name,r.content,r.rating from users as u,reviews as r,checkouts as c,addresses as a  WHERE u.id=a.user_id AND c.user_id=r.id AND r.rating>5; 
+bookreview=# select u.first_name,r.content,r.rating from users as u,reviews as r,checkouts as c,addresses as a  WHERE u.id=a.user_id AND c.user_id=r.id AND a.state='delhi' AND  r.rating>5; 
+ first_name |  content   | rating 
+------------+------------+--------
+ rohit      | great book |      8
+ virat      | great book |      8
+ surya      | great book |      8
+ rohit      | great book |      8
+ virat      | great book |      8
+ surya      | great book |      8
+ rohit      | excellent  |      9
+ virat      | excellent  |      9
+ surya      | excellent  |      9
+ rohit      | great book |      8
+ virat      | great book |      8
+ surya      | great book |      8
+ rohit      | excellent  |      9
+ virat      | excellent  |      9
+ surya      | excellent  |      9
+ rohit      | very good  |      8
+ virat      | very good  |      8
+ surya      | very good  |      8
+ rohit      | great book |      8
+ virat      | great book |      8
+ surya      | great book |      8
+(21 rows)
+
+Q.9 Also list out the subjects for whivh rating of more than 5 has been given by any user.
+Query:
+bookreview=# select u.first_name,r.content,r.rating,b.title from users as u,reviews as r,checkouts as c,addresses as a,books as b  WHERE u.id=a.user_id AND c.book_id=b.id AND c.user_id=r.id AND a.state='delhi' AND  r.rating>5; 
+ first_name |  content   | rating |      title       
+------------+------------+--------+------------------
+ rohit      | great book |      8 | Data Structure
+ virat      | great book |      8 | Data Structure
+ surya      | great book |      8 | Data Structure
+ rohit      | great book |      8 | Algorithm
+ virat      | great book |      8 | Algorithm
+ surya      | great book |      8 | Algorithm
+ rohit      | excellent  |      9 | Computer network
+ virat      | excellent  |      9 | Computer network
+ surya      | excellent  |      9 | Computer network
+ rohit      | great book |      8 | compiler design
+ virat      | great book |      8 | compiler design
+ surya      | great book |      8 | compiler design
+ rohit      | excellent  |      9 | Computer network
+ virat      | excellent  |      9 | Computer network
+ surya      | excellent  |      9 | Computer network
+ rohit      | very good  |      8 | database
+ virat      | very good  |      8 | database
+ surya      | very good  |      8 | database
+ rohit      | great book |      8 | architecture
+ virat      | great book |      8 | architecture
+ surya      | great book |      8 | architecture
+(21 rows)
+
+Q.10 List out the names of users along with book titles and date difference betwwn return date and checkout_date.
+
+bookreview=# select c.id,u.first_name,b.title,(c.return_date-c.checkout_date) as "Number of days"  from users as u,checkouts as c,books as b  WHERE c.user_id=u.id AND c.book_id=b.id;
+ id | first_name |      title       | Number of days 
+----+------------+------------------+----------------
+  1 | rohit      | Data Structure   |             45
+  2 | rohit      | Algorithm        |             43
+  3 | virat      | Algorithm        |             30
+  4 | hardik     | Computer network |              2
+  5 | rohit      | compiler design  |            385
+  6 | virat      | architecture     |            405
+  7 | virat      | Algorithm        |             70
+  8 | hardik     | Computer network |             21
+  9 | tarique    | database         |            407
+ 10 | ishant     | architecture     |             72
+
+ 
+
+Q11. select * from reviews where rating is more than average rating.
+Query.
+
+bookreview=# with avg_rating(avg_rat) as (select cast(AVG(rating) as int)from reviews)
+select * from reviews as r,avg_rating as a WHERE r.rating>a.avg_rat;
+
+ id | book_id | reviewer_name |  content   | rating | published_date | avg_rat 
+----+---------+---------------+------------+--------+----------------+---------
+  1 |       1 | rohit         | great book |      8 | 2017-12-10     |       7
+  5 |      10 | nitish        | excellent  |      9 | 2017-10-22     |       7
+  6 |      10 | darvesh       | great book |      8 | 2017-12-12     |       7
+  7 |       2 | virat         | very good  |      8 | 2017-10-13     |       7
+ 10 |       8 | ishan         | excellent  |      9 | 2016-10-22     |       7
+(5 rows)
+
+
+
+===========================UPDATE reviews table==================
+
+bookreview=# UPDATE reviews
+SET published_date='2021-05-23'
+WHERE id=1;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-04-23'
+WHERE id=2;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-04-23'
+WHERE id=3;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-09-23'
+WHERE id=4;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-09-03'
+WHERE id=5;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-11-03'
+WHERE id=6;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-11-03'
+WHERE id=7;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-11-03'
+WHERE id=8;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-09-23'
+WHERE id=9;
+UPDATE 1
+bookreview=# UPDATE reviews
+SET published_date='2021-09-23'
+WHERE id=10;
+UPDATE 1
+bookreview=# select * from reviews;
+ id | book_id | reviewer_name |  content   | rating | published_date 
+----+---------+---------------+------------+--------+----------------
+  1 |       1 | rohit         | great book |      8 | 2021-05-23
+  2 |       2 | virat         | average    |      5 | 2021-04-23
+  3 |       2 | aman          | not good   |      4 | 2021-04-23
+  4 |       6 | tarique       | not good   |      5 | 2021-09-23
+  5 |      10 | nitish        | excellent  |      9 | 2021-09-03
+  6 |      10 | darvesh       | great book |      8 | 2021-11-03
+  7 |       2 | virat         | very good  |      8 | 2021-11-03
+  8 |       2 | surya         | not good   |      4 | 2021-11-03
+  9 |       6 | tarique       | not good   |      5 | 2021-09-23
+ 10 |       8 | ishan         | excellent  |      9 | 2021-09-23
+(10 rows)
+
+
+
+Q12. Count the number of user belongs to every state.
+
+bookreview=# select a.state , count(*) from addresses as a ,users as u WHERE u.id=a.user_id GROUP BY a.state;
+     state     | count 
+---------------+-------
+ uttar pradesh |     2
+ mumbai        |     1
+ rajasthan     |     2
+ delhi         |     3
+(4 rows)
+
+
+Q13.ount the users of each city.
+
+You are now connected to database "bookreview" as user "postgres".
+bookreview=# select a.city ,count(*) from addresses as a,users as u WHERE u.id=a.user_id GROUP BY a.city;
+    city     | count 
+-------------+-------
+ jaipur      |     1
+ south delhi |     1
+ ballia      |     1
+ west delhi  |     1
+ north delhi |     1
+ jodhpur     |     1
+ varanasi    |     1
+ mandi       |     1
+(8 rows)
+
+
+Q13. 
+
