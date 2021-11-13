@@ -42,3 +42,21 @@ cmd:git merge                                   purpose: Helps you to merge the 
 cmd:git help command                            purpose: All information about commands
 
 
+
+++++++++++++++++++++++++++++++++Practice++++++++++++++++++++++++
+
+1.git remote add origin link
+
+         #This syntax adds your remote to local repository.
+
+2.git pull origin master
+
+        #If someone has changed and commit you can pull it on your local repository
+
+3.git fetch origin master
+
+       #Download on your local repository without any change->You have to do merge to reflect the changes on system
+
+ 
+
+
