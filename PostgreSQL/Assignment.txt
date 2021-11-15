@@ -1,0 +1,409 @@
+==========================================  PSQL ASSIGNMENT SOLUTION ========================
+
+1. CREATE DATABASE airline;     
+                    # creates airline database
+
+
+==========================================  CREATING TABLES =================================
+1. CREATE TABLE flights(flno int, 
+source varchar(30),
+destination varchar(30),
+distance int,
+departs time,
+arrives time,
+price int);
+CREATE TABLE
+airline=# ALTER TABLE flights add PRIMARY KEY (flno);
+
+Records in flights table after insertions:
+
+Query:
+airline=# select * from flights;
+
+Output:
+
+ flno |   source    | destination | distance | departs  | arrives  | price 
+------+-------------+-------------+----------+----------+----------+-------
+    1 | barcelona   | madrid      |      400 | 10:00:00 | 12:00:00 |  3000
+    4 | seville     | bilbao      |      700 | 12:00:00 | 02:30:00 |  7000
+    6 | bilbao      | barcelona   |     6000 | 01:00:00 | 03:30:00 |  8000
+    7 | seville     | almeria     |      300 | 09:30:00 | 10:30:00 |  2000
+    8 | madrid      | malaga      |     5000 | 08:30:00 | 11:45:00 | 13000
+    9 | malaga      | ibiza       |      900 | 03:30:00 | 05:00:00 |  5000
+    3 | madison     | new york    |      500 | 12:00:00 | 02:00:00 |  6000
+    5 | los angeles | chicago     |     4000 | 11:00:00 | 02:45:00 | 12000
+    2 | los angeles | honolulu    |     4000 | 11:00:00 | 02:45:00 | 12000
+(9 rows)
+
+
+2.airline=#  create table aircraft (aid int,
+aname varchar(30),
+cruisingrange int,
+PRIMARY KEY (aid));
+
+Records in aircraft table after insertions:
+
+airline=# select * from aircraft;
+ aid |     aname     | cruisingrange 
+-----+---------------+---------------
+  11 | hurricane     |          5000
+  25 | u-2 spyplane  |          3000
+  30 | stratofortres |          7000
+  40 | falcon        |          6000
+  13 | tupolev       |          9000
+  12 | mustang       |          5000
+  45 | mirrage       |          3000
+  89 | mistubishi    |          6000
+   9 | boing         |         10000
+(9 rows)
+
+
+3.airline=# create table employees(eid int,
+airline(# ename varchar(30),
+airline(# salary int,
+airline(# PRIMARY KEY (eid));
+
+
+Records in employees table after insertions:
+
+airline=# select * from employees;
+ eid |  ename   | salary 
+-----+----------+--------
+   1 | messi    | 120000
+   2 | ronaldo  |  90000
+   3 | mbappe   |  75000
+   4 | neymar   |  80000
+   5 | dybala   |  50000
+   6 | ansufati |  70000
+   7 | benzema  |  60000
+   8 | thomas   |  50000
+   9 | mane     |  30000
+(9 rows)
+
+
+
+4. create table certified (eid int,
+aid int,
+PRIMARY KEY (eid,aid),
+FOREIGN KEY (eid) REFERENCES employees(eid),
+FOREIGN KEY (aid) REFERENCES aircraft (aid));
+
+Records in certified after insertion:
+
+airline=# select * from certified;
+ eid | aid 
+-----+-----
+   1 |  11
+   2 |  11
+   1 |  25
+   5 |  25
+   7 |  25
+   1 |  30
+   2 |  30
+   1 |  40
+   2 |  40
+   4 |  40
+   1 |   9
+   2 |   9
+   3 |   9
+   8 |   9
+   9 |  11
+   3 |  13
+   6 |  12
+   1 |  13
+   1 |  12
+   9 |  30
+   9 |  25
+(21 rows)
+
+
+
+
+
+===================================== QUERIES OF ASSIGNNMENT ===============================
+
+QUERY A: Find the names of aircraft such that all pilots certified to operate them earn more than $80000.
+
+solution1: select DISTINCT a.aname from aircraft as a,certified as c, employees as e
+WHERE a.aid=c.aid AND e.eid=c.eid AND e.salary>80000;
+
+solution2: select DISTINCT a.aname from aircraft as a
+INNER JOIN certified as c
+ON a.aid=c.aid
+INNER JOIN employees as e
+ON e.eid=c.eid
+WHERE e.salary>80000;
+
+
+Output:
+
+     aname     
+---------------
+ hurricane
+ falcon
+ stratofortres
+ tupolev
+ boing
+ u-2 spyplane
+ mustang
+(7 rows)
+
+
+QUERY B: For each pilot who is certified for more than three aircraft, find the eid and the maximum cruising range of the aircraft for which she or he is certified.
+
+Solution 1.   select c.eid,MAX(a.cruisingrange) as "MAX_crusingrange" 
+airline-# from certified as c,
+airline-# aircraft as a
+airline-# WHERE c.aid=a.aid
+airline-# GROUP BY c.eid
+airline-# HAVING COUNT(c.eid)>3;
+
+Solution2.   airline=# select c.eid,MAX(a.cruisingrange) as "MAX_crusingrange" from certified as c
+airline-# INNER JOIN aircraft as a
+airline-# ON c.aid=a.aid
+airline-# GROUP BY c.eid
+airline-# HAVING COUNT(c.eid)>3;
+
+Output:
+
+ eid | MAX_crusingrange 
+-----+------------------
+   2 |            10000
+   1 |            10000
+(2 rows)
+
+
+
+============UPDATING THE FLIGHTS TABLE FOR QUERY 3 =============
+
+
+airline=# update flights
+set price=70000     
+where flno =1;
+UPDATE 1
+airline=# update flights
+set price=80000
+where flno =2;
+UPDATE 1
+airline=# select * from flights
+airline-# ;
+
+updated table:
+
+ flno |   source    | destination | distance | departs  | arrives  | price 
+------+-------------+-------------+----------+----------+----------+-------
+    4 | seville     | bilbao      |      700 | 12:00:00 | 02:30:00 |  7000
+    6 | bilbao      | barcelona   |     6000 | 01:00:00 | 03:30:00 |  8000
+    7 | seville     | almeria     |      300 | 09:30:00 | 10:30:00 |  2000
+    8 | madrid      | malaga      |     5000 | 08:30:00 | 11:45:00 | 13000
+    9 | malaga      | ibiza       |      900 | 03:30:00 | 05:00:00 |  5000
+    3 | madison     | new york    |      500 | 12:00:00 | 02:00:00 |  6000
+    5 | los angeles | chicago     |     4000 | 11:00:00 | 02:45:00 | 12000
+    1 | los angeles | honolulu    |      400 | 10:00:00 | 12:00:00 | 70000
+    2 | los angeles | honolulu    |     4000 | 11:00:00 | 02:45:00 | 80000
+(9 rows)
+
+
+
+QUERY C:  Find the names of pilots whose salary is less than the price of the cheapest route from los sngeles to honululu.
+
+SELECT e.ename from employees as e WHERE e.salary<(SELECT MIN(f.price) FROM flights f WHERE f.source='los angeles' AND f.destination='honolulu');
+
+Output:
+
+  ename  
+---------
+ dybala
+ benzema
+ thomas
+ mane
+(4 rows)
+
+
+
+QUERY D.  For all aircraft with cruisingrange over 1000 miles, find the name of the aircraft and the average salary of all pilots certified for the aircrafts. 
+
+select a.aname, AVG(e.salary) as "Average Salary" from employees  as e,aircraft as a,certified as c
+WHERE a.cruisingrange>1000 and c.eid=e.eid AND c.aid=a.aid
+GROUP BY (a.aname);
+
+
+
+
+     aname     |   Average Salary   
+---------------+--------------------
+ hurricane     | 80000.000000000000
+ falcon        | 96666.666666666667
+ stratofortres | 80000.000000000000
+ tupolev       | 97500.000000000000
+ boing         | 83750.000000000000
+ u-2 spyplane  | 65000.000000000000
+ mustang       | 95000.000000000000
+(7 rows)
+
+sOLUTION 2:
+
+airline=# select a.aname,CAST( AVG(e.salary)as int) as "Average Salary" from employees  as e,aircraft as a,certified as c
+WHERE a.cruisingrange>1000 and c.eid=e.eid AND c.aid=a.aid
+GROUP BY (a.aname);
+     aname     | Average Salary 
+---------------+----------------
+ hurricane     |          80000
+ falcon        |          96667
+ stratofortres |          80000
+ tupolev       |          97500
+ boing         |          83750
+ u-2 spyplane  |          65000
+ mustang       |          95000
+(7 rows)
+
+
+
+
+
+QUERY E.  Find the names of pilots certified for some Boeing aircraft.
+
+SOLUTION:
+
+airline=# select e.ename from employees as e,certified as c,aircraft as a 
+airline-# WHERE c.eid=e.eid AND c.aid=a.aid
+airline-# AND a.aname='boing';
+  ename  
+---------
+ messi
+ ronaldo
+ mbappe
+ thomas
+(4 rows)
+
+
+
+solution 2:
+
+
+select e.ename from employees as e
+airline-# INNER JOIN certified as c
+airline-# ON c.eid=e.eid
+airline-# INNER JOIN aircraft as a
+airline-# ON c.aid=a.aid
+airline-# WHERE a.aname='boing';
+
+
+
+
+
+QUERY H: Print the enames of pilots who can operate planes with cruisingrange greater than than 3000 miles but are not certified on any Boeing aircraft.
+ 
+solution:
+
+select DISTINCT  e.ename from employees as e
+INNER JOIN certified as c
+ON c.eid=e.eid
+INNER JOIN aircraft as a
+ON c.aid=a.aid AND NOT aname='boing' AND a.cruisingrange>3000 ;
+    A
+  ename   
+----------
+ mbappe
+ neymar
+ ansufati
+ messi
+ ronaldo
+ mane
+(6 rows)
+
+
+QUERY L: Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles;
+
+solution:
+
+airline=# select DISTINCT e.ename from employees as e,certified as c,aircraft as a
+airline-# WHERE e.eid=c.eid AND a.aid=c.aid
+airline-# AND a.cruisingrange>1000;
+    A
+  ename   
+----------
+ benzema
+ mbappe
+ neymar
+ ansufati
+ messi
+ dybala
+ ronaldo
+ thomas
+ mane
+(9 rows)
+
+
+
+QUERY M:Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles, but on atleast two such aircrafts.
+
+solution:
+
+
+airline=# select e.ename from employees as e INNER JOIN certified as c ON c.eid=e.eid INNER JOIN aircraft  as a ON a.aid=c.aid
+GROUP BY e.eid,e.ename
+HAVING EVERY(a.cruisingrange>1000) AND  COUNT(*)>1;
+  ename  
+---------
+ ronaldo
+ mane
+ mbappe
+ messi
+(4 rows)
+
+
+
+QUERY N: Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles and who are certified on some Boeing aircraft.
+ 
+
+select e.ename FROM employees as e,
+certified as c,aircraft as a
+WHERE c.aid=a.aid AND e.eid=c.eid
+GROUP BY e.ename,a.aname
+HAVING EVERY(a.cruisingrange>1000) AND a.aname='boing';
+
+
+  ename  
+---------
+ mbappe
+ messi
+ ronaldo
+ thomas
+(4 rows)
+
+
+
+QUERY F: Find the aids of all aircraft that can be used on routes from Los Angeles to chicago.
+
+select a.aid from aircraft as a
+WHERE a.cruisingrange>(select MIN(distance) from flights WHERE source='los angeles' AND destination='chicago');
+ aid 
+-----
+  11
+  30
+  40
+  13
+  12
+  89
+   9
+(7 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
