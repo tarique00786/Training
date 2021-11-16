@@ -390,6 +390,100 @@ WHERE a.cruisingrange>(select MIN(distance) from flights WHERE source='los angel
 (7 rows)
 
 
+QUERY G:Identify the routes that can be piloted by every pilot who makes more than $100000.
+
+
+airline=# select DISTINCT F.source,F.destination from flights as F,aircraft  as A WHERE A.cruisingrange IN( select DISTINCT aircraft.cruisingrange from aircraft WHERE aircraft.aid IN( select DISTINCT certified.aid  from certified WHERE certified.eid IN (select DISTINCT e.eid from  employees as e, certified as c WHERE e.eid=c.eid AND e.salary>100000)))AND F.distance<A.cruisingrange;
+   source    | destination 
+-------------+-------------
+ madison     | new york
+ bilbao      | barcelona
+ los angeles | chicago
+ seville     | almeria
+ seville     | bilbao
+ malaga      | ibiza
+ los angeles | honolulu
+ madrid      | malaga
+(8 rows)
+
+
+
+QUERY J:Compute the difference between the average salary of a pilot and the average salary of all employees(including pilots).
+
+
+select (select AVG(e.salary) from employees as e,certified as c WHERE c.eid=e.eid)-(select AVG(e.salary) from employees as e) as "AVG DIFFERENCE";
+   AVG DIFFERENCE   
+--------------------
+ 16969.696969696969
+(1 row)
+
+
+IQUERY K:Print the name and salary of every nonpilot whose salary is more than the average salary for pillots.
+
+airline=# select e.ename , e.salary from employees as e WHERE e.eid NOT IN (select eid from certified) AND e.salary>(select AVG(salary) from employees INNER JOIN certified ON employees.eid=certified.eid);
+ ename | salary 
+-------+--------
+ alves |  90000
+(1 row)
+
+
+
+=============================INSERTIN VALUES IN flights table FOR QUERY I============
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
