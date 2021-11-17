@@ -430,6 +430,67 @@ airline=# select e.ename , e.salary from employees as e WHERE e.eid NOT IN (sele
 
 =============================INSERTIN VALUES IN flights table FOR QUERY I============
 
+airline=# select * from flights;
+ flno |   source    | destination | distance | departs  | arrives  | price 
+------+-------------+-------------+----------+----------+----------+-------
+    4 | seville     | bilbao      |      700 | 12:00:00 | 02:30:00 |  7000
+    6 | bilbao      | barcelona   |     6000 | 01:00:00 | 03:30:00 |  8000
+    7 | seville     | almeria     |      300 | 09:30:00 | 10:30:00 |  2000
+    8 | madrid      | malaga      |     5000 | 08:30:00 | 11:45:00 | 13000
+    9 | malaga      | ibiza       |      900 | 03:30:00 | 05:00:00 |  5000
+    3 | madison     | new york    |      500 | 12:00:00 | 02:00:00 |  6000
+    5 | los angeles | chicago     |     4000 | 11:00:00 | 02:45:00 | 12000
+    1 | los angeles | honolulu    |      400 | 10:00:00 | 12:00:00 | 70000
+    2 | los angeles | honolulu    |     4000 | 11:00:00 | 02:45:00 | 80000
+   10 | madison     | alaska      |      600 | 10:20:00 | 12:30:00 |  2000
+   11 | alaska      | new york    |      700 | 15:00:00 | 18:00:00 |  4000
+   12 | madison     | madrid      |      600 | 10:20:00 | 12:30:00 |  2000
+   13 | madrid      | new york    |     1000 | 13:00:00 | 18:00:00 |  3000
+   14 | madison     | madrid      |      600 | 10:20:00 | 12:30:00 |  2000
+   15 | madrid      | new york    |     1000 | 12:30:00 | 17:30:00 |  3000
+   16 | madison     | barcelona   |      600 | 12:00:00 | 14:30:00 |  6000
+   17 | barcelona   | new york    |      500 | 15:00:00 | 17:00:00 |  6600
+   18 | madison     | honolulu    |      300 | 11:50:00 | 13:30:00 |  3000
+   19 | honolulu    | new york    |      600 | 13:50:00 | 16:50:00 |  3900
+(19 rows)
+QUERYI:
+
+A customer wants to travel from Madison to New York with no more than two
+changes of flight. List the choice of departure times from Madison if the
+customer wants to arrive in New York by 6 p.m
+
+airline=# select f.departs from flights as f WHERE f.flno IN ((select ff.flno from flights as ff WHERE ff.source='madison' AND ff.destination='new york' AND ff.arrives<'18:00:00') UNION (select f1.flno from flights as f1,flights as f2 WHERE f1.source='madison' AND f1.destination!='new york' AND f1.destination=f2.source AND f2.destination='new york' AND f2.departs>f1.arrives AND f2.arrives<'18:00:00'));  departs
+----------
+ 12:00:00
+ 12:00:00
+ 11:50:00
+(3 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
