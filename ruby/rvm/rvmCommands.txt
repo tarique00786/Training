@@ -1,0 +1,13 @@
+================================================== rvm commands =================================
+
+1. rvm help                          #This command will list about commands and  used in rvm 
+2. rvm list                          #This command will show currently installed ruby versions
+3. rvm list known                    #This command will show currently available interpretors
+4. rvm install <version>             #This command will help you to install any specific ruby version
+5. rvm use <version>                 #This command will help you to use specific ruby version
+6. rvm remove <version>              #This command will help you to remove specific ruby version
+7. rvm -v                            #Tells you about current version of rvm
+8. rvm current                       #Print the current ruby version
+9. rvm info                          #Show the details about current ruby version
+10.rvm disk-usage all                # List out how much space your rvm install is using 
+11.rvm use default                   # Switch to default ruby version 
