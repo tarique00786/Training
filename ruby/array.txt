@@ -1,0 +1,169 @@
+3.0.2 :004 > arr =[5,10,11,12,25,35,60,87]   # Creates a new array
+ => [5, 10, 11, 12, 25, 35, 60, 87]
+
+3.0.2 :005 > arr.at(3)                       #at method gives the element on indices 
+ => 12 
+ 
+3.0.2 :012 > arr.first                       #Array.first gives you the first element  
+ => 5 
+
+3.0.2 :013 > arr.last                        #Array.last  gives you the last element of an array
+ => 87 
+
+3.0.2 :014 > arr.take(5)                     #Array.take(n) returns the first n element from the array 
+ => [5, 10, 11, 12, 25] 
+
+3.0.2 :016 > arr.drop(3)                     #Array.drop(n) return the all array elements after droping first n elements
+ => [12, 25, 35, 60, 87] 
+
+
+
+
+ arr =[5,10,11,12,"aziz",35,60,87]                       
+ => [5, 10, 11, 12, "aziz", 35, 60, 87] 
+
+3.0.2 :003 > arr.size                      #size returns the size of array
+ => 8 
+
+3.0.2 :004 > arr.length                    #returns size of array
+ => 8 
+
+3.0.2 :005 > arr.count                     #return size of array
+ => 8 
+
+
+3.0.2 :006 > arr.empty?                   #If array is empty it returns true else returns false
+ => false 
+
+3.0.2 :007 > arr.include?(10)             #Array.include?(n)  It checks if n is present in the array,returns  true if 
+ => true                                  # n is inside the array otherwise returns false
+
+
+
+ ===============================ADDING ITEM INTO ARRAY====================================
+
+
+3.0.2 :008 > arr.push(130)                                     #Array.push(n) insert n at the end of array
+ => [5, 10, 11, 12, "aziz", 35, 60, 87, 130] 
+
+3.0.2 :009 > arr.unshift(999)                                  #Array.unshift(n) insert n at the beginning of the Array
+ => [999, 5, 10, 11, 12, "aziz", 35, 60, 87, 130] 
+
+3.0.2 :010 > arr.insert(3,"aman")                              #Array.insert(n,a) insert element a at nth position in the 
+ => [999, 5, 10, "aman", 11, 12, "aziz", 35, 60, 87, 130]      #Array
+
+
+
+
+===============================REMOVE ITEMS FROM ARRAY=================================
+
+3.0.2 :011 > arr.pop()                          #Array.pop()  removes last element from the array
+ => 130 
+
+3.0.2 :013 > arr.shift                          #Array.shift() removes first element from the array
+ => 999 
+3.0.2 :014 > arr.delete_at(3)                   #Array.delete_at(n) delete nth element from the array
+ => 11 
+
+3.0.2 :015 > arr.push(5)
+ => [5, 10, "aman", 12, "aziz", 35, 60, 87, 5]
+
+3.0.2 :016 > arr.delete(5)                     #Array.delete(n) deletes all the occurences of n in the array
+ => 5 
+3.0.2 :017 > arr
+ => [10, "aman", 12, "aziz", 35, 60, 87] 
+
+
+
+=======================================REMOVE NIL VALUES==================
+
+3.0.2 :019 > arr1=[0,7,5,nil,8,nil,"aman"]
+ => [0, 7, 5, nil, 8, nil, "aman"] 
+
+3.0.2 :020 > arr1.compact                   #Removes all the nil values present in array
+ => [0, 7, 5, 8, "aman"] 
+
+3.0.2 :021 > arr
+ => [10, "aman", 12, "aziz", 35, 60, 87]
+
+ 
+3.0.2 :024 > arr1.compact!                 #Removes all the nil values present in the array
+ => [0, 7, 5, 8, "aman"] 
+
+ 3.0.2 :027 > arr.unshift(12) 
+ => [12, 10, "aman", 12, "aziz", 35, 60, 87] 
+
+3.0.2 :031 > arr.uniq                     #returns an array with distinct elements
+ => [12, 10, "aman", "aziz", 35, 60, 87] 
+
+
+==================================== ITERATORS IN ARRAY=====================
+
+3.0.2 :033 > even =[10,20,2,4,10,100] 
+ => [10, 20, 2, 4, 10, 100]  
+ 
+3.0.2 :035 > even.each{|i| print i += 3," "}           #Iterate from first to last element
+13 23 5 7 13 103  => [10, 20, 2, 4, 10, 100] 
+
+
+3.0.2 :037 > even
+ => [10, 20, 2, 4, 10, 100] 
+
+3.0.2 :038 > even.reverse_each{|a| print a -= 3, " "}      #Iterate from last to first element
+97 7 1 -1 17 7  => [10, 20, 2, 4, 10, 100] 
+
+3.0.2 :039 > even
+ => [10, 20, 2, 4, 10, 100] 
+
+3.0.2 :040 > even.map{|a| 2*a}                        #Array.map() method creates a new array based on Array,not modify 
+ => [20, 40, 4, 8, 20, 200]                           #original array
+
+3.0.2 :042 > even
+ => [10, 20, 2, 4, 10, 100] 
+
+ .0.2 :006 > even.map!{|a| a*2}                       #Array.map() method creates a new array based on Array, modify
+ => [20, 40, 4, 8, 20, 200]                           # original array
+
+ 3.0.2 :008 > even
+ => [20, 40, 4, 8, 20, 200] 
+
+
+
+===================================SELECTING ITEMS IN ARRAY================
+
+3.0.2 :012 > natural=[1,2,3,4,5,6]                      
+ => [1, 2, 3, 4, 5, 6]  
+
+3.0.2 :013 > natural.select{|a| a>4}               #Array.select{|variable| condition} select all elements wrt to condtion 
+ => [5, 6] 
+
+3.0.2 :014 > natural.select{|i| i<6}
+ => [1, 2, 3, 4, 5]     
+
+3.0.2 :015 > natural.reject{|i| i>3}                                                                                    
+ => [1, 2, 3]                                     #Array.reject{|variable| condition} rejects all elements wrt to condition
+                                                  #and returns elements other than that
+
+3.0.2 :016 > natural.drop_while{|a| a<3}          #Drop all the elements in condition and returns                       
+ => [3, 4, 5, 6]                                  #others
+
+
+
+
+ 3.0.2 :018 > natural.delete_if{|a| a>3}         #Delete all the elements for which condition is true
+ => [1, 2, 3]                                    #returns array with remaining elements
+3.0.2 :019 > natural
+ => [1, 2, 3] 
+                                                     
+
+
+
+
+
+
+
+
+
+
+
+
