@@ -154,16 +154,572 @@
  => [1, 2, 3]                                    #returns array with remaining elements
 3.0.2 :019 > natural
  => [1, 2, 3] 
-                                                     
+ 
+ 
+ 
+ 
+ 3.0.2 :001 > arr=[{foo:2},[2,4],[2,4,6],[10,11,12]]
+ => [{:foo=>2}, [2, 4], [2, 4, 6], [10, 11, 12]] 
+
+3.0.2 :006 > arr.assoc(10)                                  #Array.assoc(obj)    Returns the first element in self that is an Array whose first element == obj:
+ => [10, 11, 12] 
+ 
+ 
+ 3.0.2 :002 > arr=[6,10,2,4,5,7]
+ => [6, 10, 2, 4, 5, 7] 
+ 
+3.0.2 :003 > arr.bsearch{|a| a>5}                          #Arra.bsearch{condition}  returns forst element for true condition else returns 0.
+ => 7 
+ 
+ 3.0.2 :004 > arr.bsearch{|a| a>100}
+ => nil 
+ 
+ 
+ 3.0.2 :005 > arr.map{|a| a>3}                            #Returns the array of true and false after checking condition on values
+ => [true, true, false, true, true, true] 
+
+ 3.0.2 :012 > arr=[6,10,2,4,'aman',7,[5,2]]
+ => [6, 10, 2, 4, "aman", 7, [5, 2]] 
+3.0.2 :013 > arr.map{|x| x.class}                                          #Returns the classes about every element   
+ => [Integer, Integer, Integer, Integer, String, Integer, Array] 
+ 
+ 3.0.2 :014 > arr.collect{|x| x.class}                                      #Collect is an alias of map
+ => [Integer, Integer, Integer, Integer, String, Integer, Array]       
+                                                    
+
+3.0.2 :009 > arr=[6,10,2,4,5,7]
+ => [6, 10, 2, 4, 5, 7] 
+ 
+3.0.2 :010 > arr.clear                                   #Clear all the elements from the array
+ => [] 
+ 
+ 
+ 3.0.2 :016 > arr.combination(2){|a| p a}                #Array.combibation(n){|a| p a} Returns the combination of length n
+[4, 5]
+[4, 6]
+[4, 7]
+[4, 8]
+[5, 6]
+[5, 7]
+[5, 8]
+[6, 7]
+[6, 8]
+[7, 8]
+ => [4, 5, 6, 7, 8] 
+3.0.2 :017 > arr.combination(3){|a| p a}
+[4, 5, 6]
+[4, 5, 7]
+[4, 5, 8]
+[4, 6, 7]
+[4, 6, 8]
+[4, 7, 8]
+[5, 6, 7]
+[5, 6, 8]
+[5, 7, 8]
+[6, 7, 8]
+ => [4, 5, 6, 7, 8] 
+3.0.2 :018 > arr.combination(4){|a| p a}
+[4, 5, 6, 7]
+[4, 5, 6, 8]
+[4, 5, 7, 8]
+[4, 6, 7, 8]
+[5, 6, 7, 8]
+ => [4, 5, 6, 7, 8] 
+3.0.2 :019 > arr.combination(6){|a| p a}
+ => [4, 5, 6, 7, 8] 
+3.0.2 :020 > arr.combination(5){|a| p a}
+[4, 5, 6, 7, 8]
+ => [4, 5, 6, 7, 8] 
+
+3.0.2 :021 > arr.combination(0){|a| p a}
+[]
+
+ => [4, 5, 6, 7, 8] 
+3.0.2 :022 > arr.combination(8){|a| p a}
+ => [4, 5, 6, 7, 8] 
+ 
+3.0.2 :023 > arr.combination(-1){|a| p a}
+
+
+                                                                          
+ => [4, 5, 6, 7, 8] 
+3.0.2 :024 > arr.concat([9,300])                                                       #Array.concat(*other arrays) Adds to array all elements from each Array in other_arrays; returns self.
+ => [4, 5, 6, 7, 8, 9, 300] 
+ 
+ 
+ 3.0.2 :030 > s1="aman"
+ => "aman" 
+3.0.2 :031 > arr
+ => [4, 5, 6, 7, 8, 9, 300] 
+ 
+3.0.2 :032 > arr.push(s1)
+ => [4, 5, 6, 7, 8, 9, 300, "aman"]  
+ 
+3.0.2 :033 > arr.delete("aman")                                               #DElete given string from array
+ => "aman" 
+ 
+3.0.2 :034 > arr
+ => [4, 5, 6, 7, 8, 9, 300] 
+ 
+ 
+ 3.0.2 :035 > arr.delete_at(4)
+ => 8 
+3.0.2 :036 > arr
+ => [4, 5, 6, 7, 9, 300] 
+
+
+
+3.0.2 :036 > arr
+ => [4, 5, 6, 7, 9, 300] 
+3.0.2 :037 > arr.difference([1,2,3,6,5])                                #Returns a new Array containing only those elements from self that are not found in any of the Arrays other_arrays.
+ => [4, 7, 9, 300] 
+ 
+ 
+ 
+ 3.0.2 :042 > arr
+ => [4, 5, 6, 7, 9, 300] 
+3.0.2 :043 > arr1=[4,5,6,79,300]
+ => [4, 5, 6, 79, 300] 
+3.0.2 :044 > arr.eql?(arr1)                                             #Returns true if self and other_array are the same size, and if, for each index i in self, self[i].eql? other_array[i]
+ => false 
+3.0.2 :045 > arr1=[4,5,6,7,9,300]
+ => [4, 5, 6, 7, 9, 300] 
+3.0.2 :046 > arr.eql?(arr1)
+ => true 
+
+
+
+======================================================FILL METHODS=============================
+
+3.0.2 :063 > arr
+ => [:X, :X, :X, :X, :X, :X] 
+3.0.2 :064 > arr.fill(6)                                              #Fill all the elements with given value
+ => [6, 6, 6, 6, 6, 6] 
+ 
+3.0.2 :065 > arr.fill(4,2)
+ => [6, 6, 4, 4, 4, 4] 
+3.0.2 :066 > arr.fill(2,2,2)                                         #Fill the value 2 starting from index 2 and till length 2.
+ => [6, 6, 2, 2, 4, 4] 
+ 
+3.0.2 :067 > arr.fill(1,2..4)
+ => [6, 6, 1, 1, 1, 4] 
+3.0.2 :068 > arr.fill{|e| e*2}
+ => [0, 2, 4, 6, 8, 10] 
+ 
+3.0.2 :069 > arr
+ => [0, 2, 4, 6, 8, 10] 
+3.0.2 :070 > arr. fill{|e| "new #{e}"}
+3.0.2 :071 >   
+ => ["new 0", "new 1", "new 2", "new 3", "new 4", "new 5"] 
+ 
 
 
 
 
+==================================================FLATTEN METHOD==========================
+
+3.0.2 :072 > a = [ 0, [ 1, [2, 3], 4 ], 5 ]
+ => [0, [1, [2, 3], 4], 5] 
+ 
+3.0.2 :073 > a.flatten(1)                                             # flattens recursively through level levels
+ => [0, 1, [2, 3], 4, 5] 
+ 
+3.0.2 :074 > a.flatten(2)
+ => [0, 1, 2, 3, 4, 5] 
+ 
+3.0.2 :075 > a.flatten(3)
+ => [0, 1, 2, 3, 4, 5] 
+
+
+                                                                     #With no argument, a nil argument, or with negative argument level, flattens all levels
+3.0.2 :077 > a.flatten()
+ => [0, 1, 2, 3, 4, 5] 
+3.0.2 :078 > a.flatten(-2)
+ => [0, 1, 2, 3, 4, 5]
+
+
+=========================================HASH VALUE======================
+
+3.0.2 :084 > a
+ => [0, [1, [2, 3], 4], 5] 
+ 
+3.0.2 :085 > a.hash                                                  #Returns the integer hash value for array.
+ => 932128434086996398 
+3.0.2 :086 > a[3].hash
+ => -2296083456680188111
+
+3.0.2 :087 > [0,1,2].hash==[0,1,2].hash
+ => true
+
+
+
+=====================================================================
+
+3.0.2 :089 > a=[2,3,5,6]
+ => [2, 3, 5, 6] 
+3.0.2 :090 > a.replace([8,6,6,7]                                     #Replace with given array
+3.0.2 :091 > )
+ => [8, 6, 6, 7] 
+ 
+3.0.2 :092 > a
+ => [8, 6, 6, 7] 
+3.0.2 :093 > a.insert(1,"four")                                      #Insert given value on given index
+ => [8, "four", 6, 6, 7] 
+
+
+=====================================================================
+
+3.0.2 :095 > a
+ => [8, "four", 6, 6, 7] 
+3.0.2 :096 > a.intersection([0,"four"])                              #Returns intersection between arrays
+ => ["four"] 
+
+=====================================================================
+3.0.2 :097 > a=["I","am","learning","Ruby"]
+ => ["I", "am", "learning", "Ruby"] 
+ 
+3.0.2 :098 > a.join()                                               #Joins the elements of array
+ => "IamlearningRuby" 
+ 
+3.0.2 :099 > a.join
+ => "IamlearningRuby" 
+ 
+3.0.2 :100 > a.join(" ")                                           #Joins the elements with given arguement
+ => "I am learning Ruby" 
+ 
+ =================================================
+ 
+ 3.0.2 :103 > a=[1,2,4,5,4,9,100,45]
+ => [1, 2, 4, 5, 4, 9, 100, 45] 
+3.0.2 :104 > a.minmax                                             #Returns array of min and max element
+ => [1, 100]
+ 
+ 
+ 
+ =================================================
+ 
+ 3.0.2 :105 > a
+ => [1, 2, 4, 5, 4, 9, 100, 45] 
+ 
+3.0.2 :107 > a.none?                                             #Returns false if any truth value or any value is present else return true
+ => false 
+3.0.2 :108 > a
+ => [1, 2, 4, 5, 4, 9, 100, 45] 
+3.0.2 :109 > a.clear
+ => [] 
+ 
+3.0.2 :110 > a.none?
+ => true 
+
+3.0.2 :113 > [0, 1, 2].none? {|element| element > 3 }
+ => true 
+ 
+ 
+ 
+ =================================================
+ 
+ Returns true if exactly one element of self meets a given criterion.
+ 
+ With no block given and no argument, returns true if self has exactly one truthy element, false otherwise:
+ 
+ 3.0.2 :116 > a=[1,2,3]
+ => [1, 2, 3] 
+ 
+3.0.2 :117 > a.one?
+ => false 
+ 
+3.0.2 :118 > a=[1]
+ => [1] 
+ 
+3.0.2 :119 > a.one?
+ => true 
+3.0.2 :120 > a=[2,3,4,5,6]
+ => [2, 3, 4, 5, 6] 
+ 
+3.0.2 :121 > a.one?
+ => false 
+ 
+3.0.2 :122 > a.one?{|e| e>5}
+ => true 
+3.0.2 :123 > a.one?{|e| 4>5}
+ => false 
+
+==================================================
+
+=> [1, 2, 3] 
+3.0.2 :127 > a.permutation(2){|e| p e}
+[1, 2]
+[1, 3]
+[2, 1]
+[2, 3]
+[3, 1]
+[3, 2]
+=================================================
+
+
+3.0.2 :129 > a=[1,2]
+ => [1, 2] 
+3.0.2 :130 > b=[2,3]
+ => [2, 3] 
+3.0.2 :131 > c=[5,6]
+ => [5, 6] 
+ 
+3.0.2 :132 > p=a.product(b)                         #The number of combinations is the product of the sizes of all the arrays, including both self and other_arrays.
+ => [[1, 2], [1, 3], [2, 2], [2, 3]] 
+ 
+3.0.2 :133 > p=a.product(b,c)
+ => [[1, 2, 5], [1, 2, 6], [1, 3, 5], [1, 3, 6], [2, 2, 5], [2, 2, 6], [2, 3, 5], [2, 3, 6]] 
+
+ 
+=================================================
+
+3.0.2 :153 > a = [{foo: 0}, [2, 4], [4, 5, 6], [4, 5]]
+3.0.2 :154 > a.rassoc(4)                                     #Returns the first element in self that is an Array whose second element == obj
+ => [2, 4] 
+ 
+ 
+ 
+ ===============================================
+ 
+ 3.0.2 :156 > a=[10,20,10,30,40]
+ => [10, 20, 10, 30, 40] 
+3.0.2 :157 > a.repeated_combination(1)
+ => #<Enumerator: ...> 
+ 
+3.0.2 :158 > a.repeated_combination(1){|e| p e}                 
+[10]
+[20]
+[10]
+[30]
+[40]
+ => [10, 20, 10, 30, 40] 
+ 
+3.0.2 :159 > a.repeated_combination(2){|e| p e}
+[10, 10]
+[10, 20]
+[10, 10]
+[10, 30]
+[10, 40]
+[20, 20]
+[20, 10]
+[20, 30]
+[20, 40]
+[10, 10]
+[10, 30]
+[10, 40]
+[30, 30]
+[30, 40]
+[40, 40]
+
+===============================================
+
+3.0.2 :160 > a.reverse
+ => [40, 30, 10, 20, 10] 
+3.0.2 :161 > a.reverse!
+ => [40, 30, 10, 20, 10] 
+
+
+ => [40, 30, 10, 20, 10] 
+3.0.2 :180 > a.reverse_each{|e| puts "#{e} is #{e.class}"}
+10 is Integer
+20 is Integer
+10 is Integer
+30 is Integer
+40 is Integer
+
+===============================================
+
+
+3.0.2 :191 > a=[10,20,30,40,50]
+ => [10, 20, 30, 40, 50] 
+ 
+3.0.2 :192 > a.rotate                                                                #Returns  new array after rotating
+ => [20, 30, 40, 50, 10] 
+ 
+3.0.2 :193 > a.rotate(2)
+ => [30, 40, 50, 10, 20] 
+ 
+3.0.2 :194 > a.rotate!                                                              #Rotate inplace 
+ => [20, 30, 40, 50, 10] 
+ 
+ 3.0.2 :195 > a.rotate(60)
+ => [20, 30, 40, 50, 10] 
+
+============================================
+
+3.0.2 :200 > a
+ => [20, 30, 40, 50, 10] 
+3.0.2 :201 > a.select{|e| e>20}                                                     #Calls the block, if given, with each element of self; returns a new Array containing those elements of self for 
+ => [30, 40, 50]                                                                    #which the block returns a truthy value
+ 
+3.0.2 :202 > a
+ => [20, 30, 40, 50, 10] 
+3.0.2 :203 > a.select!{|e| e>20}                                                    #Calls the block, if given with each element of self; removes from self those elements for which the block returns 
+ => [30, 40, 50]                                                                    #false or nil.
+3.0.2 :204 > a
+ => [30, 40, 50] 
+
+
+=============================================
+
+3.0.2 :209 > a.shuffle                                                              #Returns a new array with elements of self shuffled.
+ => [50, 40, 30] 
+
+3.0.2 :213 > a.shuffle!                                                             #Shuffles the elements of self in place.
+ => [40, 30, 50] 
+
+
+=============================================
+3.0.2 :220 > a
+ => [2, 3, 4, 5, 6, 7, 8, 9] 
+3.0.2 :221 > a.slice(4)                                                            #Returns index element from self
+ => 6 
+
+3.0.2 :216 > a=[2,3,4,5,6,7,8,9]
+ => [2, 3, 4, 5, 6, 7, 8, 9] 
+3.0.2 :217 > a.slice(1,3)                                                           #Returns slices array from self
+ => [3, 4, 5]
+ 
+ 3.0.2 :227 > a.slice(1..4)                                                         #Returns element from index 1 to 4 including 4th index
+ => [3, 4, 5, 6] 
+ 
+ 3.0.2 :228 > a.slice(1...4)                                                        #Returns element from index 1 to 3rd
+ => [3, 4, 5] 
 
 
 
 
+3.0.2 :229 > a
+ => [2, 3, 4, 5, 6, 7, 8, 9] 
+3.0.2 :230 > a.slice!(1)                                                           #Returns element on 1st index ,array will be affected 
+ => 3 
+ 
+3.0.2 :231 > a
+ => [2, 4, 5, 6, 7, 8, 9] 
+3.0.2 :232 > a.slice!(1..4)                                                        #Returns array element in range ,array will be affected
+ => [4, 5, 6, 7]
+ 
+3.0.2 :233 > a                                                                     
+ => [2, 8, 9] 
+3.0.2 :234 > a.slice!(0,2)                                                         #Traverse array from 0th index and returns 2 elements    
+ => [2, 8] 
+3.0.2 :235 > a
+ => [9] 
+
+
+============================================
+
+
+3.0.2 :237 > a=[3,2,6,7,1,100,50,60]
+ => [3, 2, 6, 7, 1, 100, 50, 60] 
+ 
+3.0.2 :238 > a.sort{|a,b| a<=>b}                                                   #Ascending order 
+ => [1, 2, 3, 6, 7, 50, 60, 100] 
+ 
+3.0.2 :239 > a.sort{|a,b| b<=>a}                                                   #Descending order
+ => [100, 60, 50, 7, 6, 3, 2, 1] 
+ 
+3.0.2 :240 > a.sort{|a,b| 0}                                                       #Same as array 
+ => [3, 2, 6, 7, 1, 100, 50, 60]
+ 
+ 
+ 
+ 3.0.2 :241 > a=[3,2,6,7,1,100,50,60]
+ => [3, 2, 6, 7, 1, 100, 50, 60]  
+ 
+3.0.2 :242 > a.sort!{|a,b| a<=>b}                                                  #Inplace ascending order
+ => [1, 2, 3, 6, 7, 50, 60, 100] 
+3.0.2 :243 > a
+ => [1, 2, 3, 6, 7, 50, 60, 100] 
+ 
+3.0.2 :244 > a.sort!{|a,b| b<=>a}                                                  #Inplace Descending order
+ => [100, 60, 50, 7, 6, 3, 2, 1] 
+ 
+3.0.2 :245 > a
+ => [100, 60, 50, 7, 6, 3, 2, 1] 
+
+
+=============================================
+
+3.0.2 :246 > a=["aaaa","abcde","a","fgdhjsk"]
+ => ["aaaa", "abcde", "a", "fgdhjsk"] 
+ 
+3.0.2 :247 > a.sort_by{|e| e.size}                                                #Sort depending on element length
+ => ["a", "aaaa", "abcde", "fgdhjsk"] 
+
+
+=============================================
+
+3.0.2 :248 > a
+ => ["aaaa", "abcde", "a", "fgdhjsk"] 
+
+3.0.2 :250 > a.sum("hijk")                                                        #Adds hijk in concatenation of array string and returns it.
+ => "hijkaaaaabcdeafgdhjsk" 
 
 
 
+3.0.2 :255 > a=[1,4,6,7,8,34]
+ => [1, 4, 6, 7, 8, 34] 
+3.0.2 :256 > a.sum()                                                             #Adds all elements in the array
+ => 60 
+ 
+3.0.2 :257 > a.sum(10)                                                           #Adds 10 into sum of all the elements in the array             
+ => 70 
+
+==========================================
+
+3.0.2 :271 > a
+ => [1, 4, 6, 7, 8, 34] 
+3.0.2 :272 > a.take_while{|e| e>3}                                              #Returns the element untill block is false or nill
+ => [] 
+ 
+3.0.2 :273 > a.take_while{|e| e<3}
+ => [1] 
+
+
+===========================================
+
+
+3.0.2 :279 > h=a.to_h{|e| [e,e]}
+ => {1=>1, 4=>4, 6=>6, 7=>7, 8=>8, 34=>34}                                     #Creates hash for each element of the array
+ 
+3.0.2 :280 > h=a.to_h{|e| [e,e*2]}
+ => {1=>2, 4=>8, 6=>12, 7=>14, 8=>16, 34=>68} 
+ 
+3.0.2 :281 > a
+ => [1, 4, 6, 7, 8, 34] 
+3.0.2 :282 > h
+ => {1=>2, 4=>8, 6=>12, 7=>14, 8=>16, 34=>68} 
+ 
+3.0.2 :283 > a.to_ary                                                          #Returns self array
+ => [1, 4, 6, 7, 8, 34] 
+ 
+ 3.0.2 :284 > a.to_a                                                           #Returns self array
+ => [1, 4, 6, 7, 8, 34] 
+
+=============================================
+
+3.0.2 :288 > a
+ => [1, 4, 6, 7, 8, 34] 
+3.0.2 :289 > a.inspect                                                        #Returns the new String formed by calling method #inspect on each array element
+=> "[1, 4, 6, 7, 8, 34]" 
+                                                                              #alias for to_s and old_s
+============================================
+
+
+3.0.2 :293 > a=[[2,3],[4,5],[6,7]]
+ => [[2, 3], [4, 5], [6, 7]] 
+3.0.2 :294 > a.transpose                                                     #Returns the transpose array of original array
+ => [[2, 4, 6], [3, 5, 7]] 
+
+==============================================
+
+3.0.2 :295 > a = [:a0, :a1, :a2, :a3]
+ => [:a0, :a1, :a2, :a3] 
+3.0.2 :296 > b = [:b0, :b1, :b2, :b3]
+ => [:b0, :b1, :b2, :b3] 
+3.0.2 :297 > c = [:c0, :c1, :c2, :c3]
+
+3.0.2 :298 > d = a.zip(b, c)                                                #When no block given, returns a new Array new_array of size self.size whose elements are Arrays.
+ => [[:a0, :b0, :c0], [:a1, :b1, :c1], [:a2, :b2, :c2], [:a3, :b3, :c3]] 
 
