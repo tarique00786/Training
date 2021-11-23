@@ -774,3 +774,49 @@ s1.match?
  => "heyo" 
 
  ==============================================
+
+ 3.0.2 :001 > s1="hello"         
+ => "hello" 
+3.0.2 :002 > s1.upcase                #Convert string in uppercase,method is not inplace 
+ => "HELLO" 
+
+3.0.2 :003 > s1
+ => "hello" 
+3.0.2 :004 > s1.upcase!               #Convert string in uppercase, method is inplace
+ => "HELLO" 
+3.0.2 :005 > s1
+ => "HELLO" 
+
+ ==============================================
+
+ 3.0.2 :005 > s1
+ => "HELLO" 
+3.0.2 :006 > s1.count
+
+3.0.2 :007 > s1.count('l')
+ => 0 
+3.0.2 :008 > s1.count('L')
+ => 2 
+3.0.2 :009 > s1.count('LL')
+ => 2 
+3.0.2 :010 > s1.count('LO')
+ => 3 
+3.0.2 :012 > s1.count "LO" ,"O"
+ => 1 
+3.0.2 :013 > s1
+ => "HELLO" 
+3.0.2 :014 > s1*3
+ => "HELLOHELLOHELLO" 
+3.0.2 :015 > s1+"Aziz"
+ => "HELLOAziz" 
+3.0.2 :016 > "Hello"+ self.to_s
+ => "Hellomain" 
+3.0.2 :017 > +s1
+ => "HELLO" 
+3.0.2 :018 > -s1
+ => "HELLO" 
+3.0.2 :019 > s1="xy"
+ => "xy" 
+3.0.2 :020 > s1
+ => "xy" 
+
