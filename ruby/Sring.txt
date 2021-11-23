@@ -194,3 +194,157 @@
 97 98 99 100 101  => "abcde" 
 
 =================================================
+
+
+3.0.2 :003 > s1="Ruby is very good language for web development"
+ => "Ruby is very good language for web development" 
+
+3.0.2 :004 > s1.each_line(' '){|e| print e}     #Returns the strings according to your seperator in new line      
+Ruby is very good language for web development => "Ruby is very good language for web development" 
+
+3.0.2 :005 > s1.each_line(' '){|e| p e}
+"Ruby "
+"is "
+"very "
+"good "
+"language "
+"for "
+"web "
+"development"
+=================================================
+
+3.0.2 :008 > s1
+ => "Ruby is very good language for web development" 
+3.0.2 :009 > s1.empty?                               #Returns true if string is empty else false
+ => false 
+3.0.2 :010 > s2=""
+ => "" 
+3.0.2 :011 > s2.empty?
+ => true 
+
+================================================
+
+3.0.2 :012 > s1
+ => "Ruby is very good language for web development" 
+
+3.0.2 :013 > s1.end_with?("nt")                     #Returns true if end with given parameter string else false
+ => true 
+
+3.0.2 :014 > s1.end_with?("web")          
+ => false 
+3.0.2 :015 > s1.end_with?("web")
+ => false 
+3.0.2 :016 > s1.end_with?("web","development")     #Returns true if ends with one of them
+ => true 
+
+===============================================
+
+3.0.2 :017 > s1="aziz"
+ => "aziz" 
+3.0.2 :018 > s1.eql?("aziz")                       #Return true if two strings have same length and same content
+ => true 
+3.0.2 :019 > s1.eql?("azi")
+ => false 
+3.0.2 :020 > s1.eql?("AZIZ")
+ => false 
+
+===============================================
+
+3.0.2 :022 > s1
+ => "aziz" 
+3.0.2 :023 > s1.getbyte(3)                       #Returns the index byte as integer
+ => 122 
+3.0.2 :024 > s1.getbyte(1)
+ => 122 
+3.0.2 :025 > s1.getbyte(0)
+ => 97 
+
+=============================================
+
+3.0.2 :026 > s1
+ => "aziz" 
+3.0.2 :027 > s1.hex                             #Return hex value for the string
+ => 10 
+3.0.2 :028 > "a".hex
+ => 10 
+3.0.2 :029 > "b".hex
+ => 11 
+3.0.2 :030 > s1.hex
+ => 10 
+3.0.2 :031 > "c".hex
+ => 12 
+
+=============================================
+
+3.0.2 :033 > s1.hash
+ => -2844654870071996127                       #Returns hash value for the string
+3.0.2 :034 > "a".hash
+ => 2485864913488045635 
+=============================================
+
+3.0.2 :032 > s1
+ => "aziz" 
+
+3.0.2 :035 > s1.include?("z")                 #Returns true if parameter string contains by s1 else returns false
+ => true 
+3.0.2 :036 > s1.include?"z"
+ => true 
+3.0.2 :037 > s1.include?" "
+ => false 
+3.0.2 :038 > s1.include?"p "
+ => false 
+3.0.2 :039 > 
+
+============================================
+3.0.2 :039 > s1
+ => "aziz" 
+3.0.2 :040 > s1.index("i")                 #Returns index of parameter  string in self
+ => 2 
+3.0.2 :041 > s1.index('i',2)               #Returns index after given position
+ => 2 
+3.0.2 :042 > s1.index('i',3)               
+ => nil 
+3.0.2 :043 > s1.index('i',-1)
+ => nil 
+3.0.2 :044 > s1
+ => "aziz" 
+3.0.2 :045 > s1.index('i',-1)
+ => nil 
+3.0.2 :046 > s1.index("i",-1)
+ => nil 
+3.0.2 :047 > s1.index("i",-2)             #Search index from last given position
+ => 2 
+
+ ==========================================
+
+ 3.0.2 :051 > a="aziz"
+ => "aziz" 
+3.0.2 :052 > a.insert(0,"tarique ")     #Insert character or string on given string
+ => "tarique aziz" 
+3.0.2 :053 > a.insert(7," loves ")
+ => "tarique loves  aziz"
+
+==========================================
+
+3.0.2 :060 > str="hello"
+ => "hello" 
+3.0.2 :061 > str[3]="a"
+ => "a" 
+3.0.2 :062 > str.inspect               #Returns a printable version of str, surrounded by quote marks, with special characters
+ => "\"helao\""                        #escaped
+
+ =========================================
+
+ 3.0.2 :065 > str1="Hi @aziz"
+ => "Hi @aziz" 
+3.0.2 :066 > str1.intern              #Returns symol crresponding to string 
+ => :"Hi @aziz" 
+3.0.2 :067 > str1="Hi aziz"
+ => "Hi aziz" 
+
+3.0.2 :068 > str1.intern              #If symbol is not present then it creates
+ => :"Hi aziz" 
+3.0.2 :069 > str1
+ => "Hi aziz" 
+
+==========================================
