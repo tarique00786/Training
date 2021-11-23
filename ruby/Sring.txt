@@ -91,4 +91,106 @@
 
  => ["a", "z", "i", "z"] 
 
+3.0.2 :005 > s1
+ => "azizzz" 
+3.0.2 :006 > s1.chomp!('zz')                #Modifies the string after deleting
+ => "aziz" 
+3.0.2 :007 > s1
+ => "aziz" 
 
+==================================================
+
+3.0.2 :011 > s1
+ => "aziz" 
+3.0.2 :012 > s1.chop                       #Removes the last character from string, not modifies the self
+ => "azi" 
+3.0.2 :013 > s1
+ => "aziz" 
+3.0.2 :014 > s1.chop!                      #Removes the last character and modifies the string
+ => "azi" 
+3.0.2 :015 > s1
+ => "azi" 
+
+=================================================
+
+3.0.2 :015 > s1
+ => "azi" 
+3.0.2 :016 > s1.chr                       #Returns a one character string from beginning, not modifies the original
+ => "a" 
+3.0.2 :017 > s1
+ => "azi" 
+3.0.2 :018 > s1.clear                     #Returns empty string, in place method
+ => "" 
+3.0.2 :019 > s1
+ => "" 
+
+=================================================
+3.0.2 :021 > s1="aziz"
+ => "aziz" 
+3.0.2 :022 > s1.codepoints               #Returns the array of integer cordinal of characters in string
+ => [97, 122, 105, 122] 
+
+3.0.2 :023 > s2="azizz"
+ => "azizz" 
+
+3.0.2 :024 > s1.concat("tarique",s2)     #Return the concatenation of strings
+ => "aziztariqueazizz" 
+
+=================================================
+3.0.2 :031 > s1
+ => "aziztariqueazizz" 
+3.0.2 :032 > s1.delete "i"              #Delete evey occurence of given string but not modifies the self
+ => "azztarqueazzz" 
+
+3.0.2 :033 > s1.delete "z"
+ => "aitariqueai" 
+
+3.0.2 :034 > s1
+ => "aziztariqueazizz" 
+3.0.2 :035 > s1.delete! "z"            #Deletes every occurences of given string but modifies the self
+ => "aitariqueai" 
+3.0.2 :036 > s1
+ => "aitariqueai" 
+
+=================================================
+
+3.0.2 :038 > s1.delete_prefix("aita")    #Deletes given prefix from the string but not inplace 
+ => "riqueai" 
+
+3.0.2 :039 > s1
+ => "aitariqueai" 
+3.0.2 :040 > s1.delete_prefix!("aita")   #Deletes given prefix of given string but modifies the string also
+ => "riqueai" 
+3.0.2 :041 > s1
+ => "riqueai" 
+3.0.2 :042 > s1.delete_prefix("iq")
+ => "riqueai" 
+
+3.0.2 :042 > s1.delete_prefix("iq")      #Deletes suffix of given string but it is not inplace 
+ => "riqueai" 
+3.0.2 :043 > s1.delete_suffix("ai")
+ => "rique" 
+3.0.2 :044 > s1
+ => "riqueai" 
+3.0.2 :045 > s1.delete_suffix!("ai")     #Deletes suffix of given string but it is inplace
+ => "rique" 
+3.0.2 :046 > s1
+ => "rique" 
+=================================================
+
+3.0.2 :049 > s1="AbcDe"
+ => "AbcDe" 
+3.0.2 :050 > s1.downcase                #Convert every uppercase into lowercase,not inplace 
+ => "abcde" 
+3.0.2 :051 > s1
+ => "AbcDe" 
+3.0.2 :052 > s1.downcase!               #Convert every uppwercase into lowercase,but inplace
+ => "abcde" 
+3.0.2 :053 > s1
+ => "abcde" 
+=================================================
+
+3.0.2 :056 > s1.each_byte{|e| print e, ' '}   #Print equivalent integer for every character in string
+97 98 99 100 101  => "abcde" 
+
+=================================================
