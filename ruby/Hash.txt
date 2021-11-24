@@ -355,5 +355,145 @@ preet
 
  ===========================================================
 
- 
+ 3.0.2 :001 > h={aman:1,aziz:2,darvesh:3,anu:4}
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4} 
+
+3.0.2 :002 > h1={tarique:5,pree:6}
+ => {:tarique=>5, :pree=>6} 
+
+3.0.2 :003 > h.merge(h1)                                                 #Merge the hashes, not inplace 
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4, :tarique=>5, :pree=>6} 
+
+3.0.2 :004 > h2={aziz:3,anu:4}
+ => {:aziz=>3, :anu=>4} 
+
+3.0.2 :005 > h.merge(h2)
+ => {:aman=>1, :aziz=>3, :darvesh=>3, :anu=>4}
+
+ 3.0.2 :008 > h.merge(h2){|key,old_value,new_value| old_value+new_value} 
+ => {:aman=>1, :aziz=>5, :darvesh=>3, :anu=>8} 
+3.0.2 :009 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4} 
+
+=============================================================
+3.0.2 :010 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4} 
+3.0.2 :011 > h.reject{|k,v| v>3}                 #Returns self for those for which block is false
+ => {:aman=>1, :aziz=>2, :darvesh=>3}            #not inplace 
+
+3.0.2 :012 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4} 
+
+3.0.2 :013 > h.reject!{|k,v| v>3}                #Returns self for those for which block is false.
+ => {:aman=>1, :aziz=>2, :darvesh=>3}            #Inplace 
+
+3.0.2 :014 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3} 
+
+
+==============================================================
+
+3.0.2 :014 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3} 
+3.0.2 :015 > h.rassoc(2)                 #Returns an array of key and passed value 
+ => [:aziz, 2] 
+
+
+ 3.0.2 :016 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3} 
+3.0.2 :017 > h.replace({aman:3,nitish:6})     #Returns self after replacing with other hash
+3.0.2 :018 >     
+ => {:aman=>3, :nitish=>6} 
+3.0.2 :019 > h
+ => {:aman=>3, :nitish=>6} 
+
+
+ =============================================================
+
+ 3.0.2 :020 > h
+ => {:aman=>3, :nitish=>6} 
+
+3.0.2 :021 > h.shift              #Returns an array of first hash entry,it will affect the hash
+ => [:aman, 3] 
+3.0.2 :022 > h
+ => {:nitish=>6} 
+
+==============================================================
+
+3.0.2 :024 > h={aman:1,aziz:2,darvesh:3,anu:4}
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4} 
+3.0.2 :025 > h.slice(:aziz,:anu)                   #Returns hash of given keys,not inplace
+ => {:aziz=>2, :anu=>4} 
+
+3.0.2 :026 > h
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4}
+
+3.0.2 :027 > h.store(:aziz,10)                   #Changes the value with given value if key exist
+ => 10                                           #Changes reflect in the self
+3.0.2 :028 > h
+ => {:aman=>1, :aziz=>10, :darvesh=>3, :anu=>4} 
+
+
+==============================================================================
+
+ 3.0.2 :029 > h.to_a                               #Returns an array of 2 elements array containing key values pairs
+ => [[:aman, 1], [:aziz, 10], [:darvesh, 3], [:anu, 4]] 
+
+3.0.2 :030 > h.to_s                                #Returns string of self
+ => "{:aman=>1, :aziz=>10, :darvesh=>3, :anu=>4}"  
+
+3.0.2 :031 > h.to_hash                             #Returns self
+ => {:aman=>1, :aziz=>10, :darvesh=>3, :anu=>4} 
+
+3.0.2 :032 > h1=h.to_proc                          #Returns a Proc object that maps a key to its value
+ => #<Proc:0x000055f3dcab3760 (lambda)> 
+3.0.2 :033 > h1.class
+ => Proc 
+
+3.0.2 :035 > h1.call(:aziz)
+ => 10 
+3.0.2 :036 > h.to_h
+ => {:aman=>1, :aziz=>10, :darvesh=>3, :anu=>4} 
+
+=============================================================
+
+
+3.0.2 :042 > h
+ => {:aman=>1, :aziz=>10, :darvesh=>3, :anu=>4} 
+
+3.0.2 :043 > h.transform_keys{|key| key.to_s}                   #Returns a hash 
+ => {"aman"=>1, "aziz"=>10, "darvesh"=>3, "anu"=>4} 
+
+3.0.2 :044 > h1
+ => {"aman"=>1, "aziz"=>10, "darvesh"=>3, "anu"=>4} 
+
+3.0.2 :046 > h
+ => {"aman"=>1, "aziz"=>10, "darvesh"=>3, "anu"=>4} 
+
+3.0.2 :047 > h1.transform_values{|value| value*100}           #returns hash with modified key
+ => {"aman"=>100, "aziz"=>1000, "darvesh"=>300, "anu"=>400} 
+
+3.0.2 :048 > h1.transform_values!{|value| value*100}
+ => {"aman"=>100, "aziz"=>1000, "darvesh"=>300, "anu"=>400} 
+
+3.0.2 :049 > h1
+ => {"aman"=>100, "aziz"=>1000, "darvesh"=>300, "anu"=>400} 
+
+
+============================================================
+
+3.0.2 :055 > h={aman:1,aziz:2,darvesh:3,anu:4}
+ => {:aman=>1, :aziz=>2, :darvesh=>3, :anu=>4} 
+3.0.2 :056 > h.values              #Returns the array of all values
+ => [1, 2, 3, 4] 
+
+3.0.2 :057 > h.values_at(:aziz,:aman)        #Returns array of specific value
+ => [2, 1] 
+3.0.2 :058 > h.value?(4)
+ => true 
+
+
+ =============================================================
+
+
 
