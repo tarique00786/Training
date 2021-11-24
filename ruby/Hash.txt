@@ -320,5 +320,40 @@ preet
 
  =============================================================
 
+3.0.2 :001 > h={aziz:1,aman:2,sumit:3,preet:4}
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
 
+3.0.2 :002 > h.inspect                        #Returns a new string containing the hash entries
+ => "{:aziz=>1, :aman=>2, :sumit=>3, :preet=>4}"
+
+ 3.0.2 :003 > h.invert                        #Invert the key value for each key value pair
+ => {1=>:aziz, 2=>:aman, 3=>:sumit, 4=>:preet} 
+3.0.2 :004 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+ =============================================================
+
+ 3.0.2 :004 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+3.0.2 :005 > h.keep_if{|key,values| values>3}  #Returns self after keeping key value for truthy value of block.
+ => {:preet=>4}                                #An inplace method
+
+3.0.2 :006 > h
+ => {:preet=>4} 
+
+============================================================
+
+
+3.0.2 :008 > h={aziz:1,aman:2,sumit:3,preet:4}
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+3.0.2 :009 > h.keys              #Returns array ccontaining all the keys
+ => [:aziz, :aman, :sumit, :preet]
+
+3.0.2 :010 > h.length            #Returns size of hash(integer)
+ => 4 
+
+ ===========================================================
+
+ 
 
