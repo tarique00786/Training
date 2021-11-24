@@ -74,5 +74,251 @@
  3.0.2 :051 > h[h1]    
  => nil 
 
+3.0.2 :013 > h.rehash            #We can rpair the hash index
+ => {[:x, :b, :c]=>0, [:d, :e, :f]=>1} 
+
+3.0.2 :014 > h[h1]
+ => 0 
+
+===========================================================
+
+
+3.0.2 :023 > s="aziz"
+ => "aziz" 
+3.0.2 :024 > s.frozen?
+ => false 
+
+3.0.2 :025 > h={s=>0}
+ => {"aziz"=>0} 
+3.0.2 :026 > first=h.keys.first
+ => "aziz" 
+3.0.2 :027 > first.frozen?               #String is frozen after passing in hash
+ => true 
+
 
 ===============================================================
+
+3.0.2 :028 > h={a:1,b:2,c:3,d:4}
+ => {:a=>1, :b=>2, :c=>3, :d=>4} 
+
+3.0.2 :029 > h.any?                  #True if atleast key vaLUE IS PRESENT
+ => true 
+3.0.2 :030 > h.any?([:b,2])          #True if passed key value present 
+ => true 
+
+3.0.2 :031 > h.any?{|key,value| value<3}      #True if condition becomes true
+ => true 
+
+===============================================================
+
+3.0.2 :032 > h.assoc(:d)                #Returns the key value pair whose keys is passed arguement
+ => [:d, 4] 
+
+3.0.2 :033 > h1=h.compact               #Made a copy of self and saved in h1,nill values also copied but not inplace
+ => {:a=>1, :b=>2, :c=>3, :d=>4}        #compact! will be used for inplace
+
+3.0.2 :034 > h
+ => {:a=>1, :b=>2, :c=>3, :d=>4} 
+
+3.0.2 :035 > h1
+ => {:a=>1, :b=>2, :c=>3, :d=>4} 
+
+3.0.2 :036 > h.clear                   #Returns empty hash after removing everything
+ => {} 
+
+3.0.2 :037 > h1
+ => {:a=>1, :b=>2, :c=>3, :d=>4} 
+
+3.0.2 :038 > h
+ => {} 
+
+
+=================================================================
+
+3.0.2 :041 > h1
+ => {:a=>1, :b=>2, :c=>3, :d=>4} 
+
+3.0.2 :042 > h1.delete(:d){|e| e}     #If finds the key then ignore the block and return value of that key and delete from
+ => 4                                 #hash
+
+3.0.2 :043 > h1
+ => {:a=>1, :b=>2, :c=>3} 
+
+3.0.2 :044 > h1.delete(:x){|e| puts "#{e} is not found"}    #If not found then run the block
+x is not found
+ => nil 
+
+3.0.2 :045 > h1
+ => {:a=>1, :b=>2, :c=>3}
+
+
+3.0.2 :047 > h1.delete_if{|key,value| value>2}
+ => {:a=>1, :b=>2} 
+
+3.0.2 :048 > h1
+ => {:a=>1, :b=>2} 
+
+3.0.2 :049 > e=h1.delete_if
+ => #<Enumerator: ...> 
+
+3.0.2 :050 > e.each{|key,value| value>1}
+
+ => {:a=>1} 
+3.0.2 :051 > h1
+ => {:a=>1} 
+
+
+==================================================================
+
+3.0.2 :052 > h={a:{b:{c:2}}}
+ => {:a=>{:b=>{:c=>2}}} 
+
+3.0.2 :054 > h.dig(:a)         #Finds and returns the object in nested objects that is specified by key       
+ => {:b=>{:c=>2}} 
+
+3.0.2 :055 > h.dig(:a,:b)
+ => {:c=>2} 
+
+3.0.2 :056 > h.dig(:a,:c)
+ => nil 
+
+
+===================================================================
+
+3.0.2 :058 > h={aziz:1,aman:2,sumit:3,preet:4}
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+3.0.2 :059 > h.each{|key,value| puts "#{key}: #{value} " }   #Returns according to block after traversing hash
+aziz: 1 
+aman: 2 
+sumit: 3 
+preet: 4 
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+3.0.2 :060 > h.each_pair{|key,value| puts "#{key}: #{value} " }
+aziz: 1 
+aman: 2 
+sumit: 3 
+preet: 4 
+
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+3.0.2 :061 > h.each
+ => #<Enumerator: ...> 
+
+3.0.2 :062 > h.each_pair
+ => #<Enumerator: ...> 
+
+3.0.2 :063 > h.each_key{|e| puts e}       #Prints only key
+aziz
+aman
+sumit
+preet
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+ 3.0.2 :064 > h.each_value{|e| puts e}      #Traverse through only values
+1
+2
+3
+4
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+
+===============================================================
+
+
+3.0.2 :065 > h.empty?               #True if hash is empty 
+ => false 
+3.0.2 :066 > {}.empty?
+ => true 
+
+
+3.0.2 :067 > h1 = {foo: 0, bar: 1, baz: 2}
+ => {:foo=>0, :bar=>1, :baz=>2} 
+
+3.0.2 :068 > h2 = {foo: 0, bar: 1, baz: 2}
+ => {:foo=>0, :bar=>1, :baz=>2} 
+
+3.0.2 :069 > h1.eql? h2 # => true       #Returns true if two hashes are same 
+ => true 
+
+3.0.2 :070 > h3 = {baz: 2, bar: 1, foo: 0}
+3.0.2 :071 > h1.eql? h3 # => true
+
+===============================================================
+
+3.0.2 :076 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+
+3.0.2 :078 > h.except(:preet)     #Returns hash except the passed key,method is not inplace
+ => {:aziz=>1, :aman=>2, :sumit=>3} 
+
+3.0.2 :079 > h1=h.except!(:preet)
+
+3.0.2 :080 > h1=h.except(:preet)
+ => {:aziz=>1, :aman=>2, :sumit=>3} 
+
+3.0.2 :081 > h1
+ => {:aziz=>1, :aman=>2, :sumit=>3} 
+
+3.0.2 :082 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+=============================================================
+
+3.0.2 :082 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+3.0.2 :083 > h.fetch(:sumit)        #Returns the value if key is present
+ => 3 
+3.0.2 :084 > h.fetch_values(:aziz,:aman)        #Returns an array of values
+ => [1, 2] 
+
+
+=============================================================
+
+3.0.2 :086 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+3.0.2 :087 > h.select{|ke,value| value<2}        #Return key value pair according to block
+ => {:aziz=>1}                                   
+3.0.2 :088 > h
+ => {:aziz=>1, :aman=>2, :sumit=>3, :preet=>4} 
+
+3.0.2 :090 > h.select!{|ke,value| value<2}      #Returns self acording to block ,inplace method
+ => {:aziz=>1}                                  #Filter is an alias for select!
+
+3.0.2 :091 > h
+ => {:aziz=>1} 
+
+
+==============================================================
+
+
+3.0.2 :092 > h = {foo: 0, bar: [:bat, [:baz, [:bat, ]]]}      #Flatten the layers inside hash
+ => {:foo=>0, :bar=>[:bat, [:baz, [:bat]]]} 
+
+3.0.2 :093 > h.flatten(1) # => [:foo, 0, :bar, [:bat, [:baz, [:bat]]]]
+ => [:foo, 0, :bar, [:bat, [:baz, [:bat]]]] 
+
+3.0.2 :094 > h.flatten(2) # => [:foo, 0, :bar, :bat, [:baz, [:bat]]]
+ => [:foo, 0, :bar, :bat, [:baz, [:bat]]] 
+
+3.0.2 :095 > h.flatten(3) # => [:foo, 0, :bar, :bat, :baz, [:bat]]
+3.0.2 :096 > h.flatten(4) # => [:foo, 0, :bar, :bat, :baz, :bat]
+
+3.0.2 :097 > h.flatten(-1) # => [:foo, 0, :bar, :bat, :baz, :bat]   #Flatten all layers if passed level is negative
+ => [:foo, 0, :bar, :bat, :baz, :bat] 
+
+ =============================================================
+
+
+ 3.0.2 :101 > h.has_key?(:foo)    #Returns true if given key is present. Alias for key?(key),member?(key),,include?
+ => true 
+3.0.2 :102 > h.has_value?(0)      #Returns true if value is present in the hash
+ => true 
+
+ =============================================================
+
+
+
