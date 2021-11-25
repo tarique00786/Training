@@ -259,6 +259,77 @@ t.frozen?
 
 3.0.2 :038 > Time.local(2002,11,11).isdst  #Returns true if time occurs during Daylight Saving Time in its time zone.
  => false 
-
+ 
+ 
 3.0.2 :039 > Time.local(2002,11,11).dst?
  => false 
+
+==================================================================
+
+3.0.2 :001 > t=Time.now
+ => 2021-11-25 10:12:43.733970358 +0530 
+
+3.0.2 :003 > t.utc?
+ => false 
+
+3.0.2 :004 > t.gmt?
+ => false 
+
+3.0.2 :005 > t.localtime
+ => 2021-11-25 10:12:43.733970358 +0530 
+
+3.0.2 :008 > l=t.utc
+ => 2021-11-25 04:42:43.733970358 UTC 
+
+3.0.2 :009 > l.utc?
+ => true 
+3.0.2 :010 > l.gmt?
+ => true 
+
+3.0.2 :012 > l.day                #Returns day(1..31)
+ => 25 
+3.0.2 :013 > l.mday               #Alias for day
+ => 25 
+3.0.2 :014 > l.min                #Returns minute (0..59)
+ => 42 
+3.0.2 :015 > l.mon                #Returns month (1..12)
+ => 11 
+3.0.2 :016 > l.month              #Alias for mon
+ => 11 
+
+===============================================================
+
+3.0.2 :018 > l.sec                #Returns the seconds (0..60)
+ => 43 
+
+3.0.2 :019 > l.nsec               #Returns the number of nanoseconds for the subsecond part of time
+ => 733970358 
+
+3.0.2 :027 > l.subsec             #Returns subseconds 
+ => (366985179/500000000) 
+
+ 3.0.2 :032 >   l
+3.0.2 :033 >   
+ => 2021-11-25 04:42:43.733970358 UTC 
+
+3.0.2 :034 > l.strftime("%d/%m/%y")    #Formats time according to the directives in the given format string
+ => "25/11/21" 
+3.0.2 :035 > l.strftime("The date is %d/%m/%y")
+ => "The date is 25/11/21" 
+
+
+==============================================================
+
+3.0.2 :036 > l.to_a                   #Returns an array of sec, min, hour, day, month, year, wday, yday, isdst, zone
+ => [43, 42, 4, 25, 11, 2021, 4, 329, false, "UTC"] 
+
+3.0.2 :037 > l.to_f                   #Returns float number of seconds
+ => 1637815363.7339704 
+
+ 3.0.2 :038 > l.to_i                  #Returns integer of seconds
+ => 1637815363 
+
+ 3.0.2 :039 > l.wday                  #Returns the week day
+ => 4 
+3.0.2 :040 > l.yday                   #Returns the year day
+ => 329 
