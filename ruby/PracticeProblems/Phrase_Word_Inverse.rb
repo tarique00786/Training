@@ -15,11 +15,11 @@ inverter("Division by powers of two", "P") ➞ "Two of powers by division"
 class InversePW
   def phraseword(str1,c)
   	if c=="P"
-  	  str2=str1.split.reverse
+  	  str2=str1.split.reverse   #divide the string and returns an array then reverse the array 
   	  n=str2.size
 
   	  s = ""
-      s += str2[0].capitalize.to_s + " "
+      s += str2[0].capitalize.to_s + " "   #First changes to  capital leter   
   	  for i in 1...n-1 do
   	  	s += str2[i].to_s + " "
   	  end	
