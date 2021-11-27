@@ -20,10 +20,10 @@ class SubsetValidation
     n=arr2.size
     for i in 0..n do
       comb=arr2.combination(i).to_a	    #Creates combination of 0,1,2....till size of array
-      valid.push(comb)  
+      valid.push(comb)              #Push element at the end of array
     end
     j=0
-    while valid.flatten(1).include?(arr1[j])  #Checks if arr1 includes 
+    while valid.flatten(1).include?(arr1[j])  #Checks if arr1 includes the valid subsets 
       j +=1
     end  
     if j==arr1.size
