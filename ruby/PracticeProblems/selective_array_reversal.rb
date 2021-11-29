@@ -18,7 +18,7 @@ If len is zero, return the original list.
 
 class SelectiveReversal
   def sreverse(arr,n)
-  	#Return original aray if n is 0
+    #Return original aray if n is 0
     return arr if n==0
     #Return reverse array if n is greater than size of array
     return arr.reverse if n>arr.size
