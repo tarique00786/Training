@@ -15,7 +15,7 @@ duplicate_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) ➞ nil
 class DuplicateNumbers
   def selectduplicates(arr)
     #creating a new hash 
-  	dhash=Hash.new(0)
+    dhash=Hash.new(0)
     #maintaining the hash of array where key is arr element and value is occurences of elemnt
     arr.each {|element| dhash[element] += 1}
     #Creating array for storing the duplicates values
