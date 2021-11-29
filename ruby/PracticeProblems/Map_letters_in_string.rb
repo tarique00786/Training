@@ -21,7 +21,7 @@ class Mapping
   def stringmap(str)
     #creates a hash	
     hashmap={}
-    #traversing for every element with its index and checking if index is already present or not
+    #traversing for every element with its index and checking if element symbol is already present in hash or not
     str.split("").each_with_index do |char,indx|
       if hashmap[char.to_sym]
         hashmap[char.to_sym].push(indx)
