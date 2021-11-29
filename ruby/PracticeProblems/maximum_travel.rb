@@ -41,7 +41,7 @@ class MaxDistance
     total_travel=(fuel/fuelcount)*100
 
     #Rounding the result to nearest 10
-    return total_travel.round()
+    return total_travel.round(1)
   end
 end 
 
