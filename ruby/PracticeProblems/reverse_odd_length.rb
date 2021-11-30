@@ -17,7 +17,7 @@ There is exactly one space between each word and no punctuation is used.
 class Oddreverse
   def odd(str)
     #converting string into array	
-  	arr=str.split(" ")
+    arr=str.split(" ")
     for i in 0...arr.size do
       if arr[i].size%2===1
         arr[i]=arr[i].reverse
