@@ -13,3 +13,11 @@ end
 
 person1=Person.new "Welcome to Beryl Systems"
 person1.sayhello                                #Calling the method of module with object
+
+
+=begin
+output:
+
+Hello Welcome to Beryl Systems
+
+=end
