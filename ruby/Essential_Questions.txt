@@ -199,3 +199,247 @@ Did you mean?  methods
 
 
 
+
+Question 11.
+Consider the following code: class A def self.a(b) if b > 0 b * b end end end What will be the values of:
+var1 = A.a(0)
+var2 = A.a(2) 
+
+
+
+Program on IRB:
+
+3.0.2 :004 > class A
+3.0.2 :005 >   def self.a(b)
+3.0.2 :006 >     if b>0                  # if condition is false it will produce nil always
+3.0.2 :007 >       b*b
+3.0.2 :008 >     end
+3.0.2 :009 >   end
+3.0.2 :010 > end  
+ => :a 
+3.0.2 :011 > var1=A.a(0)
+ => nil 
+3.0.2 :012 > var2=A.a(2)
+ => 4 
+
+
+Question 12.
+
+What is the difference between Array#map and Array#each? Note: collect is an alias of map
+
+Answer.
+
+Array#map  =>  It will return array according to the block code , it does not affect the original array array
+
+Array#each =>  Iterates through all the element and execute the provided block each time .
+
+
+3.0.2 :016 > a=[1,5,8,9,4]
+ => [1, 5, 8, 9, 4] 
+3.0.2 :017 > a.each{|element| p element*2}       #returns according to block
+2
+10
+16
+18
+8
+ => [1, 5, 8, 9, 4]                               #returns original array
+3.0.2 :018 > a                                    #each method does not affect the array
+ => [1, 5, 8, 9, 4]   
+
+3.0.2 :019 > a.map{|element| p element*2}         #Returns according to block
+2
+10
+16
+18
+8
+ => [2, 10, 16, 18, 8]                           #Returns array according to block 
+3.0.2 :020 > a                                   #Does not affect the array
+ => [1, 5, 8, 9, 4] 
+
+
+Question 13. How do you remove nil values in array using ruby?
+
+Answer. By using Array#compact method 
+
+
+3.0.2 :021 > a=[nil,1,4,0,nil,7]
+ => [nil, 1, 4, 0, nil, 7] 
+
+3.0.2 :022 > a.compact                          #Removes all nil from array
+ => [1, 4, 0, 7] 
+
+3.0.2 :023 > a                                  #Does not affect the array
+ => [nil, 1, 4, 0, nil, 7] 
+
+3.0.2 :024 > a.compact!                         #Removes nil from array
+ => [1, 4, 0, 7] 
+
+3.0.2 :025 > a                                  #Affect the array
+ => [1, 4, 0, 7] 
+
+
+Question14. For the class ABC the given as: class ABC def xyz puts "xyz in ABC" end end What is the return value for:
+
+ABC::new::xyz
+ABC::new.xyz
+ABC.new::xyz
+ABC.new.xyz
+
+
+Answer:
+
+Codes on IRB
+
+3.0.2 :026 > class ABC
+3.0.2 :027 >   def xyz
+3.0.2 :028 >     puts "xyz in ABC"
+3.0.2 :029 >   end
+3.0.2 :030 > end  
+ => :xyz 
+
+3.0.2 :032 > ABC::new::xyz                          #Valid invocation of method xyz  
+xyz in ABC
+ => nil 
+
+3.0.2 :033 > ABC::new.xyz                           #Valid invocation of method xyz  
+xyz in ABC
+ => nil  
+
+3.0.2 :034 > ABC.new::xyz                           #Valid invocation of method xyz   
+xyz in ABC
+ => nil 
+
+3.0.2 :035 > ABC.new.xyz                            #Valid invocation of method xyz    
+xyz in ABC
+ => nil 
+
+
+ Question 15. What is the value of the variable upcased in the below piece of code?
+
+ upcased = ["one", "two", "three"].map {|n| puts n.upcase }
+
+ Answer.
+
+3.0.2 :043 > upcased = ["one", "two", "three"].map {|n| puts n.upcase }
+ONE
+TWO
+THREE
+ => [nil, nil, nil] 
+
+3.0.2 :044 > upcased          #puts is a method it has to return something so it returns nill 
+ => [nil, nil, nil] 
+
+
+
+Question 16.  
+
+Given that the following code has been run: if false foo = 'test' end What will be the value of:
+defined? foo
+defined? bar
+
+Answer.
+
+3.0.2 :047 > if false
+3.0.2 :048 >   foo='test'      #foo has been read by interpreter but bar is never read by interpreter
+3.0.2 :049 > end  
+ => nil 
+3.0.2 :050 > defined?foo
+ => "local-variable" 
+3.0.2 :051 > defined?bar
+ => nil 
+
+ Question 17.
+
+ What is the difference between extend and include in ruby?
+
+Answer. Difference => The difference between include and extend is that ‘include’ is for adding methods only to an instance of a class and ‘extend’ is for adding methods to the class but not to its instance.
+
+extend program:
+
+module SayHello
+  def sayhello
+    puts "Hello #{@name}"
+  end
+end
+
+class Person
+  def initialize name
+    @name = name
+  end
+end
+
+person1=Person.new "Aziz"
+person1.extend SayHello             #Extending the module with object 
+person1.sayhello                    #Calling the method of module with object
+
+
+=begin
+
+output:
+
+Hello Aziz
+
+=end 
+
+
+Include Program:
+
+module SayHello
+  def sayhello
+    puts "Hello #{@name}"
+  end
+end
+
+class Person
+  include SayHello                              #Including the SayHello module
+  def initialize name
+    @name = name
+  end
+end
+
+person1=Person.new "Welcome to Beryl Systems"
+person1.sayhello                                #Calling the method of module with object
+
+
+=begin
+output:
+
+Hello Welcome to Beryl Systems
+
+=end
+
+
+Question 18.
+
+How many types of variables are used in Ruby and what are they?
+
+Answer.
+
+1. Class variables:
+
+      1.Always Starts with @@
+      2.Class variables are shared by all objects of a class
+      3.Scope is inside anywhere in the class
+      4.They need to be initialized before use
+
+2. Instance variable:
+
+      1.Always starts with @
+      2.Values are local to specific instances of an object
+      3.Instance variables are available across methods for any specified instance or object
+      
+
+3. Local variable:
+
+      1.Always starts with a lowercase letter or _
+      2.This variable is only accessible within the block of its initialization
+      3.There is no need to initialize the local variables
+
+4. Global variable:
+
+      1.Always starts with $ 
+      2.Its scope is through the all classes and available throughout the program
+      3.an uninitialized global variable has a nil value     
+
+
+
