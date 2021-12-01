@@ -443,3 +443,118 @@ Answer.
 
 
 
+Question 19.
+Consider the following code: VAL = 'Global' module Foo VAL = 'Foo Local' class Bar def value1 VAL end end end class Foo::Bar def value2 VAL end end What will be the value of each of the following: Foo::Bar.new.value1 Foo::Bar.new.value2 Explain your answer.
+
+Answer.
+
+
+3.0.2 :001 > VAL='Global'             #Always be global throughout the program valid for everywhere 
+ => "Global" 
+3.0.2 :002 > module FOO
+3.0.2 :003 >   VAL='Foo Local'        #Only valid for module FOO
+3.0.2 :004 >   class Bar
+3.0.2 :005 >     def value1
+3.0.2 :006 >       VAL
+3.0.2 :007 >     end
+3.0.2 :008 >   end
+3.0.2 :009 > end  
+ => :value1 
+
+3.0.2 :011 > class FOO::Bar
+3.0.2 :012 >   def value2
+3.0.2 :013 >     VAL                  #Global VAL
+3.0.2 :014 >   end
+3.0.2 :015 > end  
+ => :value2 
+3.0.2 :016 > FOO::Bar.new.value1
+ => "Foo Local" 
+3.0.2 :017 > FOO::Bar.new.value2
+ => "Global" 
+
+
+Question 20.What is the difference between the Object methods clone and dup?
+
+Many objects in Ruby are mutable, you can change them.
+If you want to change an object but keep a copy of the original then you can clone it.
+
+Both methods copy an object, the difference is that dup doesn’t copy the object attributes.
+
+3.0.2 :024 > a=Object.new.freeze
+ => #<Object:0x0000558e015a46c0> 
+3.0.2 :025 > a
+ => #<Object:0x0000558e015a46c0> 
+3.0.2 :026 > b=a.clone
+ => #<Object:0x0000558e01618700> 
+3.0.2 :027 > b.frozen?
+ => true 
+3.0.2 :028 > c=a.dup
+ => #<Object:0x0000558e0109a968> 
+3.0.2 :029 > c.frozen?
+ => false 
+
+
+Question 21.What is the difference between calling super and calling super()?
+
+Answer:
+
+super Program:
+
+
+
+class Animal
+  def say_hi(x)
+    puts "hello #{x}"
+  end
+end
+
+class Lion<Animal                    #Inherrited from Animal class
+  def say_hi(x)
+    puts "grrrrr #{x}"               #Adds its own functionality
+    super                            #Without any arguement it will take default value in child and parent class
+  end
+end
+
+Lion.new.say_hi("Aziz")
+
+
+=begin
+
+grrrrr Aziz
+hello Aziz
+
+=end
+
+
+
+
+
+super() Program :
+
+
+
+class Animal
+  def say_hi(x)
+    puts "hello #{x}"
+  end
+end
+
+class Lion<Animal                              #Inherrited from Animal class
+  def say_hi(x)
+    puts "grrrrr #{x}"                         #Adds its own functionality
+    super("Aman")                              #Call the parent method with this arguement
+  end
+end
+
+Lion.new.say_hi("Aziz")
+
+
+=begin
+
+grrrrr Aziz
+hello Aman
+
+
+=end
+
+
