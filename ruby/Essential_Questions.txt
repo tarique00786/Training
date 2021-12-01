@@ -1,0 +1,32 @@
+=============================Important Questions==========================
+
+Question 2.What will be the values of val1 and val2 after the code execution.
+
+val1=true and false
+val2=true &&  false
+
+Answer.
+
+output:
+
+3.0.2 :009 > val1=true and false
+ => false 
+3.0.2 :010 > val1
+ => true 
+3.0.2 :011 > val2=true && false
+ => false 
+3.0.2 :012 > val2
+ => false 
+
+
+val1=true and false
+ Explanation : and has lower precedence than =
+   1.val1=true will be executed => val1 will get true value
+   2.(val1=true) and false                will be executed => This expression is false
+   3.val1                                 still have the value true  
+
+val2=true &&  false
+ Explanation :  && has higher precedence than =
+   1. true && false                         will be executed first   => false
+   2. val2=true && false                    assign first value in val2
+   3. val2                                  false
