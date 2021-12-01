@@ -1,0 +1,202 @@
+3.0.2 :001 > t=Time.new(2008,1)
+3.0.2 :002 > t.strftime("%d")
+3.0.2 :003 > t.strftime("%d%m%Y")
+3.0.2 :004 > t.strftime("%d,%m,%Y")
+3.0.2 :005 > t.strftime("%d/%m/%Y")
+3.0.2 :006 > require 'time'
+3.0.2 :007 > Time.parse(1500000)
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/3.0.0/time.rb:377:in `parse'
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+ => 2008-10-05 00:00:00 +0530 
+3.0.2 :009 > t=Time.parse("2008/10/05")
+ => 2008-10-05 00:00:00 +0530 
+3.0.2 :010 > t.Date
+(irb):10:in `<main>': undefined method `Date' for 2008-10-05 00:00:00 +0530:Time (NoMethodError)
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+3.0.2 :011 > t.day
+ => 5 
+3.0.2 :012 > t.strftime("That day is %A")
+ => "That day is Sunday" 
+3.0.2 :013 > t.strftime("Time is %I %M %S")
+ => "Time is 12 00 00" 
+3.0.2 :014 > t.strftime("Time is %I %M %p")
+3.0.2 :015 > s="hello"
+ => "hello" 
+3.0.2 :016 > s.each_char.to_a
+ => ["h", "e", "l", "l", "o"] 
+3.0.2 :017 > b=s.each_char.to_a
+3.0.2 :018 > b
+ => ["h", "e", "l", "l", "o"] 
+3.0.2 :019 > s.chomp
+ => "hello" 
+3.0.2 :020 > s.chop
+3.0.2 :021 > s
+3.0.2 :022 > s.delete "aiou"
+3.0.2 :023 > s.delete "aeiou"
+3.0.2 :024 > s
+3.0.2 :025 > a=[2,3,4,5]
+ => [2, 3, 4, 5] 
+3.0.2 :026 > a.each{|e| e.to_s+"i"}
+ => [2, 3, 4, 5] 
+3.0.2 :027 > a.each{|e| e+3}
+ => [2, 3, 4, 5] 
+3.0.2 :028 > a2=a.each{|e| e+3}
+3.0.2 :029 > a2
+3.0.2 :030 > a2=a.each{|e| puts "#{e+3}"}
+6
+8
+3.0.2 :031 > a2
+ => [2, 3, 4, 5] 
+3.0.2 :032 > a2=a.each{|e| puts "#{e+"i"}"}
+(irb):32:in `+': String can't be coerced into Integer (TypeError)
+	from (irb):32:in `block in <main>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :033 > a2=a.each{|e| puts "#{e.to_s+"i"}"}
+2i
+3i
+5i
+3.0.2 :034 > a1.collect{|e| e+3}
+(irb):34:in `<main>': undefined local variable or method `a1' for main:Object (NameError)
+Did you mean?  a
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :035 > a.collect{|e| e+3}
+3.0.2 :036 > a
+ => [2, 3, 4, 5] 
+3.0.2 :037 > a.collect!{|e| e+3}
+ => [5, 6, 7, 8] 
+3.0.2 :038 > a
+ => [5, 6, 7, 8] 
+[5, 6]
+[5, 8]
+[6, 8]
+ => [5, 6, 7, 8] 
+ => 5 
+ => [6, 7, 8] 
+ => [6, 7, 8, "aziz"] 
+ => [6, 7, 8, "aziz"] 
+6 Integer
+8 Integer
+ => [6, 7, 8, "aziz"] 
+3.0.2 :046 >   =String}
+/usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/3.0.0/irb/workspace.rb:116:in `eval': (irb):46: syntax error, unexpected '=' (SyntaxError)
+  =String}
+  ^
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :047 > a1=a.collect{|e| e.class==String}
+ => [false, false, false, true] 
+3.0.2 :048 > a1=a.collect{|e| e.class=String}
+(irb):48:in `block in <main>': undefined method `class=' for 6:Integer (NoMethodError)
+	from (irb):48:in `collect'
+	from (irb):48:in `<main>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :049 > a1=a.collect{|e| "#{e.class}"=String}
+a1=a.collect{|e| "#{e.class}"=String}
+                             ^
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+ => [false, false, false, false] 
+ => [false, false, false, false] 
+ => [6, 7, 8, "aziz"] 
+ => ["aziz"] 
+ => ["aziz"] 
+ => [false] 
+3.0.2 :056 > a
+ => ["aziz"] 
+3.0.2 :057 > a=[0,2,8,"rahul"]
+3.0.2 :058 > a.collect{|e|  e.class==String}
+3.0.2 :059 > a.select{|e|  e.class==String}
+3.0.2 :060 > a
+3.0.2 :061 > a.max
+	from (irb):61:in `<main>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+3.0.2 :062 > a.replace("rahul",3)
+	from (irb):62:in `<main>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+3.0.2 :063 > a.replace("rahul")=3
+a.replace("rahul")=3
+                  ^
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+(irb):64:in `replace': no implicit conversion of String into Array (TypeError)
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :065 > a.replace(["rahul",3])
+ => ["rahul", 3] 
+3.0.2 :066 > a
+ => ["rahul", 3] 
+ => [5, "rahul", 3] 
+ => 4 
+ => [5, 4, 3] 
+3
+5
+3.0.2 :071 > a
+3.0.2 :072 > a=[2,3,4,0,2,9,7]
+3.0.2 :073 > a.sort{|a,b| a<=>b}
+3.0.2 :074 > a
+ => [9, 7, 4, 3, 2, 2, 0] 
+3.0.2 :076 > a.unshift
+ => [2, 3, 4, 0, 2, 9, 7] 
+3.0.2 :077 > a.unshift(1)
+3.0.2 :078 > a.shift
+ => [2, 3, 4, 0, 2, 9, 7] 
+ => {:a=>1, :b=>2, :c=>4} 
+(irb):81:in `<main>': undefined method `any' for {:a=>1, :b=>2, :c=>4}:Hash (NoMethodError)
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :082 > h.any?
+ => true 
+3.0.2 :083 > h.assoc(:c)
+ => [:c, 4] 
+3.0.2 :084 > h[:bar,nil]
+(irb):84:in `[]': wrong number of arguments (given 2, expected 1) (ArgumentError)
+	from (irb):84:in `<main>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/gems/irb-1.3.5/exe/irb:11:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `load'
+	from /usr/share/rvm/rubies/ruby-3.0.2/bin/irb:23:in `<main>'
+3.0.2 :085 > h[:bar]=nil
+ => nil 
+3.0.2 :086 > h
+ => {:a=>1, :b=>2, :c=>4, :bar=>nil} 
+3.0.2 :087 > h.compact
+ => {:a=>1, :b=>2, :c=>4} 
+3.0.2 :088 > h
+ => {:a=>1, :b=>2, :c=>4, :bar=>nil} 
+3.0.2 :089 > h.compact!
+ => {:a=>1, :b=>2, :c=>4} 
+3.0.2 :090 > h
+ => {:a=>1, :b=>2, :c=>4} 
+3.0.2 :091 > h.member?(:c)
+ => true 
+3.0.2 :092 > h[:c]
+ => 4 
+3.0.2 :093 > h.any?
+ => true 
+3.0.2 :094 > h.each{|key,value| puts "#{key}: #{value}"}
+3.0.2 :095 >   
+a: 1
+b: 2
+c: 4
+ => {:a=>1, :b=>2, :c=>4} 
+3.0.2 :096 > h = {foo: 0, bar: 1, baz: 2}
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.2 :097 > h1 = {bat: 3, bar: 4}
+3.0.2 :098 > h2 = {bam: 5, bat:6}
+ => {:bam=>5, :bat=>6} 
+3.0.2 :099 > h1
+ => {:bat=>3, :bar=>4} 
+3.0.2 :100 > h2
+ => {:bam=>5, :bat=>6} 
+3.0.2 :101 > h3=h1.merge(h2){|key,v1,v2| v1+v2}
+ => {:bat=>9, :bar=>4, :bam=>5} 
+3.0.2 :102 > 
