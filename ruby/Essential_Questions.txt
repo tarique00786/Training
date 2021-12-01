@@ -30,3 +30,172 @@ val2=true &&  false
    1. true && false                         will be executed first   => false
    2. val2=true && false                    assign first value in val2
    3. val2                                  false
+
+
+
+Question 3: Question 3.
+
+Write a function that sorts the keys in a hash by the length of the key as a string. For instance, 
+the hash: { abc: 'hello', 'another_key' => 123, 4567 => 'third' } should result in: ["abc", "4567", "another_key"]
+
+Answer:
+
+Program:
+
+class Sort_hash
+  def keysort(hash1)  
+    a=hash1.keys.map{|key| key.to_s}
+    return a.sort{|v1,v2| v1.size<=>v2.size}
+  end
+end
+
+sort1=Sort_hash.new
+p sort1.keysort({ abc: 'hello', 'another_key' => 123, 4567 => 'third' })    
+
+
+Question 4.
+
+Consider the following two methods: 
+def times_two(arg1); puts arg1 * 2; end def sum(arg1, arg2); puts arg1 + arg2; end What will be the result of each of the following lines of code:
+times_two(5)
+sum(1, 2)
+
+
+Answer:
+
+Program and outputs on IRB:
+
+
+.3.0.2 :001 > def times_two(arg1)
+3.0.2 :002 >   puts arg1*2
+3.0.2 :003 > end  
+ => :times_two 
+3.0.2 :004 > def sum(arg1, arg2)
+3.0.2 :005 >   puts arg1 + arg2
+3.0.2 :006 > end  
+ => :sum 
+3.0.2 :007 > times_two 5
+10
+ => nil 
+3.0.2 :008 > times_two(5)
+10
+ => nil 
+3.0.2 :009 > sum(1, 2)
+3
+ => nil 
+
+
+ Question 5.
+
+ Is the line of code below valid Ruby code? If so, what does it do? Explain your answer. -> (a) {p a}["Hello world"]
+
+ Answer.
+
+ Output
+
+ 3.0.2 :011 >  -> (a) {p a}["Hello world"]
+"Hello world"
+ => "Hello world" 
+
+1.  -> operator creates a new Proc whic is a ruby function
+2.   It takes the arguement  a
+3.   When Proc is called then block will be executed
+4. Proc simply prints out the string that is passed to it. 
+
+
+
+Question 6.Explain each of the following operators and how and when they should be used: ==, ===, eql?, equal?.
+
+3.0.2 :022 > 1==2    #returns true if 2 operands has same value
+ => false 
+3.0.2 :023 > (1..10)===5         #can be used in ranges as well as with when clause of case statement
+ => true 
+
+ 3.0.2 :024 > 1==1.0
+ => true 
+3.0.2 :025 > 1.eql?1.0            #check the value as well as object type 
+ => false 
+
+
+Question 7. Given: x = "hello" Explain the difference between: x += " world" and x.concat " world"
+
+Answer.
+
+x+="world"     => x=x+"world"    #always reinitialize variable with new values
+
+x.concat("world")                #No need to reinitialize 
+
+
+3.0.2 :046 > x="virat"
+ => "virat" 
+3.0.2 :047 > y="kohli"
+ => "kohli" 
+3.0.2 :048 > x+=y
+ => "viratkohli" 
+3.0.2 :049 > x
+ => "viratkohli" 
+3.0.2 :050 > x="virat"
+ => "virat" 
+3.0.2 :051 > x.concat(y)
+ => "viratkohli" 
+3.0.2 :052 > x
+ => "viratkohli" 
+
+
+Question 8.  In Ruby code, you quite often see the trick of using an expression like array.map(&:method_name) as a shorthand form of array.map { |element| element.method_name }. How exactly does it work?
+
+Answer.
+
+Outputs:
+
+&       => That means you can use that as a block for that method
+
+
+3.0.2 :053 > a=[1,8,3,7,12,25]
+ => [1, 8, 3, 7, 12, 25] 
+
+3.0.2 :054 > a.map(&:to_s)
+ => ["1", "8", "3", "7", "12", "25"] 
+
+3.0.2 :055 > a
+ => [1, 8, 3, 7, 12, 25] 
+
+3.0.2 :057 > a.map{|element| element.to_s}
+ => ["1", "8", "3", "7", "12", "25"] 
+
+
+Question 9. 
+Write a single line of Ruby code that prints the Fibonacci sequence of any length as an array. (Hint: use inject/reduce)
+
+
+ 3.0.2 :001 > (1..5).inject([0,1]){|fib| fib<<fib.last(2).inject(:+)}
+ => [0, 1, 1, 2, 3, 5, 8] 
+
+ Question 10.
+
+ Can you call a private method outside a Ruby class using its object?
+
+ Ansewer.
+
+ By using send method
+
+
+ 3.0.2 :002 > class BerylSystems
+3.0.2 :003 >   private
+3.0.2 :004 >   def method
+3.0.2 :005 >     p "Hello"
+3.0.2 :006 >   end
+3.0.2 :007 > end  
+
+ => :method 
+
+3.0.2 :008 > BerylSystems.new.method             #Without send we cannot call private methods
+(irb#1):8:in `<main>': private method `method' called for #<BerylSystems:0x0000560258d42fa0> (NoMethodError)
+Did you mean?  methods
+
+3.0.2 :009 > BerylSystems.new.send(:method)      #With help of send method we can call methods
+"Hello"
+ => "Hello" 
+
+
+
