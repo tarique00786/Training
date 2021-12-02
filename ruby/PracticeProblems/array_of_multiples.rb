@@ -17,16 +17,16 @@ Notice that num is also included in the returned array.
 class Multiples
   def arrymultiples
     puts "Enter number for which you want to multiples: "
-    number=gets.to_i
+    number = gets.to_i
     puts "Enter how many multiples you want: "
-    num=gets.to_i
-    a=Array.new(num,1)
+    num = gets.to_i
+    a = Array.new(num,1)
     a.map!.with_index{|element,i| number*(i+1)} #Multiply given number with (index+1) to store the multiples
     return a
   end
 end
 
-multiple1=Multiples.new
+multiple1 = Multiples.new
 p multiple1.arrymultiples 
 
 
