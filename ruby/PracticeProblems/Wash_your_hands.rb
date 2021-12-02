@@ -20,12 +20,12 @@ Wash your hands.
 
 class Wahs_hands
   def handwash(per_day,month)
-    totoal_seconds=21*per_day*month*30
-    total_minute=totoal_seconds/60
-    second=totoal_seconds%60
+    totoal_seconds = 21*per_day*month*30
+    total_minute = totoal_seconds/60
+    second = totoal_seconds%60
     p "#{total_minute} minutes and #{second} seconds"
   end
 end
 
-totalminute=Wahs_hands.new
+totalminute = Wahs_hands.new
 totalminute.handwash(8,7)    
