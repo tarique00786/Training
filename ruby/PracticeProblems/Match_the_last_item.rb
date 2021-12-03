@@ -15,14 +15,14 @@ match_last_item([8, "thunder", true, "8thundertrue"]) ➞ true
 
 class MatchLast
   def matching(arr)
-    arr_size=arr.size
-    s=""
+    arr_size = arr.size
+    s = ""
     for i in 0...arr_size-1 do
       s += arr[i].to_s
     end
-    puts arr[-1]==s
+    puts arr[-1] == s
   end
 end
-obj=MatchLast.new
+obj = MatchLast.new
 obj.matching(["rsq", "6hi", "g", "rsq6hig"])      	
 
