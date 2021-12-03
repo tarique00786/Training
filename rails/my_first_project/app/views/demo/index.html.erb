@@ -1,2 +1,10 @@
 <h1>Hello world</h1>
 <p>Find me in app/views/demo/index.html.erb</p>
+<br/>
+
+<%= link_to("Click me for respnse", {:action => 'hello', :id =>2, :page => 20}) %>
+<br/>
+
+ID: <%= @id %><br/>
+ID: <%= params[:id] %><br/>
+Page: <%= @page %>
