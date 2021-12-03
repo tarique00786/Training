@@ -10,7 +10,7 @@ class Person
   end
 end
 
-person1=Person.new "Aziz"
+person1 = Person.new "Aziz"
 person1.extend SayHello             #Extending the module with object 
 person1.sayhello                    #Calling the method of module with object
 
