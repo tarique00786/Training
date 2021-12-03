@@ -21,4 +21,26 @@
      rails generates or rails g
 
 #generate a controller 
-     rails generate controller_name view_name      
+     rails generate controller_name view_name   
+
+
+#Rendering template 
+     render('folder_name/action')
+     
+#Redirect to controller actions
+     redirect_to(:controller => 'demo', :action => 'index')
+     
+#View Templates
+ It is better to include ruby code into the template so we can use dynamic information .
+ 
+   Example:    hello.html.erb
+               Template Name: hello
+               Processed with: erb
+               Output format: HTML
+               
+   ERB TAGS:   
+               <% code %>   ->Only Execute the ruby code
+               <%= code %>  ->Execute the ruby code and outputs in template            
+               
+                         
+        
