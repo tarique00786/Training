@@ -13,3 +13,8 @@
 
 <br/>
 <%= link_to("Click Here", {:action => 'index'}) %>
+<br/>
+
+<% @array.each do |element| %>
+  <%= element*2 %>
+<% end %>  
