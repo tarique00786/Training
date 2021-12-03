@@ -26,19 +26,19 @@ Round your answer to the nearest tenth.
 class MaxDistance
   def travel(fuel,fuel_usage,passengers,air_condition)
 
-  	#every additional passenger increasing fuel consumption by 5%.
-    consumption = 1+0.05*passengers
+    #every additional passenger increasing fuel consumption by 5%.
+    consumption = 1 + 0.05*passengers
 
     #Calculating the number of litres spent 
-    fuelcount=fuel_usage*consumption
+    fuelcount = fuel_usage*consumption
 
     #if aircondition is true, increase consumption by 10%
     if air_condition
-      fuelcount*= 1.1
+      fuelcount *= 1.1
     end
 
     #Calculating the distance travelled
-    total_travel=(fuel/fuelcount)*100
+    total_travel = (fuel/fuelcount)*100
 
     #Rounding the result to nearest 10
     return total_travel.round(1)
