@@ -1,8 +1,0 @@
-#Instaling of rails
-
-   1.gem install rails
-   2.gem install rails -v version_number
-
-#Check version
-
-   1.rails -v      
