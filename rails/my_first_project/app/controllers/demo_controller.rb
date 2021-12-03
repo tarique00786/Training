@@ -4,7 +4,8 @@ class DemoController < ApplicationController
   end
 
   def hello
-    render('hello')  
+    #render('hello')
+    redirect_to(:controller => 'demo', :action => 'index')    
   end
       
 end
