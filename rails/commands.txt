@@ -6,3 +6,19 @@
 #Check version
 
    1.rails -v      
+
+#Create project
+   rails new project_name -d postgresql
+
+#Connection of rails with psql database
+
+   1.create role rolename  with createdb login password 'password'; 
+   2.In the project in database.yml change the username and password
+   3.run the command rake db:setup
+
+
+#list of available generators    
+     rails generates or rails g
+
+#generate a controller 
+     rails generate controller_name view_name      
