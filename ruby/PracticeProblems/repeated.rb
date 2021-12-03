@@ -30,14 +30,14 @@ ust as in all the examples above. In particular, the answers will always be divi
 
 class Repeated
   def  stringrepeat(str)
-    str_size=str.size
-    pattern=''
+    str_size = str.size
+    pattern = ''
     for i in 0...str_size do
       #adding string character in pattern	
       pattern += str[i]
       #checking for atleast 2 repeatation in string for the patterns
       for j in 2..str_size do
-        if pattern*j==str
+        if pattern*j == str
           return j
         end
       end
