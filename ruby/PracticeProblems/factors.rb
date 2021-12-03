@@ -17,15 +17,15 @@ The second example is a factor of 12, because 12 / 2 = 6, with remainder 0.
 =end
 
 class Factorize
-  def  factors(number)
-    result=Array.new
+  def factors(number)
+    result = Array.new
     for i in 1..number do
       if i*i>number
         break
       end   
-      if number%i==0
+      if number%i == 0
         result.push(i)
-        if(i!=number/i)
+        if(i != number/i)
           result.push(number/i)
         end
       end
@@ -34,5 +34,5 @@ class Factorize
   end
 end   
 
-factor1=Factorize.new
+factor1 = Factorize.new
 factor1.factors(121)       	
