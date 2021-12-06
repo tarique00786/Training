@@ -67,6 +67,48 @@
  Adds foreign key:
                   t.belongs_to :ColumnName
 
+=========================ActiveRecord============================
+
+Run the rails console:
+                      rails c  or rails console
+
+Create Record:Method 1
+              step1. Instantiate the object  => Object = Model.new(hash values)
+              step2. Set the values  =>   Object.save
+              Step3. Save it => object.save
+
+            Methode2.  
+              new + set values + save it  => Object = Model.create(hash values)
+
+Check if data is saved in databse or not:
+
+                                         object.new_record?  => returns true if saved in database
+                                         object.new_record?  => returns false if not saved in database              
+
+
+
+
+
+Updata Records:Method1
+                Step1. object = Model.find(id)
+                Step2. Change the value
+                Step3. object.save
+
+               Method2
+                object = Model.find(id)
+                Object.update(hash values)
+
+
+Delete Records:
+               Step1. Find the object  => object = Model.find(id)
+               Step2. object.destroy   => You cant modify it because it is frozen (Deleted from model)
+
+
+
+
+
+=================================================================                                 
+
                
                          
         
