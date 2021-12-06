@@ -1,6 +1,8 @@
 class CreatePages < ActiveRecord::Migration[6.1]
+
   def change
     create_table :pages do |t|
+      t.belongs_to :subjects
       t.string :name
       t.string :permalik
       t.integer :postion
@@ -10,4 +12,5 @@ class CreatePages < ActiveRecord::Migration[6.1]
       t.timestamps
     end
   end
+  
 end
