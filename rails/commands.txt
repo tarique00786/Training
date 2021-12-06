@@ -40,7 +40,33 @@
                
    ERB TAGS:   
                <% code %>   ->Only Execute the ruby code
-               <%= code %>  ->Execute the ruby code and outputs in template            
+               <%= code %>  ->Execute the ruby code and outputs in template    
+
+
+================================Migration=========================
+
+ Migration is a tool for changing an application's database schema.A migration is a Ruby class that contains instructions to change the database in some manner. It can create a new table, modify an existing one.
+
+ Generating migration:
+                      rails generate migration MigrationNam
+ Generate Model:                     
+                rails generate model ModelName                       
+
+ Run Migration:
+                rails db:migrate
+
+ Check Status:
+                rails db:migrate:status
+
+ Down Migration: 
+                rails db:migrate VERSION=0
+
+ Up Migration:
+                rails db:migrate VERSION=timestamp
+
+ Adds foreign key:
+                  t.belongs_to :ColumnName
+
                
                          
         
