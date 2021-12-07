@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  permalik: MyString
-  postion: 1
+  prmalink: MyString
+  position: 1
   visible: false
   content: MyText
 
 two:
   name: MyString
-  permalik: MyString
-  postion: 1
+  prmalink: MyString
+  position: 1
   visible: false
   content: MyText
