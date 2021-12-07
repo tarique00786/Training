@@ -82,8 +82,8 @@ Create Record:Method 1
 
 Check if data is saved in databse or not:
 
-                                         object.new_record?  => returns true if saved in database
-                                         object.new_record?  => returns false if not saved in database              
+                                         object.new_record?  => returns false if saved in database
+                                         object.new_record?  => returns true if not saved in database              
 
 
 
