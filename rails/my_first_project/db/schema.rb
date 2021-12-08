@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_080155) do
+ActiveRecord::Schema.define(version: 2021_12_08_092800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(version: 2021_12_08_080155) do
     t.index ["physician_id"], name: "index_appointments_on_physician_id"
   end
 
+  create_table "assemblies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "assemblies_parts", force: :cascade do |t|
+    t.bigint "assembly_id"
+    t.bigint "part_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assembly_id"], name: "index_assemblies_parts_on_assembly_id"
+    t.index ["part_id"], name: "index_assemblies_parts_on_part_id"
+  end
+
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -65,6 +80,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_080155) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "subject_id", null: false
     t.index ["subject_id"], name: "index_pages_on_subject_id"
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.integer "part_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "patients", force: :cascade do |t|
@@ -105,4 +126,6 @@ ActiveRecord::Schema.define(version: 2021_12_08_080155) do
   add_foreign_key "accounts", "suppliers"
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "physicians"
+  add_foreign_key "assemblies_parts", "assemblies"
+  add_foreign_key "assemblies_parts", "parts"
 end
