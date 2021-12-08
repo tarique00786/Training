@@ -72,8 +72,10 @@ ActiveRecord::Schema.define(version: 2021_12_08_102354) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
+    t.bigint "manager_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["manager_id"], name: "index_employees_on_manager_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -149,4 +151,5 @@ ActiveRecord::Schema.define(version: 2021_12_08_102354) do
   add_foreign_key "appointments", "physicians"
   add_foreign_key "assemblies_parts", "assemblies"
   add_foreign_key "assemblies_parts", "parts"
+  add_foreign_key "employees", "employees", column: "manager_id"
 end
