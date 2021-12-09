@@ -309,9 +309,68 @@ If you set the :touch option to true, then the updated_at or updated_on timestam
 
 
        
+=============================================has one association practice=============================
+
+3.0.2 :054 > reload!
+Reloading...
+ => true 
+3.0.2 :055 > account = Account.create(supplier_id: 1, account_number: "11223344")
+  TRANSACTION (0.5ms)  BEGIN
+  Account Create (77.0ms)  INSERT INTO "accounts" ("supplier_id", "account_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["supplier_id", 1], ["account_number", "11223344"], ["created_at", "2021-12-09 09:53:09.476570"], ["updated_at", "2021-12-09 09:53:09.476570"]]
+  TRANSACTION (35.1ms)  COMMIT
+ => #<Account:0x000056250bc0f180 id: 1, supplier_id: 1, account_number: "11223344", created_at: Thu, 09 Dec 2021 09:53:09.476570000 UTC +00:00, updated_at: Thu, 09 Dec 2021 09:53:09.476570000 UTC +... 
+
+3.0.2 :056 > account.save
+ => true 
+
+3.0.2 :057 > account == supplier.account
+  Account Load (0.5ms)  SELECT "accounts".* FROM "accounts" WHERE "accounts"."supplier_id" = $1 LIMIT $2  [["supplier_id", 1], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :058 > supplier.account = account
+ => #<Account:0x000056250bc0f180 id: 1, supplier_id: 1, account_number: "11223344", created_at: Thu, 09 Dec 2021 09:53:09.476570000 UTC +00:00, updated_at: Thu, 09 Dec 2021 09:53:09.476570000 UTC +... 
+
+
+3.0.2 :060 > account = supplier.build_account(account_number: "11335566")
+  TRANSACTION (0.5ms)  BEGIN
+  Account Update (0.8ms)  UPDATE "accounts" SET "supplier_id" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3  [["supplier_id", nil], ["updated_at", "2021-12-09 09:58:55.695974"], ["id", 1]]
+  TRANSACTION (34.9ms)  COMMIT
+ => #<Account:0x000056250bb91870 id: nil, supplier_id: 1, account_number: "11335566", created_at: nil, updated_at: nil> 
+
+3.0.2 :061 > account.save
+  TRANSACTION (0.5ms)  BEGIN
+  Account Create (0.7ms)  INSERT INTO "accounts" ("supplier_id", "account_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["supplier_id", 1], ["account_number", "11335566"], ["created_at", "2021-12-09 09:59:15.466098"], ["updated_at", "2021-12-09 09:59:15.466098"]]
+  TRANSACTION (105.1ms)  COMMIT
+ => true 
+
+3.0.2 :062 > account = supplier.create_account(account_number: "11335599")
+  TRANSACTION (0.6ms)  BEGIN
+  Account Create (1.5ms)  INSERT INTO "accounts" ("supplier_id", "account_number", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["supplier_id", 1], ["account_number", "11335599"], ["created_at", "2021-12-09 10:00:23.510046"], ["updated_at", "2021-12-09 10:00:23.510046"]]
+  TRANSACTION (28.8ms)  COMMIT
+  TRANSACTION (0.5ms)  BEGIN
+  Account Update (0.9ms)  UPDATE "accounts" SET "supplier_id" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3  [["supplier_id", nil], ["updated_at", "2021-12-09 10:00:23.543588"], ["id", 2]]
+  TRANSACTION (20.4ms)  COMMIT
+ => #<Account:0x000056250b9da5b8 id: 3, supplier_id: 1, account_number: "11335599", created_at: Thu, 09 Dec 2021 10:00:23.510046000 UTC +00:00, updated_at: Thu, 09 Dec 2021 10:00:23.510046000 UTC +... 
+3.0.2 :063 > account.save
+ => true 
 
 
 
+Changes in databse===========
+
+ id | supplier_id | account_number |        created_at         |        updated_at         
+----+-------------+----------------+---------------------------+---------------------------
+  1 |           1 | 11223344       | 2021-12-09 09:53:09.47657 | 2021-12-09 09:53:09.47657
+(1 row)
+
+
+my_first_project_development=# select * from accounts;
+ id | supplier_id | account_number |         created_at         |         updated_at         
+----+-------------+----------------+----------------------------+----------------------------
+  1 |             | 11223344       | 2021-12-09 09:53:09.47657  | 2021-12-09 09:58:55.695974
+  3 |           1 | 11335599       | 2021-12-09 10:00:23.510046 | 2021-12-09 10:00:23.510046
+  2 |             | 11335566       | 2021-12-09 09:59:15.466098 | 2021-12-09 10:00:23.543588
+(3 rows)
 
 
 
