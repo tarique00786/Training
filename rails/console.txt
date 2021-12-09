@@ -259,5 +259,63 @@ my_first_project_development=# select *from authors;
 3.0.2 :015 > author.name == book.author.name
  => true 
 
+=================belongs_to======================
+Below are two model linked with belongs_to and has_many
+
+
+class Book < ApplicationRecord
+  
+  belongs_to :author
+    
+end
+
+
+class Author < ApplicationRecord
+
+  has_many :books 
+  
+end
+
+
+options: primary_key
+
+  It assumes id column as primary key.
+  But if you want to change you can specify.
+
+      class Book < ApplicationRecord
+        belongs_to :author, primary_key: 'column'   
+      end
+
+  If you want to give primary key in table:
+
+      class User < ApplicationRecord
+        self.primary_key = 'guid' # primary key is guid and not id
+      end
+
+      class Todo < ApplicationRecord
+        belongs_to :user, primary_key: 'guid'
+      end
+
+option: touch
+If you set the :touch option to true, then the updated_at or updated_on timestamp on the associated object will be set to the current time whenever this object is saved or destroyed:
+
+       class Book < ApplicationRecord
+         belongs_to :author, touch: true
+       end
+
+       class Author < ApplicationRecord
+         has_many :books
+       end
+
+
+       
+
+
+
+
+
+
+
+
 
 
