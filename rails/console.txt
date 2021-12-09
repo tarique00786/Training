@@ -227,3 +227,37 @@ ated_at", "2021-12-08 12:40:37.426836"], ["name", "Algorithm"]]
   Author Load (1.3ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
  => #<Author:0x000055b53d953628 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00> 
 3.0.2 :037 > 
+
+
+=====================Bi directional association===========
+
+my_first_project_development=# select * from books;
+ id | author_id |       published_at        |         created_at         |         updated_at         |      name      
+----+-----------+---------------------------+----------------------------+----------------------------+----------------
+  1 |         1 | 2021-12-08 05:09:47.63029 | 2021-12-08 05:09:47.673896 | 2021-12-08 12:34:47.185371 | Data Structure
+  2 |         2 | 2021-12-08 12:41:15.59121 | 2021-12-08 12:40:37.426836 | 2021-12-08 12:42:11.854736 | Algorithm
+(2 rows)
+
+my_first_project_development=# select *from authors;
+ id | name |         created_at         |         updated_at         
+----+------+----------------------------+----------------------------
+  1 | John | 2021-12-08 04:58:20.810499 | 2021-12-08 04:58:21.81053
+  2 | Mike | 2021-12-08 12:38:06.582715 | 2021-12-08 12:38:06.582715
+(2 rows)
+
+
+3.0.2 :013 > author = Author.first
+  Author Load (1.5ms)  SELECT "authors".* FROM "authors" ORDER BY "authors"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => 
+#<Author:0x000056250be37bb0
+... 
+3.0.2 :014 > book = author.books.first
+  Book Load (1.1ms)  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1 ORDER BY "books"."id" ASC LIMIT $2  [["author_id", 1], ["LIMIT", 1]]
+ => 
+#<Book:0x000056250aa4bd18
+... 
+3.0.2 :015 > author.name == book.author.name
+ => true 
+
+
+
