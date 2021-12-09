@@ -375,6 +375,57 @@ my_first_project_development=# select * from accounts;
 
 
 
+===================================has many association=======================================
+
+3.0.2 :034 > books = Book.all 
+  Book Load (0.7ms)  SELECT "books".* FROM "books"
+ => 
+[#<Book:0x000056250a4bd7e8
+... 
+3.0.2 :035 > books.size
+ => 4 
+
+3.0.2 :036 > books.empty?
+ => false 
+
+3.0.2 :037 > books.nil?
+ => false 
+
+3.0.2 :038 > books.find(3)
+  Book Load (0.7ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+ => 
+#<Book:0x000056250ba038a0
+ id: 3,
+ author_id: 3,
+ published_at: Thu, 09 Dec 2021 07:47:18.262473000 UTC +00:00,
+ created_at: Thu, 09 Dec 2021 07:46:18.891011000 UTC +00:00,
+ updated_at: Thu, 09 Dec 2021 07:47:40.425245000 UTC +00:00,
+ name: "Compiler Design"> 
+
+3.0.2 :039 > books[3]
+ => 
+#<Book:0x000056250a4bc6b8
+ id: 4,
+ author_id: 3,
+ published_at: Wed, 24 Nov 2021 00:02:06.066662000 UTC +00:00,
+ created_at: Thu, 09 Dec 2021 07:54:42.070647000 UTC +00:00,
+ updated_at: Thu, 09 Dec 2021 07:54:42.070647000 UTC +00:00,
+ name: "Computation"> 
+
+3.0.2 :040 > books.where(id = 3)
+/usr/share/rvm/gems/ruby-3.0.2/gems/activerecord-6.1.4.1/lib/active_record/relation/query_methods.rb:1097:in `build_where_clause': Unsupported argument type: 3 (Integer) (ArgumentError)
+
+3.0.2 :041 > books.where(id: 3)
+  Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1  [["id", 3]]
+ => 
+[#<Book:0x000056250bd37b48
+  id: 3,
+  author_id: 3,
+  published_at: Thu, 09 Dec 2021 07:47:18.262473000 UTC +00:00,
+  created_at: Thu, 09 Dec 2021 07:46:18.891011000 UTC +00:00,
+  updated_at: Thu, 09 Dec 2021 07:47:40.425245000 UTC +00:00,
+  name: "Compiler Design">] 
+
 
 
 
