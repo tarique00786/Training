@@ -1186,6 +1186,34 @@ The rewhere method overrides an existing, named where condition.
   updated_at: Tue, 14 Dec 2021 08:36:15.923817000 UTC +00:00,
   name: "Learn PSQL">] 
 
+=====================Readonly object========================
+Active Record provides the readonly method on a relation to explicitly disallow modification of any of the returned objects. Any attempt to alter a readonly record will not succeed, raising an ActiveRecord::ReadOnlyRecord exception.
+
+
+3.0.2 :029 > book = Book.readonly.first
+  Book Load (1.2ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => 
+#<Book:0x0000557d6023b828
+... 
+
+3.0.2 :030 > book
+ => 
+#<Book:0x0000557d6023b828
+ id: 1,
+ author_id: 1,
+ published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+ created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+ updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+ name: "Data Structure"> 
+
+3.0.2 :031 > book.published_at += 1
+ => Wed, 08 Dec 2021 05:09:48.630290000 UTC +00:00 
+
+3.0.2 :032 > book.save
+  TRANSACTION (0.6ms)  BEGIN
+  Author Load (0.6ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.5ms)  ROLLBACK
+/usr/share/rvm/gems/ruby-3.0.2/gems/activerecord-6.1.4.1/lib/active_record/persistence.rb:955:in `_raise_readonly_record_error': Book is marked as readonly (ActiveRecord::ReadOnlyRecord)
 
 
 
