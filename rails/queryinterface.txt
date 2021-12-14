@@ -1,0 +1,149 @@
+=====================Retrieving Records=====================
+
+3.0.2 :002 > book = Book.find(3)
+  Book Load (1.6ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+#<Book:0x0000557d603125a8
+...
+
+3.0.2 :003 > book
+ => 
+ id: 3,
+ author_id: 3,
+ published_at: Thu, 09 Dec 2021 07:47:18.262473000 UTC +00:00,
+ created_at: Thu, 09 Dec 2021 07:46:18.891011000 UTC +00:00,
+ updated_at: Thu, 09 Dec 2021 12:46:40.514858000 UTC +00:00,
+ name: "Compiler Design"> 
+
+3.0.2 :004 > book = Book.take
+  Book Load (0.7ms)  SELECT "books".* FROM "books" LIMIT $1  [["LIMIT", 1]]
+#<Book:0x0000557d60e73168
+... 
+
+3.0.2 :005 > book
+ => 
+ id: 1,
+ author_id: 1,
+ published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+ created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+ updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+ name: "Data Structure"> 
+
+3.0.2 :006 > books = Book.take(2)
+  Book Load (0.8ms)  SELECT "books".* FROM "books" LIMIT $1  [["LIMIT", 2]]
+ => 
+[#<Book:0x0000557d61088070
+... 
+
+3.0.2 :007 > books
+ => 
+[#<Book:0x0000557d61088070
+  id: 1,
+  author_id: 1,
+  published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+  created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+  updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+  name: "Data Structure">,
+ #<Book:0x0000557d61093f88
+  id: 2,
+  published_at: Wed, 08 Dec 2021 12:41:15.591210000 UTC +00:00,
+  created_at: Wed, 08 Dec 2021 12:40:37.426836000 UTC +00:00,
+  updated_at: Wed, 08 Dec 2021 12:42:11.854736000 UTC +00:00,
+  name: "Algorithm">] 
+  Book Load (0.7ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => 
+#<Book:0x0000557d5f7a8e38
+... 
+
+3.0.2 :009 > book
+ => 
+#<Book:0x0000557d5f7a8e38
+ id: 1,
+ published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+ created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+ updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+ name: "Data Structure"> 
+  Book Load (0.7ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT $1  [["LIMIT", 3]]
+ => 
+[#<Book:0x0000557d6023ad60
+... 
+
+3.0.2 :011 > books
+ => 
+[#<Book:0x0000557d6023ad60
+  id: 1,
+  author_id: 1,
+  published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+  created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+  updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+  name: "Data Structure">,
+ #<Book:0x0000557d6023ac98
+  id: 2,
+  published_at: Wed, 08 Dec 2021 12:41:15.591210000 UTC +00:00,
+  created_at: Wed, 08 Dec 2021 12:40:37.426836000 UTC +00:00,
+  updated_at: Wed, 08 Dec 2021 12:42:11.854736000 UTC +00:00,
+  name: "Algorithm">,
+  id: 3,
+  author_id: 3,
+  published_at: Thu, 09 Dec 2021 07:47:18.262473000 UTC +00:00,
+  created_at: Thu, 09 Dec 2021 07:46:18.891011000 UTC +00:00,
+  updated_at: Thu, 09 Dec 2021 12:46:40.514858000 UTC +00:00,
+  name: "Compiler Design">] 
+
+3.0.2 :012 > books = Book.order(:name).last
+  Book Load (0.6ms)  SELECT "books".* FROM "books" ORDER BY "books"."name" DESC LIMIT $1  [["LIMIT", 1]]
+#<Book:0x0000557d60e80c50
+... 
+
+3.0.2 :013 > books
+ => 
+#<Book:0x0000557d60e80c50
+ id: 1,
+ author_id: 1,
+ published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+ updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+ name: "Data Structure"> 
+  Book Load (1.0ms)  SELECT "books".* FROM "books" ORDER BY "books"."name" DESC LIMIT $1  [["LIMIT", 2]]
+[#<Book:0x0000557d6105b070
+... 
+  updated_at: Thu, 09 Dec 2021 12:47:21.688169000 UTC +00:00,
+ #<Book:0x0000557d6105b138
+  author_id: 1,
+  created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+  updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+  name: "Data Structure">] 
+
+3.0.2 :016 > books = Book.find_by name:"Computation"
+  Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "Computation"], ["LIMIT", 1]]
+ => 
+#<Book:0x0000557d60cd2980
+... 
+
+3.0.2 :017 > book
+ => 
+#<Book:0x0000557d5f7a8e38
+ id: 1,
+ author_id: 1,
+ published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+ created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+ updated_at: Wed, 08 Dec 2021 12:34:47.185371000 UTC +00:00,
+ name: "Data Structure"> 
+
+3.0.2 :018 > books
+ => 
+#<Book:0x0000557d60cd2980
+ id: 4,
+ author_id: 3,
+ published_at: Wed, 24 Nov 2021 00:02:06.066662000 UTC +00:00,
+ created_at: Thu, 09 Dec 2021 07:54:42.070647000 UTC +00:00,
+ updated_at: Thu, 09 Dec 2021 12:47:21.688169000 UTC +00:00,
+ name: "Computation"> 
+
+3.0.2 :019 > book = Book.find_by name: "abc"
+  Book Load (0.7ms)  SELECT "books".* FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "abc"], ["LIMIT", 1]]
+ => nil 
+3.0.2 :020 > book
+ => nil 
+ 
+3.0.2 :021 > book = Book.find_by! name: "abc"
+  Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "abc"], ["LIMIT", 1]]
+/usr/share/rvm/gems/ruby-3.0.2/gems/activerecord-6.1.4.1/lib/active_record/core.rb:384:in `find_by!': Couldn't find Book (ActiveRecord::RecordNotFound)
