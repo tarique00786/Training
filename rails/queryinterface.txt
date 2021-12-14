@@ -691,3 +691,33 @@
 3.0.2 :114 > Book.group(:author_id).count
    (11.3ms)  SELECT COUNT(*) AS count_all, "books"."author_id" AS books_author_id FROM "books" GROUP BY "books"."author_id"
  => {3=>2, 6=>1, 2=>2, 7=>2, 1=>2} 
+
+
+==========================Having=======================
+
+
+3.0.2 :131 > Part.select("price").group("price").having("price > ? " , 1000.0)
+  Part Load (0.8ms)  SELECT "parts"."price" FROM "parts" GROUP BY "parts"."price" HAVING (price > 1000.0 )
+ => [#<Part:0x0000557d60f8c9c8 id: nil, price: 0.2e4>, #<Part:0x0000557d60f8c360 id: nil, price: 0.12e4>, #<Part:0x0000557d60f87fb8 id: nil, price: 0.25e4>, #<Part:0x0000557d60f87e00 id: nil, price: 0.15e4>] 
+
+3.0.2 :132 > parts = Part.select("price").group("price").having("price > ? " , 1000.0)
+  Part Load (0.7ms)  SELECT "parts"."price" FROM "parts" GROUP BY "parts"."price" HAVING (price > 1000.0 )
+ => [#<Part:0x0000557d60140dd8 id: nil, price: 0.2e4>, #<Part:0x0000557d60140ae0 id: nil, price: 0.12e4>, #<Part:0x0000557d60140888 id: nil, price: 0.25e4>, #<Part:0x0000557d601404f0 id: nil, price... 
+
+3.0.2 :133 > parts
+ => [#<Part:0x0000557d60140dd8 id: nil, price: 0.2e4>, #<Part:0x0000557d60140ae0 id: nil, price: 0.12e4>, #<Part:0x0000557d60140888 id: nil, price: 0.25e4>, #<Part:0x0000557d601404f0 id: nil, price: 0.15e4>] 
+
+
+
+3.0.2 :134 > parts = Part.select("price","part_number").group("price","part_number").having("price > ? " , 1000.0)
+  Part Load (1.2ms)  SELECT "parts"."price", "parts"."part_number" FROM "parts" GROUP BY "parts"."price", "parts"."part_number" HAVING (price > 1000.0 )
+ => 
+[#<Part:0x0000557d5ec1a288 id: nil, part_number: 21, price: 0.15e4>,
+... 
+
+3.0.2 :135 > parts
+ => 
+[#<Part:0x0000557d5ec1a288 id: nil, part_number: 21, price: 0.15e4>,
+ #<Part:0x0000557d5ec19f40 id: nil, part_number: 12, price: 0.12e4>,
+ #<Part:0x0000557d5ec19ce8 id: nil, part_number: 24, price: 0.25e4>,
+ #<Part:0x0000557d5ec19b58 id: nil, part_number: 20, price: 0.2e4>] 
