@@ -656,3 +656,38 @@
 
 
 
+=====================Group=========================
+
+3.0.2 :111 > Book.select("name").group("name")
+  Book Load (0.7ms)  SELECT "books"."name" FROM "books" GROUP BY "books"."name"
+ => 
+[#<Book:0x0000557d5f98b728 id: nil, name: "Database Management">,
+ #<Book:0x0000557d5f98a0d0 id: nil, name: "architecture">,
+ #<Book:0x0000557d5f989720 id: nil, name: "Deep Learning">,
+ #<Book:0x0000557d5f988ff0 id: nil, name: "Algorithm">,
+ #<Book:0x0000557d5f9888c0 id: nil, name: "Learn PSQL">,
+ #<Book:0x0000557d5f988140 id: nil, name: "Data Structure">,
+ #<Book:0x0000557d5f983b18 id: nil, name: "Compiler Design">,
+ #<Book:0x0000557d5f983028 id: nil, name: "Computation">,
+ #<Book:0x0000557d5f982740 id: nil, name: "Machine Learning">] 
+
+
+
+3.0.2 :112 > Book.select("created_at").group("created_at")
+  Book Load (0.7ms)  SELECT "books"."created_at" FROM "books" GROUP BY "books"."created_at"
+ => 
+[#<Book:0x0000557d60198f10 id: nil, created_at: Tue, 14 Dec 2021 07:52:28.196238000 UTC +00:00>,
+ #<Book:0x0000557d60198d58 id: nil, created_at: Thu, 09 Dec 2021 07:54:42.070647000 UTC +00:00>,
+ #<Book:0x0000557d60198bf0 id: nil, created_at: Tue, 14 Dec 2021 07:41:36.445903000 UTC +00:00>,
+ #<Book:0x0000557d60198998 id: nil, created_at: Thu, 09 Dec 2021 07:46:18.891011000 UTC +00:00>,
+ #<Book:0x0000557d60198740 id: nil, created_at: Tue, 14 Dec 2021 08:33:56.514689000 UTC +00:00>,
+ #<Book:0x0000557d60198538 id: nil, created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00>,
+ #<Book:0x0000557d60198240 id: nil, created_at: Thu, 09 Dec 2021 12:42:14.242864000 UTC +00:00>,
+ #<Book:0x0000557d60183d68 id: nil, created_at: Tue, 14 Dec 2021 08:36:15.923817000 UTC +00:00>,
+ #<Book:0x0000557d601839f8 id: nil, created_at: Wed, 08 Dec 2021 12:40:37.426836000 UTC +00:00>] 
+
+
+
+3.0.2 :114 > Book.group(:author_id).count
+   (11.3ms)  SELECT COUNT(*) AS count_all, "books"."author_id" AS books_author_id FROM "books" GROUP BY "books"."author_id"
+ => {3=>2, 6=>1, 2=>2, 7=>2, 1=>2} 
