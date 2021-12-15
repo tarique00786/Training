@@ -1217,3 +1217,19 @@ Active Record provides the readonly method on a relation to explicitly disallow 
 
 
 
+==================Joining of tables========================
+
+3.0.2 :006 > Author.joins(:books)
+
+  Author Load (1.1ms)  SELECT "authors".* FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id"
+ => 
+[#<Author:0x000055ca05b35338 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+ #<Author:0x000055ca05b351d0 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00>,
+ #<Author:0x000055ca05b34fc8 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+ #<Author:0x000055ca05b34eb0 id: 3, name: "Peter", created_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00, updated_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00>,
+ #<Author:0x000055ca05b34d48 id: 3, name: "Peter", created_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00, updated_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00>,
+ #<Author:0x000055ca05b34c08 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00>,
+ #<Author:0x000055ca05b34a50 id: 6, name: "Lionel Messi", created_at: Tue, 14 Dec 2021 07:50:09.717737000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.717737000 UTC +00:00>,
+ #<Author:0x000055ca05b348e8 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>,
+ #<Author:0x000055ca05b347a8 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>] 
+
