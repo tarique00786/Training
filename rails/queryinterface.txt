@@ -1677,4 +1677,52 @@ John
    (0.9ms)  SELECT "books"."id" FROM "books" LEFT OUTER JOIN "authors" ON "authors"."id" = "books"."author_id"
  => [9, 8, 1, 4, 5, 2, 3, 6, 7] 
 
+
+
+ ================================================
+
+ 3.0.2 :088 > Book.includes(:author).pluck(:id)
+   (0.9ms)  SELECT "books"."id" FROM "books" LEFT OUTER JOIN "authors" ON "authors"."id" = "books"."author_id"
+ => [9, 8, 1, 4, 5, 2, 3, 6, 7] 
+
+3.0.2 :089 > Book.exists?
+  Book Exists? (1.0ms)  SELECT 1 AS one FROM "books" LIMIT $1  [["LIMIT", 1]]
+ => true 
+
+3.0.2 :090 > Book.exists?(1)
+  Book Exists? (0.7ms)  SELECT 1 AS one FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :091 > Book.any?
+  Book Exists? (0.6ms)  SELECT 1 AS one FROM "books" LIMIT $1  [["LIMIT", 1]]
+ => true 
+
+3.0.2 :094 > Book.exists?(id: [1,2,3])
+  Book Exists? (0.8ms)  SELECT 1 AS one FROM "books" WHERE "books"."id" IN ($1, $2, $3) LIMIT $4  [["id", 1], ["id", 2], ["id", 3], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :095 > Book.exists?(id: [1,2,14])
+  Book Exists? (1.0ms)  SELECT 1 AS one FROM "books" WHERE "books"."id" IN ($1, $2, $3) LIMIT $4  [["id", 1], ["id", 2], ["id", 14], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :096 > Book.where(name: "aLgorithm").exists?
+  Book Exists? (0.8ms)  SELECT 1 AS one FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "aLgorithm"], ["LIMIT", 1]]
+ => false 
+
+3.0.2 :097 > Book.where(name: "Algorithm").exists?
+  Book Exists? (0.8ms)  SELECT 1 AS one FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "Algorithm"], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :098 > User.exists?
+  User Exists? (18.3ms)  SELECT 1 AS one FROM "users" LIMIT $1  [["LIMIT", 1]]
+ => true
+
+ =====================================================
+
+ 3.0.2 :100 > Book.count
+   (0.9ms)  SELECT COUNT(*) FROM "books"
+ => 9 
  
+3.0.2 :101 > Author.joins(:books).where(id: 1).count
+   (1.4ms)  SELECT COUNT(*) FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE "authors"."id" = $1  [["id", 1]]
+ => 2 
