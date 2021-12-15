@@ -1233,3 +1233,77 @@ Active Record provides the readonly method on a relation to explicitly disallow 
  #<Author:0x000055ca05b348e8 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>,
  #<Author:0x000055ca05b347a8 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>] 
 
+
+
+3.0.2 :021 > Author.joins("INNER JOIN books ON books.author_id = authors.id")
+  Author Load (1.1ms)  SELECT "authors".* FROM "authors" INNER JOIN books ON books.author_id = authors.id
+ => 
+[#<Author:0x000055ca069e7890 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+ #<Author:0x000055ca069e77a0 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00>,
+ #<Author:0x000055ca069e76d8 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+ #<Author:0x000055ca069e75e8 id: 3, name: "Peter", created_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00, updated_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00>,
+ #<Author:0x000055ca069e74f8 id: 3, name: "Peter", created_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00, updated_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00>,
+ #<Author:0x000055ca069e7408 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00>,
+ #<Author:0x000055ca069e7340 id: 6, name: "Lionel Messi", created_at: Tue, 14 Dec 2021 07:50:09.717737000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.717737000 UTC +00:00>,
+ #<Author:0x000055ca069e7250 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>,
+ #<Author:0x000055ca069e7160 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>] 
+
+
+ 3.0.2 :035 > joins = Author.left_outer_joins(:books)
+  Author Load (1.2ms)  SELECT "authors".* FROM "authors" LEFT OUTER JOIN "books" ON "books"."author_id" = "authors"."id"
+ => 
+[#<Author:0x000055ca06905d78 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+... 
+3.0.2 :036 > joins
+ => 
+[#<Author:0x000055ca06905d78 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+ #<Author:0x000055ca06905c10 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00>,
+ #<Author:0x000055ca06905b20 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00>,
+ #<Author:0x000055ca06905a58 id: 3, name: "Peter", created_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00, updated_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00>,
+ #<Author:0x000055ca06905990 id: 3, name: "Peter", created_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00, updated_at: Thu, 09 Dec 2021 07:45:08.647339000 UTC +00:00>,
+ #<Author:0x000055ca069058c8 id: 2, name: "Mike", created_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00, updated_at: Wed, 08 Dec 2021 12:38:06.582715000 UTC +00:00>,
+ #<Author:0x000055ca06905800 id: 6, name: "Lionel Messi", created_at: Tue, 14 Dec 2021 07:50:09.717737000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.717737000 UTC +00:00>,
+ #<Author:0x000055ca06905738 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>,
+ #<Author:0x000055ca06905670 id: 7, name: "Neymar", created_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.739780000 UTC +00:00>,
+ #<Author:0x000055ca06905558 id: 5, name: "Rd Verma", created_at: Tue, 14 Dec 2021 07:50:09.687636000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.687636000 UTC +00:00>,
+ #<Author:0x000055ca06905490 id: 4, name: "Rd Sharma", created_at: Tue, 14 Dec 2021 07:50:09.560951000 UTC +00:00, updated_at: Tue, 14 Dec 2021 07:50:09.560951000 UTC +00:00>] 
+
+
+
+
+=====================Eager Loading =========================
+Mechanism of loading the minimum number of queries..
+
+
+3.0.2 :056 > books = Book.limit(3)
+  Book Load (0.7ms)  SELECT "books".* FROM "books" LIMIT $1  [["LIMIT", 3]]
+ => 
+[#<Book:0x000055ca064f2b78
+... 
+3.0.2 :057 > books.each do |book|
+3.0.2 :058 >   puts book.author.name
+3.0.2 :059 > end  
+  Author Load (0.7ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+John
+  Author Load (0.6ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+Mike
+  Author Load (0.6ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+John
+ => 
+
+
+
+3.0.2 :060 > books = Book.includes(:author).limit(3)
+  Book Load (0.9ms)  SELECT "books".* FROM "books" LIMIT $1  [["LIMIT", 3]]
+  Author Load (0.9ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" IN ($1, $2)  [["id", 1], ["id", 2]]
+ => 
+[#<Book:0x000055ca06808a38
+... 
+3.0.2 :061 > books.each do |book|
+3.0.2 :062 >   puts book.author.name
+3.0.2 :063 > end  
+John
+Mike
+John
+
+
