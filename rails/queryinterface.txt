@@ -1502,6 +1502,24 @@ John
   price: 0.6e3>] 
 
 
+===================Dynamic Finding================
+
+3.0.2 :025 > Book.find_by_author_id(1)
+  Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1 LIMIT $2  [["author_id", 1], ["LIMIT", 1]]
+ => 
+#<Book:0x00005571b9c61be8
+ id: 1,
+ author_id: 1,
+ published_at: Wed, 08 Dec 2021 05:09:47.630290000 UTC +00:00,
+ created_at: Wed, 08 Dec 2021 05:09:47.673896000 UTC +00:00,
+ updated_at: Wed, 15 Dec 2021 09:45:48.088240000 UTC +00:00,
+ name: "Data Structure",
+ price: 0.35e3> 
+
+
+ 
+
+
 +++++unscoping++++
 
 
@@ -1583,3 +1601,80 @@ John
 
 
 
+
+==============Find by sql========================
+
+ 3.0.2 :057 > Book.find_by_sql("SELECT books.id,  authors.name FROM books INNER JOIN authors ON books.author_id = authors.id")
+  Book Load (1.2ms)  SELECT books.id,  authors.name FROM books INNER JOIN authors ON books.author_id = authors.id
+ => 
+[#<Book:0x00005571b9a35d60 id: 9, name: "Neymar">,
+ #<Book:0x00005571b9a35c20 id: 8, name: "Neymar">,
+ #<Book:0x00005571b9a35b30 id: 1, name: "John">,
+ #<Book:0x00005571b9a35a68 id: 4, name: "Peter">,
+ #<Book:0x00005571b9a359a0 id: 5, name: "John">,
+ #<Book:0x00005571b9a358d8 id: 2, name: "Mike">,
+ #<Book:0x00005571b9a357e8 id: 3, name: "Peter">,
+ #<Book:0x00005571b9a35630 id: 6, name: "Mike">,
+ #<Book:0x00005571b9a35568 id: 7, name: "Lionel Messi">] 
+
+
+
+3.0.2 :058 > Book.connection.select_all("SELECT books.id,  authors.name FROM books INNER JOIN authors ON books.author_id = authors.id")
+   (0.9ms)  SELECT books.id,  authors.name FROM books INNER JOIN authors ON books.author_id = authors.id
+ => 
+#<ActiveRecord::Result:0x00005571b8aee3c0
+ @column_types={},
+ @columns=["id", "name"],
+ @hash_rows=nil,
+ @rows=[[9, "Neymar"], [8, "Neymar"], [1, "John"], [4, "Peter"], [5, "John"], [2, "Mike"], [3, "Peter"], [6, "Mike"], [7, "Lionel Messi"]]> 
+
+
+
+3.0.2 :059 > Book.connection.select_all("SELECT books.id,  authors.name FROM books INNER JOIN authors ON books.author_id = authors.id").to_a
+   (1.0ms)  SELECT books.id,  authors.name FROM books INNER JOIN authors ON books.author_id = authors.id
+ => 
+[{"id"=>9, "name"=>"Neymar"},
+ {"id"=>8, "name"=>"Neymar"},
+ {"id"=>1, "name"=>"John"},
+ {"id"=>4, "name"=>"Peter"},
+ {"id"=>5, "name"=>"John"},
+ {"id"=>2, "name"=>"Mike"},
+ {"id"=>3, "name"=>"Peter"},
+ {"id"=>6, "name"=>"Mike"},
+ {"id"=>7, "name"=>"Lionel Messi"}] 
+
+ =======================pluck==========
+
+ 3.0.2 :062 > Book.where(author_id: 7).pluck(:name)
+   (0.6ms)  SELECT "books"."name" FROM "books" WHERE "books"."author_id" = $1  [["author_id", 7]]
+ => ["Database Management", "Learn PSQL"] 
+
+3.0.2 :063 > Book.distinct.pluck(:author_id)
+   (1.1ms)  SELECT DISTINCT "books"."author_id" FROM "books"
+ => [3, 6, 2, 7, 1] 
+
+ 3.0.2 :080 > Author.joins(:books).pluck("books.name")
+   (1.9ms)  SELECT "books"."name" FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id"
+ => ["Learn PSQL", "Database Management", "Data Structure", "Computation", "architecture", "Algorithm", "Compiler Design", "Machine Learning", "Deep Learning"] 
+
+3.0.2 :081 > Author.joins(:books).pluck("books.author_id,books.name")
+   (1.1ms)  SELECT books.author_id,books.name FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id"
+ => [[7, "Learn PSQL"], [7, "Database Management"], [1, "Data Structure"], [3, "Computation"], [1, "architecture"], [2, "Algorithm"], [3, "Compiler Design"], [2, "Machine Learning"], [6, "Deep Learning"]
+
+
+3.0.2 :082 > Book.pluck(:name).limit(1)
+   (0.8ms)  SELECT "books"."name" FROM "books"
+(irb):82:in `<main>': undefined method `limit' for ["Learn PSQL", "Database Management", "Data Structure", "Computation", "architecture", "Algorithm", "Compiler Design", "Machine Learning", "Deep Learning"]:Array (NoMethodError)
+3.0.2 :083 > Book.limit(1).pluck(:name)
+   (0.5ms)  SELECT "books"."name" FROM "books" LIMIT $1  [["LIMIT", 1]]
+ => ["Learn PSQL"] 
+3.0.2 :084 > Book.limit(4).pluck(:name)
+   (3.0ms)  SELECT "books"."name" FROM "books" LIMIT $1  [["LIMIT", 4]]
+ => ["Learn PSQL", "Database Management", "Data Structure", "Computation"] 
+
+
+3.0.2 :088 > Book.includes(:author).pluck(:id)
+   (0.9ms)  SELECT "books"."id" FROM "books" LEFT OUTER JOIN "authors" ON "authors"."id" = "books"."author_id"
+ => [9, 8, 1, 4, 5, 2, 3, 6, 7] 
+
+ 
