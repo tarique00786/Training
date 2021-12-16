@@ -195,8 +195,25 @@ allow_nil: true
 3.0.2 :037 > u = User.new(first_name: nil, last_name: "verma", email: "mathur23@gmail.com", mobileno: 945820054, country: "india", age: "thirty-one")
 
  => #<User:0x000055ab4d968158 id: nil, first_name: nil, last_name: "verma", email: "mathur23@gmail.com", created_at: nil, updated_at: nil, mobileno: 945820054, country: "india", age: "thirty-one"> 
- 
+
 3.0.2 :038 > u.valid?
 /usr/share/rvm/gems/ruby-3.0.2/gems/activemodel-6.1.4.1/lib/active_model/errors.rb:410:in `add': First name can't be blank (ActiveModel::StrictValidationFailed)
 
+==============Conditional validation=========
+
+3.0.2 :070 > u = User.new(first_name: "obama", last_name: nil, email: "mathur28@gmail.com", mobileno: 58000200, country: "india", age: "thirty-one")
+ => #<User:0x000055ab4d39c350 id: nil, first_name: "obama", last_name: nil, email: "mathur28@gmail.com", created_at: nil, updated_at: nil, mobileno: 58000200, country: "india", age: "thirty-one"> 
+
+3.0.2 :071 > u.valid?
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 58000200], ["LIMIT", 1]]
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "mathur28@gmail.com"], ["LIMIT", 1]]
+ => false 
+
+3.0.2 :072 > u = User.new(first_name: "salman", last_name: nil, email: "mathur28@gmail.com", mobileno: 58000200, country: "india", age: "thirty-one")
+ => #<User:0x000055ab4bafb288 id: nil, first_name: "salman", last_name: nil, email: "mathur28@gmail.com", created_at: nil, updated_at: nil, mobileno: 58000200, country: "india", age: "thirty-one"> 
+ 
+3.0.2 :073 > u.valid?
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 58000200], ["LIMIT", 1]]
+  User Exists? (0.7ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "mathur28@gmail.com"], ["LIMIT", 1]]
+ => true 
 
