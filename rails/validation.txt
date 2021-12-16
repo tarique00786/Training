@@ -82,8 +82,31 @@
 3.0.2 :064 > u.valid?
   User Exists? (1.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 1433], ["LIMIT", 1]]
  => false 
- 
+
 3.0.2 :065 > u.errors.full_messages
  => ["Mobileno has already been taken"] 
 
+3.0.2 :071 > u = User.new(first_name: "akshay", last_name:"sharma", email:"akshayy23@gmail.com", mobileno: 2565485, country: "america")
+ => #<User:0x000055ab4d72f940 id: nil, first_name: "akshay", last_name: "sharma", email: "akshayy23@gmail.com", created_at: nil, updated_at: nil, mobileno: 2565485, country: "america"> 
+
+3.0.2 :072 > u.valid?
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 2565485], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :073 > u.save
+  TRANSACTION (0.6ms)  BEGIN
+  User Exists? (0.6ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 2565485], ["LIMIT", 1]]
+  User Create (0.8ms)  INSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at", "mobileno", "country") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["first_name", "akshay"], ["last_name", "sharma"], ["email", "akshayy23@gmail.com"], ["created_at", "2021-12-16 08:25:02.157255"], ["updated_at", "2021-12-16 08:25:02.157255"], ["mobileno", 2565485], ["country", "america"]]
+  TRANSACTION (2.0ms)  COMMIT
+ => true 
+
+3.0.2 :080 > u = User.new(first_name: "akshay", last_name:"sharma", email:"akshayy23@gmail.com", mobileno: 25654851, country: "brazil")
+ => #<User:0x000055ab4d60dcb0 id: nil, first_name: "akshay", last_name: "sharma", email: "akshayy23@gmail.com", created_at: nil, updated_at: nil, mobileno: 25654851, country: "brazil"> 
+
+3.0.2 :081 > u.valid?
+  User Exists? (1.5ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 25654851], ["LIMIT", 1]]
+ => false 
+ 
+3.0.2 :082 > u.errors.full_messages
+ => ["Country brazil is not valid", "Country brazil is not valid"] 
 
