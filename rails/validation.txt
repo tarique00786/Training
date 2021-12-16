@@ -251,10 +251,23 @@ allow_nil: true
 
 3.0.2 :128 > u.errors.empty?
  => true 
- 
+
 3.0.2 :129 > u.save
   TRANSACTION (0.5ms)  BEGIN
   User Exists? (0.6ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" IS NULL LIMIT $1  [["LIMIT", 1]]
   User Exists? (1.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1  [["LIMIT", 1]]
   TRANSACTION (0.6ms)  ROLLBACK
  => false 
+
+
+3.0.2 :136 > u = User.new
+ => #<User:0x000055ab4be51e78 id: nil, first_name: nil, last_name: nil, email: nil, created_at: nil, updated_at: nil, mobileno: nil, country: nil, age: nil>
+
+3.0.2 :137 > u.valid?
+ => false 
+
+3.0.2 :138 > u.errors.messages
+ => {:mobileno=>["can't be blank"], :email=>["blank not allowed"]} 
+ 
+3.0.2 :139 > u.errors.size
+ => 2 
