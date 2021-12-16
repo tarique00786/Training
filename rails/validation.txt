@@ -44,7 +44,34 @@
 
  =======================Validation helpers===================
 
+ 1. length
+
+
+3.0.2 :029 > u = User.new(first_name: "asar", last_name:"sharma", email:"asary23@gmail.com", mobileno: 1433)
+ => #<User:0x000055ab4d379440 id: nil, first_name: "asar", last_name: "sharma", email: "asary23@gmail.com", created_at: nil, updated_at: nil, mobileno: 1433> 
+3.0.2 :030 > u.save
+ => false 
+3.0.2 :031 > u.errors.full_messages
+ => ["Mobileno is too short (minimum is 6 characters)"] 
+
+
+3.0.2 :045 > u = User.new(first_name: "asar", last_name:"sharma", email:"asary23@gmail.com", mobileno: 1433)
+ => #<User:0x000055ab4c98e278 id: nil, first_name: "asar", last_name: "sharma", email: "asary23@gmail.com", created_at: nil, updated_at: nil, mobileno: 1433> 
+
+3.0.2 :046 > u.save
+  TRANSACTION (0.4ms)  BEGIN
+  User Create (1.3ms)  INSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at", "mobileno") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["first_name", "asar"], ["last_name", "sharma"], ["email", "asary23@gmail.com"], ["created_at", "2021-12-16 07:36:16.114371"], ["updated_at", "2021-12-16 07:36:16.114371"], ["mobileno", 1433]]
+  TRANSACTION (2.3ms)  COMMIT
+ => true 
+
+ 3.0.2 :048 > u = User.new(first_name: "asar", last_name:"sharma", email:"asary23@gmail.com", mobileno: 111111111111111)
+ => #<User:0x000055ab4d5903c8 id: nil, first_name: "asar", last_name: "sharma", email: "asary23@gmail.com", created_at: nil, updated_at: nil, mobileno: 111111111111111> 
+
+3.0.2 :049 > u.save
+ => false 
  
+3.0.2 :050 > u.errors.full_messages
+ => ["Mobileno 10 characters is the maximum allowed"] 
 
 
 
