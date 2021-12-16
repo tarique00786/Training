@@ -230,6 +230,31 @@ allow_nil: true
 
 3.0.2 :115 > p = Part.create
  => #<Part:0x000055ab4c877cb8 id: nil, part_number: nil, created_at: nil, updated_at: nil, price: nil> 
- 
+
 3.0.2 :116 > p.errors.where(:base).first.full_message
  => "Invalid" 
+
+
+3.0.2 :124 > u = User.new
+ => #<User:0x000055ab4d981c98 id: nil, first_name: nil, last_name: nil, email: nil, created_at: nil, updated_at: nil, mobileno: nil, country: nil, age: nil> 
+
+3.0.2 :125 > u.valid?
+  User Exists? (1.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" IS NULL LIMIT $1  [["LIMIT", 1]]
+  User Exists? (0.7ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1  [["LIMIT", 1]]
+ => false 
+
+3.0.2 :126 > u.errors.empty?
+ => false 
+
+3.0.2 :127 > u.errors.clear
+ => [] 
+
+3.0.2 :128 > u.errors.empty?
+ => true 
+ 
+3.0.2 :129 > u.save
+  TRANSACTION (0.5ms)  BEGIN
+  User Exists? (0.6ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" IS NULL LIMIT $1  [["LIMIT", 1]]
+  User Exists? (1.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1  [["LIMIT", 1]]
+  TRANSACTION (0.6ms)  ROLLBACK
+ => false 
