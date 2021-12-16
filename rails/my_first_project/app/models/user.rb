@@ -18,6 +18,13 @@ class User < ApplicationRecord
   validates :email,
    presence: {message: "blank not allowed"}, on: :create 
 
-  validates :age, numericality: true, on: :account_setup                   
+  validates :age, numericality: true, on: :account_setup
+  validate :custom_mthod 
+
+  private
+
+    def custom_mthod
+      errors.add(:base, "Invalid") if self.mobileno.nil? 
+    end                    
 
 end
