@@ -190,3 +190,13 @@ allow_nil: true
  => ["Age is not a number"] 
 
 
+==========strict validation=================
+
+3.0.2 :037 > u = User.new(first_name: nil, last_name: "verma", email: "mathur23@gmail.com", mobileno: 945820054, country: "india", age: "thirty-one")
+
+ => #<User:0x000055ab4d968158 id: nil, first_name: nil, last_name: "verma", email: "mathur23@gmail.com", created_at: nil, updated_at: nil, mobileno: 945820054, country: "india", age: "thirty-one"> 
+ 
+3.0.2 :038 > u.valid?
+/usr/share/rvm/gems/ruby-3.0.2/gems/activemodel-6.1.4.1/lib/active_model/errors.rb:410:in `add': First name can't be blank (ActiveModel::StrictValidationFailed)
+
+
