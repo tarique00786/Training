@@ -223,6 +223,13 @@ allow_nil: true
 
 3.0.2 :103 > p.errors.where(:part_number).first.type
  => :to_big 
- 
+
 3.0.2 :104 > p.errors.where(:part_number).first.full_message
  => "Part number Not valid" 
+
+
+3.0.2 :115 > p = Part.create
+ => #<Part:0x000055ab4c877cb8 id: nil, part_number: nil, created_at: nil, updated_at: nil, price: nil> 
+ 
+3.0.2 :116 > p.errors.where(:base).first.full_message
+ => "Invalid" 
