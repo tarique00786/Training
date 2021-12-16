@@ -1722,7 +1722,29 @@ John
  3.0.2 :100 > Book.count
    (0.9ms)  SELECT COUNT(*) FROM "books"
  => 9 
- 
+
 3.0.2 :101 > Author.joins(:books).where(id: 1).count
    (1.4ms)  SELECT COUNT(*) FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE "authors"."id" = $1  [["id", 1]]
  => 2 
+
+3.0.2 :103 > Book.count(:name)
+   (0.8ms)  SELECT COUNT("books"."name") FROM "books"
+ => 9 
+
+3.0.2 :104 > Book.maximum("price")
+   (115.5ms)  SELECT MAX("books"."price") FROM "books"
+ => 0.11e4 
+
+3.0.2 :105 > Book.average("price")
+   (112.5ms)  SELECT AVG("books"."price") FROM "books"
+ => 0.6287777777777777778e3 
+
+3.0.2 :106 > Book.minimum("price")
+   (0.9ms)  SELECT MIN("books"."price") FROM "books"
+ => 0.35e3 
+
+ 3.0.2 :107 > Book.sum("price")
+   (1.9ms)  SELECT SUM("books"."price") FROM "books"
+ => 0.5659e4 
+
+
