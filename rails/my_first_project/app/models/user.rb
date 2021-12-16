@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :mobileno, presence: true, length: { maximum: 10,
                        too_long: "%{count} characters is the maximum allowed"}
   
-  validates :mobileno, uniqueness: true 
+  #validates :mobileno, uniqueness: true 
   validates :country, inclusion: {in: %w(india america england),
                       message: "%{value} is not valid"}, allow_blank: true   
 
@@ -16,7 +16,7 @@ class User < ApplicationRecord
                       message: "%{value} is not valid"},allow_blank: true 
 
   validates :email,
-   uniqueness: {message: "already exists"}, on: :create 
+   presence: {message: "blank not allowed"}, on: :create 
 
   validates :age, numericality: true, on: :account_setup                   
 
