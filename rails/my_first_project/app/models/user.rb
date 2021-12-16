@@ -14,6 +14,6 @@ class User < ApplicationRecord
   validates :email,
    uniqueness: {message: "already exists"}, on: :create 
 
-  validates :age, numericality: true, on: :update                   
+  validates :age, numericality: true, on: :account_setup                   
 
 end
