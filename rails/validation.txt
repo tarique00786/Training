@@ -86,6 +86,7 @@
 3.0.2 :065 > u.errors.full_messages
  => ["Mobileno has already been taken"] 
 
+3. inclusion
 3.0.2 :071 > u = User.new(first_name: "akshay", last_name:"sharma", email:"akshayy23@gmail.com", mobileno: 2565485, country: "america")
  => #<User:0x000055ab4d72f940 id: nil, first_name: "akshay", last_name: "sharma", email: "akshayy23@gmail.com", created_at: nil, updated_at: nil, mobileno: 2565485, country: "america"> 
 
@@ -99,6 +100,7 @@
   User Create (0.8ms)  INSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at", "mobileno", "country") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["first_name", "akshay"], ["last_name", "sharma"], ["email", "akshayy23@gmail.com"], ["created_at", "2021-12-16 08:25:02.157255"], ["updated_at", "2021-12-16 08:25:02.157255"], ["mobileno", 2565485], ["country", "america"]]
   TRANSACTION (2.0ms)  COMMIT
  => true 
+4 .Exclusion
 
 3.0.2 :080 > u = User.new(first_name: "akshay", last_name:"sharma", email:"akshayy23@gmail.com", mobileno: 25654851, country: "brazil")
  => #<User:0x000055ab4d60dcb0 id: nil, first_name: "akshay", last_name: "sharma", email: "akshayy23@gmail.com", created_at: nil, updated_at: nil, mobileno: 25654851, country: "brazil"> 
@@ -106,7 +108,69 @@
 3.0.2 :081 > u.valid?
   User Exists? (1.5ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 25654851], ["LIMIT", 1]]
  => false 
- 
+
 3.0.2 :082 > u.errors.full_messages
  => ["Country brazil is not valid", "Country brazil is not valid"] 
+
+5.presence 
+
+3.0.2 :094 > s = Supplier.new(name: "ravi")
+ => #<Supplier:0x000055ab4c6a17b8 id: nil, name: "ravi", created_at: nil, updated_at: nil> 
+3.0.2 :095 > s.valid?
+ => false 
+
+3.0.2 :096 > s.errors.full_message
+/usr/share/rvm/gems/ruby-3.0.2/gems/activemodel-6.1.4.1/lib/active_model/errors.rb:513:in `full_message': wrong number of arguments (given 0, expected 2) (ArgumentError)
+3.0.2 :097 > s.errors.full_messages
+ => ["Account can't be blank"] 
+
+
+
+
+
+
+==================Common validation option=================
+
+allow_nil: true
+
+ => #<User:0x000055ab4c76f550 id: nil, first_name: "aziz", last_name: "aziz", email: "aziz23@gmail.com", created_at: nil, updated_at: nil, mobileno: 2255664, country: nil> 
+3.0.2 :110 > u.valid?
+  User Exists? (1.2ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 2255664], ["LIMIT", 1]]
+ => true 
+
+ allow_blank: true
+
+ 3.0.2 :120 > u = User.new(first_name:"aziz", last_name: "aziz", email: "aziz23@gmail.com", mobileno: 22554, country: "")
+ => #<User:0x000055ab4d8de9f8 id: nil, first_name: "aziz", last_name: "aziz", email: "aziz23@gmail.com", created_at: nil, updated_at: nil, mobileno: 22554, country: ""> 
+
+3.0.2 :121 > u.valid?
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 22554], ["LIMIT", 1]]
+ => true 
+
+  => #<User:0x000055ab4b38c948 id: nil, first_name: "mau", last_name: "aiz", email: "mau23@gmail.com", created_at: nil, updated_at: nil, mobileno: 945822554, country: "india", age: "thirty-one"> 
+
+3.0.2 :018 > u.valid?
+  User Exists? (1.1ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 945822554], ["LIMIT", 1]]
+  User Exists? (1.2ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "mau23@gmail.com"], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :019 > u.save
+  TRANSACTION (0.5ms)  BEGIN
+  User Exists? (0.7ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 945822554], ["LIMIT", 1]]
+  User Exists? (0.7ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "mau23@gmail.com"], ["LIMIT", 1]]
+  User Create (1.0ms)  INSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at", "mobileno", "country", "age") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["first_name", "mau"], ["last_name", "aiz"], ["email", "mau23@gmail.com"], ["created_at", "2021-12-16 10:23:36.097423"], ["updated_at", "2021-12-16 10:23:36.097423"], ["mobileno", 945822554], ["country", "india"], ["age", "thirty-one"]]
+  TRANSACTION (19.0ms)  COMMIT
+ => true 
+
+3.0.2 :020 > u.age = 31
+ => 31 
+ 
+3.0.2 :021 > u.save
+  TRANSACTION (0.3ms)  BEGIN
+  User Exists? (0.5ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 AND "users"."id" != $2 LIMIT $3  [["mobileno", 945822554], ["id", 13], ["LIMIT", 1]]
+  User Update (0.6ms)  UPDATE "users" SET "updated_at" = $1, "age" = $2 WHERE "users"."id" = $3  [["updated_at", "2021-12-16 10:24:10.829760"], ["age", "31"], ["id", 13]]
+  TRANSACTION (12.2ms)  COMMIT
+ => true 
+
+
 
