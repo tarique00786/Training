@@ -211,9 +211,18 @@ allow_nil: true
 
 3.0.2 :072 > u = User.new(first_name: "salman", last_name: nil, email: "mathur28@gmail.com", mobileno: 58000200, country: "india", age: "thirty-one")
  => #<User:0x000055ab4bafb288 id: nil, first_name: "salman", last_name: nil, email: "mathur28@gmail.com", created_at: nil, updated_at: nil, mobileno: 58000200, country: "india", age: "thirty-one"> 
- 
+
 3.0.2 :073 > u.valid?
   User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 58000200], ["LIMIT", 1]]
   User Exists? (0.7ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "mathur28@gmail.com"], ["LIMIT", 1]]
  => true 
 
+
+3.0.2 :102 > p = Part.create
+ => #<Part:0x000055ab4d43d6d8 id: nil, part_number: nil, created_at: nil, updated_at: nil, price: nil> 
+
+3.0.2 :103 > p.errors.where(:part_number).first.type
+ => :to_big 
+ 
+3.0.2 :104 > p.errors.where(:part_number).first.full_message
+ => "Part number Not valid" 
