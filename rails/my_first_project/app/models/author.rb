@@ -5,4 +5,6 @@ class Author < ApplicationRecord
   def authorname
     "I am #{name}"
   end  
+  validates_associated :books
+  
 end
