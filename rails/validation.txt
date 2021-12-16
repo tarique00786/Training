@@ -1,0 +1,45 @@
+==================valid? and invalid?=================
+
+3.0.2 :035 > u = User.new
+ => #<User:0x000055ab4d643630 id: nil, first_name: nil, last_name: nil, email: nil, created_at: nil, updated_at: nil> 
+
+3.0.2 :036 > u.errors.size
+ => 0 
+
+3.0.2 :037 > u.valid?
+ => false 
+
+
+3.0.2 :039 > u.errors.objects.first.full_message
+ => "First name can't be blank" 
+
+3.0.2 :040 > u.save
+ => false 
+
+
+3.0.2 :042 > u.save!
+/usr/share/rvm/gems/ruby-3.0.2/gems/activerecord-6.1.4.1/lib/active_record/validations.rb:80:in `raise_validation_error': Validation failed: First name can't be blank (ActiveRecord::RecordInvalid)
+
+3.0.2 :043 > u.errors.full_message
+/usr/share/rvm/gems/ruby-3.0.2/gems/activemodel-6.1.4.1/lib/active_model/errors.rb:513:in `full_message': wrong number of arguments (given 0, expected 2) (ArgumentError)
+
+3.0.2 :044 > u.errors.full_messages
+ => ["First name can't be blank"] 
+
+ 3.0.2 :046 > u.errors[:first_name]
+ => ["can't be blank"] 
+
+3.0.2 :047 > u.invalid?
+ => true 
+
+3.0.2 :048 > u.errors[:last_name]
+ => [] 
+
+3.0.2 :049 > User.new.errors[:first_name].any?
+ => false 
+
+3.0.2 :050 > User.create.errors[:first_name].any?
+ => true 
+
+ 
+
