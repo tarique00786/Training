@@ -69,9 +69,21 @@
 
 3.0.2 :049 > u.save
  => false 
- 
+
 3.0.2 :050 > u.errors.full_messages
  => ["Mobileno 10 characters is the maximum allowed"] 
 
+
+2.Uniqueness
+
+3.0.2 :063 > u = User.new(first_name: "ashu", last_name:"sharma", email:"asary23@gmail.com", mobileno: 1433)
+ => #<User:0x000055ab4d8dc608 id: nil, first_name: "ashu", last_name: "sharma", email: "asary23@gmail.com", created_at: nil, updated_at: nil, mobileno: 1433> 
+
+3.0.2 :064 > u.valid?
+  User Exists? (1.0ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 1433], ["LIMIT", 1]]
+ => false 
+ 
+3.0.2 :065 > u.errors.full_messages
+ => ["Mobileno has already been taken"] 
 
 
