@@ -268,6 +268,27 @@ allow_nil: true
 
 3.0.2 :138 > u.errors.messages
  => {:mobileno=>["can't be blank"], :email=>["blank not allowed"]} 
- 
+
 3.0.2 :139 > u.errors.size
  => 2 
+
+3.0.2 :141 > u = User.new
+ => #<User:0x000055ab4d673f60 id: nil, first_name: nil, last_name: nil, email: nil, created_at: nil, updated_at: nil, mobileno: nil, country: nil, age: nil> 
+
+3.0.2 :142 > u.valid?
+ => false 
+
+3.0.2 :143 > u.errors.messages
+ => {:mobileno=>["can't be blank"], :email=>["blank not allowed"], :base=>["Invalid"]} 
+3.0.2 :144 > reload!
+Reloading...
+ => true 
+
+3.0.2 :145 > u = User.new(mobileno: 12345677)
+ => #<User:0x000055ab4ca55558 id: nil, first_name: nil, last_name: nil, email: nil, created_at: nil, updated_at: nil, mobileno: 12345677, country: nil, age: nil> 
+
+3.0.2 :146 > u.valid?
+ => false 
+ 
+3.0.2 :147 > u.errors.messages
+ => {:email=>["blank not allowed"]} 
