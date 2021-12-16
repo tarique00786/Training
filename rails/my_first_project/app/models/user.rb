@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 
-  validates :first_name, presence: {strict: true}
+  validates :last_name, presence: true, if: :name?
+  def name?
+    first_name == "obama"
+  end  	
     
   validates :mobileno, presence: true, length: { maximum: 10,
                        too_long: "%{count} characters is the maximum allowed"}
