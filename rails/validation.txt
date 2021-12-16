@@ -164,7 +164,7 @@ allow_nil: true
 
 3.0.2 :020 > u.age = 31
  => 31 
- 
+
 3.0.2 :021 > u.save
   TRANSACTION (0.3ms)  BEGIN
   User Exists? (0.5ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 AND "users"."id" != $2 LIMIT $3  [["mobileno", 945822554], ["id", 13], ["LIMIT", 1]]
@@ -172,5 +172,21 @@ allow_nil: true
   TRANSACTION (12.2ms)  COMMIT
  => true 
 
+
+
+3.0.2 :030 > u = User.new(first_name:"mathur", last_name: "verma", email: "mathur23@gmail.com", mobileno: 945820054, country: "india", age: "thirty-one")
+ => #<User:0x000055ab4d424890 id: nil, first_name: "mathur", last_name: "verma", email: "mathur23@gmail.com", created_at: nil, updated_at: nil, mobileno: 945820054, country: "india", age: "thirty-o... 
+
+3.0.2 :031 > u.valid?
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 945820054], ["LIMIT", 1]]
+  User Exists? (1.1ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "mathur23@gmail.com"], ["LIMIT", 1]]
+ => true 
+
+3.0.2 :032 > u.valid?(:account_setup)
+  User Exists? (0.8ms)  SELECT 1 AS one FROM "users" WHERE "users"."mobileno" = $1 LIMIT $2  [["mobileno", 945820054], ["LIMIT", 1]]
+ => false 
+
+3.0.2 :034 > u.errors.full_messages
+ => ["Age is not a number"] 
 
 
