@@ -41,5 +41,10 @@
 3.0.2 :050 > User.create.errors[:first_name].any?
  => true 
 
+
+ =======================Validation helpers===================
+
  
+
+
 
