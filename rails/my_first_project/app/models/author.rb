@@ -6,5 +6,5 @@ class Author < ApplicationRecord
     "I am #{name}"
   end  
   validates_associated :books
-  
+  validates :name, absence: true
 end
