@@ -131,3 +131,25 @@ You have initialized
  => #<Task:0x000055d2f4c880d0 id: 1, title: "Pay Electricity and TV bill", created_at: Fri, 17 Dec 2021 09:58:43.008040000 UTC +00:00, updated_at: Fri, 17 Dec 2021 09:58:43.008040000 UTC +00:00> 
 
 
+
+
+3.0.2 :211 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :212 > t = Task.new
+ => #<Task:0x000055d2f4a286f0 id: nil, title: nil, created_at: nil, updated_at: nil> 
+ 
+3.0.2 :213 > t.title
+ => nil 
+ 
+3.0.2 :214 > t.valid?
+ => true 
+ 
+3.0.2 :215 > t.title
+ => "Pay Electricity bill" 
+
+
+
+
+
