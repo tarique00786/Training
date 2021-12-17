@@ -94,3 +94,27 @@ Reloading...
  => "Pay Electricity and TV bill" 
 
 
+
+
+
+3.0.2 :195 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :196 > t = Task.create!
+  TRANSACTION (0.5ms)  BEGIN
+  Task Create (0.8ms)  INSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["title", "Pay Electricity bill"], ["created_at", "2021-12-17 10:17:26.751037"], ["updated_at", "2021-12-17 10:17:26.751037"]]
+  TRANSACTION (102.2ms)  COMMIT
+ => #<Task:0x000055d2f4c925d0 id: 2, title: "Pay Electricity and TV bill", created_at: Fri, 17 Dec 2021 10:17:26.751037000 UTC +00:00, updated_at: Fri, 17 Dec 2021 10:17:26.751037000 UTC +00:00> 
+ 
+3.0.2 :197 > t.title
+ => "Pay Electricity and TV bill" 
+ 
+3.0.2 :198 > t = Task.last
+  Task Load (0.5ms)  SELECT "tasks".* FROM "tasks" ORDER BY "tasks"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ => #<Task:0x000055d2f384d908 id: 2, title: "Pay Electricity bill", created_at: Fri, 17 Dec 2021 10:17:26.751037000 UTC +00:00, updated_at: Fri, 17 Dec 2021 10:17:26.751037000 UTC +00:00> 
+ 
+3.0.2 :199 > t.title
+ => "Pay Electricity bill" 
+
+
