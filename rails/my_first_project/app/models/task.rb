@@ -1,5 +1,13 @@
 class Task < ApplicationRecord
-  
+
+  after_initialize do |task|
+    puts "You have initialized"
+  end
+
+  after_find do |task|
+    puts "You have find an object"
+  end  	
+
   before_validation :set_title
   #before_save :change_title
   #after_validation :set_title
