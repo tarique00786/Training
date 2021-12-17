@@ -22,3 +22,25 @@
   Author Create (0.7ms)  INSERT INTO "authors" ("created_at", "updated_at", "email") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2021-12-17 08:46:59.905345"], ["updated_at", "2021-12-17 08:46:59.905345"], ["email", "sachin123@berylsystems.com"]]
   TRANSACTION (146.4ms)  COMMIT
  => true 
+ 
+ 
+ 
+ 
+ 
+ 
+ 3.0.2 :151 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :152 > t = Task.new
+ => #<Task:0x000055d2f4669be0 id: nil, title: nil, created_at: nil, updated_at: nil> 
+ 
+3.0.2 :153 > t.title
+ => nil 
+ 
+3.0.2 :154 > t.valid?
+ => true 
+ 
+3.0.2 :155 > t.title
+ => "Pay Electricity bill" 
+
