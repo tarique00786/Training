@@ -44,3 +44,25 @@ Reloading...
 3.0.2 :155 > t.title
  => "Pay Electricity bill" 
 
+
+
+
+3.0.2 :156 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :157 > t = Task.new
+ => #<Task:0x000055d2f4bab0e0 id: nil, title: nil, created_at: nil, updated_at: nil> 
+ 
+3.0.2 :158 > t.title
+ => nil 
+ 
+3.0.2 :159 > t.valid?
+ => false 
+ 
+3.0.2 :160 > t.title
+ => "Pay Electricity bill" 
+ 
+3.0.2 :161 > t.valid?
+ => true 
+
