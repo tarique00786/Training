@@ -153,3 +153,38 @@ Reloading...
 
 
 
+
+
+3.0.2 :218 > a = Author.first
+  Author Load (0.6ms)  SELECT "authors".* FROM "authors" ORDER BY "authors"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => #<Author:0x000055d2f487a5b0 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00, email: nil, accept: nil> 
+ 
+3.0.2 :219 > a.books.create!
+  TRANSACTION (0.5ms)  BEGIN
+  Author Load (0.7ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Book Create (55.5ms)  INSERT INTO "books" ("author_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["author_id", 1], ["created_at", "2021-12-17 13:08:27.424464"], ["updated_at", "2021-12-17 13:08:27.424464"]]
+  TRANSACTION (1.8ms)  COMMIT
+ => 
+#<Book:0x000055d2f4ab3278
+ id: 11,
+ author_id: 1,
+ published_at: nil,
+ created_at: Fri, 17 Dec 2021 13:08:27.424464000 UTC +00:00,
+ updated_at: Fri, 17 Dec 2021 13:08:27.424464000 UTC +00:00,
+ name: nil,
+ price: nil> 
+ 
+3.0.2 :220 > a.destroy
+  TRANSACTION (0.4ms)  BEGIN
+  Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1 ORDER BY "books"."published_at" DESC  [["author_id", 1]]
+  Book Destroy (40.1ms)  DELETE FROM "books" WHERE "books"."id" = $1  [["id", 11]]
+Article destroyed
+  Book Destroy (2.4ms)  DELETE FROM "books" WHERE "books"."id" = $1  [["id", 5]]
+Article destroyed
+  Book Destroy (2.0ms)  DELETE FROM "books" WHERE "books"."id" = $1  [["id", 1]]
+Article destroyed
+  Author Destroy (1.6ms)  DELETE FROM "authors" WHERE "authors"."id" = $1  [["id", 1]]
+  TRANSACTION (23.2ms)  COMMIT
+ => #<Author:0x000055d2f487a5b0 id: 1, name: "John", created_at: Wed, 08 Dec 2021 04:58:20.810499000 UTC +00:00, updated_at: Wed, 08 Dec 2021 04:58:21.810530000 UTC +00:00, email: nil, accept: nil> 
+
+
