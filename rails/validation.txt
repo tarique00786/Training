@@ -310,6 +310,7 @@ Reloading...
 Reloading...
  => true 
  
+ 
 3.0.2 :104 > a = Author.new
  => #<Author:0x000055d2f3acfd98 id: nil, name: nil, created_at: nil, updated_at: nil, email: nil> 
  
@@ -338,4 +339,26 @@ Reloading...
  => true 
 
  
+ 
+ 3.0.2 :113 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :114 > a = Author.new(name: "sanjay", accept:false)
+ => #<Author:0x000055d2f2cface0 id: nil, name: "sanjay", created_at: nil, updated_at: nil, email: nil, accept: false> 
+3.0.2 :115 > a.valid?
+ => false 
+ 
+3.0.2 :116 > a.errors.messages
+ => {:accept=>["must be accepted"]} 
+ 
+3.0.2 :117 > a = Author.new(name: "sanjay", accept:true)
+ => #<Author:0x000055d2f4930310 id: nil, name: "sanjay", created_at: nil, updated_at: nil, email: nil, accept: true> 
+ 
+3.0.2 :118 > a.valid?
+ => true 
+ 
+3.0.2 :119 > a.errors.messages
+ => {} 
+
  
