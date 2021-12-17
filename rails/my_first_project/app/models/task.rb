@@ -6,7 +6,11 @@ class Task < ApplicationRecord
 
   after_find do |task|
     puts "You have find an object"
-  end  	
+  end 
+
+  after_touch do |task|
+    puts "You have touched an object"
+  end   	
 
   before_validation :set_title
   #before_save :change_title
