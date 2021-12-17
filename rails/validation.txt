@@ -292,3 +292,50 @@ Reloading...
  
 3.0.2 :147 > u.errors.messages
  => {:email=>["blank not allowed"]} 
+ 
+ 
+ 3.0.2 :099 > a = Author.new(name:"sumit")
+ => #<Author:0x000055d2f4747a30 id: nil, name: "sumit", created_at: nil, updated_at: nil, email: nil> 
+ 
+3.0.2 :100 > a.valid?
+ => false 
+ 
+3.0.2 :101 > a.errors.messages
+ => {:name=>["must be blank"]} 
+ 
+3.0.2 :102 > a.present?
+ => true 
+ 
+3.0.2 :103 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :104 > a = Author.new
+ => #<Author:0x000055d2f3acfd98 id: nil, name: nil, created_at: nil, updated_at: nil, email: nil> 
+ 
+3.0.2 :105 > a.valid?
+ => true 
+ 
+3.0.2 :106 > a.present?
+ => true 
+ 
+3.0.2 :107 > a = Author.new(name: '')
+ => #<Author:0x000055d2f4961640 id: nil, name: "", created_at: nil, updated_at: nil, email: nil> 
+ 
+3.0.2 :108 > a.valid?
+ => true 
+ 
+3.0.2 :109 > a.present?
+ => true 
+ 
+3.0.2 :110 > a.valid?
+ => true 
+ 
+3.0.2 :111 > a.save
+  TRANSACTION (0.5ms)  BEGIN
+  Author Create (0.7ms)  INSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", ""], ["created_at", "2021-12-17 06:33:43.424991"], ["updated_at", "2021-12-17 06:33:43.424991"]]
+  TRANSACTION (36.4ms)  COMMIT
+ => true 
+
+ 
+ 
