@@ -361,4 +361,34 @@ Reloading...
 3.0.2 :119 > a.errors.messages
  => {} 
 
+
+
+
+
+3.0.2 :130 > reload!
+Reloading...
+ => true 
+ 
+3.0.2 :131 > a = Author.new(email: "abcd@gmail.com"
+3.0.2 :132 > )
+ => #<Author:0x000055d2f4575d38 id: nil, name: nil, created_at: nil, updated_at: nil, email: "abcd@gmail.com", accept: nil> 
+ 
+3.0.2 :133 > a.valid?
+ => false 
+ 
+3.0.2 :134 > a.email = "amit124@berylsystems.com"
+ => "amit124@berylsystems.com" 
+ 
+3.0.2 :135 > a.name ="amit"
+ => "amit" 
+ 
+3.0.2 :136 > a.valid?
+ => true 
+ 
+3.0.2 :137 > a.save
+  TRANSACTION (0.5ms)  BEGIN
+  Author Create (0.8ms)  INSERT INTO "authors" ("name", "created_at", "updated_at", "email") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "amit"], ["created_at", "2021-12-17 07:32:25.117320"], ["updated_at", "2021-12-17 07:32:25.117320"], ["email", "amit124@berylsystems.com"]]
+  TRANSACTION (37.2ms)  COMMIT
+ => true 
+
  
