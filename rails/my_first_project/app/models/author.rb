@@ -7,5 +7,6 @@ class Author < ApplicationRecord
   end  
   validates_associated :books
   #validates :name, absence: true
-  validates :accept, acceptance: true
+  #validates :accept, acceptance: true
+  validates :email, format: {with:/[A-Za-z0-9\-\_\.]+[@]berylsystems+[\.][A-Za-z]{2,3}/}
 end
