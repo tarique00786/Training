@@ -14,8 +14,8 @@ class Author < ApplicationRecord
   def remove_whitespaces
     name.strip!
   end  
-  
-  has_many :books, 	-> { order(published_at: :desc) }
+
+  has_many :books, 	-> { order(published_at: :desc) }, dependent: :destroy
   has_many :reviews
   def authorname
     "I am #{name}"

@@ -7,4 +7,8 @@ class Book < ApplicationRecord
   #scope :cost_more_than, ->(amount) {where("price > ?", amount)}
   #scope :created_before, ->(time) {where("created_at < ?", time) if time.present?}
   #default_scope {where(author_id: 1)}
+  after_destroy :log_destroy_action
+  def log_destroy_action
+    puts 'Article destroyed'
+  end
 end
