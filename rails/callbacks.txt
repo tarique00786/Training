@@ -1,0 +1,24 @@
+=====================before_validation==============
+
+3.0.2 :144 > a = Author.new(name:"   sachin    ", email: "sachin123@berylsystems.com")
+ => #<Author:0x000055d2f4ac1b20 id: nil, name: nil, created_at: nil, updated_at: nil, email: "sachin123@berylsystems.com", accept: nil> 
+
+
+
+3.0.2 :146 > a.email
+ => "sachin123@berylsystems.com" 
+
+3.0.2 :147 > a.name
+ => "   sachin    " 
+
+3.0.2 :148 > a.valid?
+ => true 
+
+3.0.2 :149 > a.name
+ => "sachin" 
+ 
+3.0.2 :150 > a.save
+  TRANSACTION (0.5ms)  BEGIN
+  Author Create (0.7ms)  INSERT INTO "authors" ("created_at", "updated_at", "email") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2021-12-17 08:46:59.905345"], ["updated_at", "2021-12-17 08:46:59.905345"], ["email", "sachin123@berylsystems.com"]]
+  TRANSACTION (146.4ms)  COMMIT
+ => true 
