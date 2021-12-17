@@ -65,4 +65,32 @@ Reloading...
  
 3.0.2 :161 > t.valid?
  => true 
+ 
+ 
+ 
+ 
+ Reloading...
+ => true 
+ 
+3.0.2 :183 > t = Task.new
+ => #<Task:0x000055d2f3c20670 id: nil, title: nil, created_at: nil, updated_at: nil> 
+ 
+3.0.2 :184 > t.title
+ => nil 
+ 
+3.0.2 :185 > t.valid?
+ => true 
+ 
+3.0.2 :186 > t.title
+ => "Pay Electricity bill" 
+ 
+3.0.2 :187 > t.save!
+  TRANSACTION (0.4ms)  BEGIN
+  Task Create (0.9ms)  INSERT INTO "tasks" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["title", "Pay Electricity and TV bill"], ["created_at", "2021-12-17 09:58:43.008040"], ["updated_at", "2021-12-17 09:58:43.008040"]]
+  TRANSACTION (117.4ms)  COMMIT
+ => true 
+ 
+3.0.2 :188 > t.title
+ => "Pay Electricity and TV bill" 
+
 
