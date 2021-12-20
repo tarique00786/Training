@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  #root 'demo#index'
+  resources :students
+  #root 'home#index'
+  root 'home#user'
+  delete '/delete_book/:book_id', to: 'home#delete_book'
+  delete '/delete_user/:user_id', to: 'home#delete_user'
 
   get 'demo/index'
   get 'demo/hello'

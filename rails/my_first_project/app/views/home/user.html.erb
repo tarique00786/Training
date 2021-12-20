@@ -1,0 +1,8 @@
+<h1> Users available in database </h1><br/>
+
+<% @users.each_with_index do |user, index| %>
+  <h2><%= index + 1 %>. <%= user.first_name %>
+ 
+<%= link_to "Delete User", "/delete_user/#{user.id}", method: :delete %><br/></h2>
+
+<% end %>

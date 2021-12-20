@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_092300) do
+ActiveRecord::Schema.define(version: 2021_12_20_054546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,17 @@ ActiveRecord::Schema.define(version: 2021_12_17_092300) do
     t.bigint "author_id"
     t.index ["author_id"], name: "index_reviews_on_author_id"
     t.index ["book_id"], name: "index_reviews_on_book_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.string "gender"
+    t.string "address"
+    t.integer "semester"
+    t.boolean "active"
+    t.date "date_of_birth"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subjects", force: :cascade do |t|

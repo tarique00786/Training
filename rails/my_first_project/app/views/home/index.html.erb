@@ -1,0 +1,8 @@
+Hello
+
+<% @books.each_with_index do |book, index| %>
+  <%= index + 1 %>. <%= book.name %><a href="/delete_book/<%= book.id %>" data-method="delete"> Delete</a>
+  <%= link_to "Rails Delete", "/delete_book/#{book.id}", method: :delete %><br />
+<% end %>
+
+ 
