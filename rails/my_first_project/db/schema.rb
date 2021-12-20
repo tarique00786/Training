@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_054546) do
+ActiveRecord::Schema.define(version: 2021_12_20_104643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 2021_12_20_054546) do
     t.string "name"
     t.decimal "price"
     t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "deptname"
+    t.string "hodname"
+    t.text "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "employees", force: :cascade do |t|

@@ -18,6 +18,16 @@ class HomeController < ApplicationController
     user = User.find(params[:user_id])
     user.destroy
     redirect_to root_url
-  end  	
+  end  
+
+  def department
+    @departments = Department.all.order(hodname: :asc)	
+  end	
+
+  def delete_department
+    department = Department.find(params[:department_id])	
+    department.destroy
+    redirect_to root_url
+  end	
    	
 end

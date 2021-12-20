@@ -1,0 +1,9 @@
+<h2> Departments Available </h2>
+
+<% @departments.each_with_index do |department,index| %>
+	<h3><%= index + 1 %>
+	<%= department.hodname %>
+	<%= department.deptname %>
+	<%= department.location %>
+	<%= link_to "Delete", "/delete_department/#{department.id}", method: :delete %></h3><br/>
+<% end %>	
