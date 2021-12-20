@@ -2,8 +2,8 @@
 
 <% @departments.each_with_index do |department,index| %>
 	<h3><%= index + 1 %>
-	<%= department.hodname %>
-	<%= department.deptname %>
-	<%= department.location %>
+	&nbsp;<%= department.hodname %>&nbsp;
+	<%= department.deptname %>&ensp;
+	<%= department.location %>&emsp;
 	<%= link_to "Delete", "/delete_department/#{department.id}", method: :delete %></h3><br/>
 <% end %>	
