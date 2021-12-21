@@ -1,5 +1,4 @@
 class CreateStudents < ActiveRecord::Migration[6.1]
-
   def change
     create_table :students do |t|
       t.belongs_to :department
@@ -9,5 +8,4 @@ class CreateStudents < ActiveRecord::Migration[6.1]
       t.timestamps
     end
   end
-
 end

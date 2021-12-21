@@ -10,23 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_21_080409) do
+ActiveRecord::Schema.define(version: 2021_12_21_120604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "department_staffs", force: :cascade do |t|
+    t.bigint "department_id"
+    t.bigint "staff_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["department_id"], name: "index_department_staffs_on_department_id"
+    t.index ["staff_id"], name: "index_department_staffs_on_staff_id"
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.text "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "joins", force: :cascade do |t|
-    t.bigint "department_id"
-    t.bigint "staffs_id"
-    t.index ["department_id"], name: "index_joins_on_department_id"
-    t.index ["staffs_id"], name: "index_joins_on_staffs_id"
   end
 
   create_table "staffs", force: :cascade do |t|
