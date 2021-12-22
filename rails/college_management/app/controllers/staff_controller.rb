@@ -3,6 +3,9 @@ class StaffController < ApplicationController
     @staffs = Staff.all  
   end
 
-  def delete
+  def delete_staff
+    staff = Staff.find(params[:staff_id])
+    staff.destroy
+    redirect_to :action => 'index'
   end
 end
