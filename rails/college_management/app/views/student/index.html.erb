@@ -1,2 +1,19 @@
-<h1>Student#index</h1>
-<p>Find me in app/views/student/index.html.erb</p>
+<h1>Student Details</h1>
+<table>
+  <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>joined </th>
+	  <th>Semester</th>
+	</tr>
+  </thead>
+  <tbody>
+  	<% @students.each do |student| %>
+	<tr>
+	  <td><%= student.name %></td>
+	  <td><%= student.joined_year %></td>
+	  <td><%= 4 %></td>
+	</tr>
+	<% end %> 
+  </tbody>
+</table> 

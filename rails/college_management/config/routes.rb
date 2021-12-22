@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'staff/index'
   get 'department/index'
   get 'student/index'
+  delete '/delete_department/:department_id', to: 'department#delete_department'
 =begin  
   get 'student/index'
   get 'student/delete'
