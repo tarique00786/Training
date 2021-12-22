@@ -6,6 +6,6 @@ class DepartmentController < ApplicationController
   def delete_department
     department = Department.find(params[:department_id])
     department.destroy
-    redirect_to department/index  
+    redirect_to :action => 'index' 
   end
 end
