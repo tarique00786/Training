@@ -1,18 +1,22 @@
-<h1>Student Details</h1>
+<br />
+<h1><%= link_to("Visit Home",'/home/index') %></h1>
+<h2>Student Details</h2>
 <table>
   <thead>
 	<tr>
 	  <th>Name</th>
 	  <th>joined </th>
 	  <th>Semester</th>
+	  <th>Action</th>
 	</tr>
   </thead>
   <tbody>
   	<% @students.each do |student| %>
 	<tr>
 	  <td><%= student.name %></td>
-	  <td><%= student.joined_year %></td>
-	  <td><%= 4 %></td>
+	  <td><%= student.admission %></td>
+	  <td><%= (2022 - student.admission)*2 %></td>
+	  <td><%= link_to "Delete","/delete_student/#{student.id}", method: :delete %><br /></td>
 	</tr>
 	<% end %> 
   </tbody>
