@@ -1,9 +1,12 @@
-<h1>Department Details</h1>
+<br />
+<h1><%= link_to("Visit Home",'/home/index') %></h1>
+<h2>Department Details</h2>
 <table>
   <thead>
 	<tr>
 	  <th>Name</th>
 	  <th>Total Student</th>
+	  <th>Total Staff</th>
 	  <th>Location </th>
 	  <th>Action</th>
 	</tr>
@@ -12,7 +15,8 @@
   	<% @departments.each do |department| %>
 	<tr>
 	  <td><%= department.name %></td>
-	  
+	  <td><%= department.students.size %></td>
+	  <td><%= department.staffs.size %></td>
 	  <td><%= department.location %></td>
 	  <td><%= link_to "Delete","/delete_department/#{department.id}", method: :delete %><br /></td>
 	</tr>
