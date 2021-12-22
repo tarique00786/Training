@@ -5,6 +5,7 @@
   <thead>
 	<tr>
 	  <th>Name</th>
+	  <th>Department</th>
 	  <th>joined </th>
 	  <th>Semester</th>
 	  <th>Action</th>
@@ -14,6 +15,7 @@
   	<% @students.each do |student| %>
 	<tr>
 	  <td><%= student.name %></td>
+	  <td><%= student.department.name =%></td>
 	  <td><%= student.admission %></td>
 	  <td><%= (2022 - student.admission)*2 %></td>
 	  <td><%= link_to "Delete","/delete_student/#{student.id}", method: :delete %><br /></td>
