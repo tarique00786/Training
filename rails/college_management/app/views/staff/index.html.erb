@@ -5,23 +5,23 @@
 
 <table>
   <thead>
-	<tr>
-	  <th>Name</th>
-	  <th>Salary</th>
-	  <th>Total Departments</th>
-	  <th>Address</th>
-	  <th>Action</th>
-	</tr>
+	   <tr>
+	     <th>Name</th>
+	     <th>Salary</th>
+	     <th>Total Departments</th>
+	     <th>Address</th>
+	     <th>Action</th>
+	   </tr>
   </thead>
   <tbody>
   <% @staffs.each do |staff| %>
-	<tr>
-	  <td><%= staff.name %></td>
-	  <td><%= staff.salary %></td>
-	  <td><%= staff.departments.size %></td>
-	  <td><%= staff.address %></td>
-	  <td><%= link_to "Delete","/delete_staff/#{staff.id}", method: :delete %><br /></td>
-	</tr>
+	    <tr>
+	      <td><%= staff.name %></td>
+	      <td><%= staff.salary %></td>
+	      <td><%= staff.departments.size %></td>
+	      <td><%= staff.address %></td>
+	      <td><%= link_to "Delete","/delete_staff/#{staff.id}", method: :delete %><br/></td>
+	    </tr>
 	<% end %> 
   </tbody>
 </table>
