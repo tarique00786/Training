@@ -1,18 +1,31 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-h1, h3 {
-	text-align:center;
+
+body {
+	background-image: url('school-vector-5225109.jpg')
 }
 
 h3 {
 	border: 4px solid powderblue;
 	border-radius: 20px;
     padding: 10px;
-    margin: 50px;
-    background-color: MediumSeaGreen;
+    margin: auto;
+    width: 300px;
+    background-color: LightGray;
+    text-align:center;
 }
 
 #Heading {
-	color: red;
+	color: white;
+	border: 3px solid black;
+    margin: auto;
+    width: 500px;
+	text-align:center;
+	background-color: tomato;
 }
+
+
+
+
+
