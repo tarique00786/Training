@@ -1,15 +1,9 @@
 <br />
-<h1 style = "text-align:center"><%= link_to("Visit Home",'/home/index') %></h1>
+<h1><%= link_to("Visit Home",'/home/index') %></h1>
 
-<style>
-table, th, td {
-  border:1px solid black;
-}
-</style>
+<h2>Student Details</h2>
 
-<h2 style = "text-align:center">Student Details</h2>
-
-<table style = "width: 100%">
+<table>
   <thead>
 	<tr>
 	  <th>Name</th>
@@ -22,11 +16,11 @@ table, th, td {
   <tbody>
   <% @students.each do |student| %>
 	 <tr>
-	  <td style = "text-align:center"><%= student.name %></td>
-	  <td style = "text-align:center"><%= student.department.name =%></td>
-	  <td style = "text-align:center"><%= student.admission %></td>
-	  <td style = "text-align:center"><%= (2022 - student.admission)*2 %></td>
-	  <td style = "text-align:center"><%= link_to "Delete","/delete_student/#{student.id}", method: :delete %><br /></td>
+	  <td><%= student.name %></td>
+	  <td><%= student.department.name =%></td>
+	  <td><%= student.admission %></td>
+	  <td><%= (2022 - student.admission)*2 %></td>
+	  <td><%= link_to "Delete","/delete_student/#{student.id}", method: :delete %><br /></td>
 	 </tr>
 	<% end %> 
   </tbody>
