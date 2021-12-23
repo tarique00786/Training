@@ -1,25 +1,33 @@
 <br />
-<h1><%= link_to("Visit Home",'/home/index') %></h1>
-<h2>Department Details</h2>
-<table>
+<h1 style = "text-align:center"><%= link_to("Visit Home",'/home/index') %></h1>
+
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+
+<h2 style = "text-align:center">Department Details</h2>
+
+<table style = "width:100%">
   <thead>
 	<tr>
 	  <th>Name</th>
-	  <th>Total Student</th>
-	  <th>Total Staff</th>
+	  <th>Total Students</th>
+	  <th>Total Staffs</th>
 	  <th>Location </th>
 	  <th>Action</th>
 	</tr>
   </thead>
   <tbody>
-  	<% @departments.each do |department| %>
-	<tr>
-	  <td><%= department.name %></td>
-	  <td><%= department.students.size %></td>
-	  <td><%= department.staffs.size %></td>
-	  <td><%= department.location %></td>
-	  <td><%= link_to "Delete","/delete_department/#{department.id}", method: :delete %><br /></td>
-	</tr>
+  <% @departments.each do |department| %>
+	 <tr>
+	  <td style = "text-align:center"><%= department.name %></td>
+	  <td style = "text-align:center"><%= department.students.size %></td>
+	  <td style = "text-align:center"><%= department.staffs.size %></td>
+	  <td style = "text-align:center"><%= department.location %></td>
+	  <td style = "text-align:center"><%= link_to "Delete","/delete_department/#{department.id}", method: :delete %><br /></td>
+	 </tr>
 	<% end %> 
   </tbody>
 </table> 
