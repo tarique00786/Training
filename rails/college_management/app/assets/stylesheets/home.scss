@@ -5,6 +5,19 @@
 body {
 	background-image: url('school-vector-5225109.jpg')
 }
+ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: violet;
+}
+
+li {
+  float: left;
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
 h3 {
 	border: 4px solid powderblue;

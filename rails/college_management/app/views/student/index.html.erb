@@ -1,4 +1,5 @@
 <br />
+
 <h1><%= link_to("Visit Home",'/home/index') %></h1>
 
 <h2 id = "student">Student Details</h2>
@@ -20,7 +21,7 @@
 	  <td><%= student.department.name =%></td>
 	  <td><%= student.admission %></td>
 	  <td><%= (2022 - student.admission)*2 %></td>
-	  <td><%= link_to "Delete","/delete_student/#{student.id}", method: :delete %><br /></td>
+	  <td><%= link_to "Delete","/delete_student/#{student.id}", method: :delete, data: { confirm: 'Are you sure?' } %><br /></td>
 	 </tr>
 	<% end %> 
   </tbody>
