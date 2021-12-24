@@ -1,4 +1,15 @@
-<h1>About us page</h1>
+<html>
+<body>
+  <p id="demo1">JavaScript can change the style of an HTML element.</p>
+  
+  <script>
+    function myFunction() {
+      document.getElementById("demo1").style.fontSize = "25px"; 
+      document.getElementById("demo1").style.color = "red";
+      document.getElementById("demo1").style.backgroundColor = "yellow"; 
+    } 
+  </script>
+  <h1>About us page</h1>
 <!-- target
 	_self    opens in same window
 	_blank   opens in new window
@@ -6,10 +17,11 @@
   _top     opens in full body in same window
 
 -->    
- <a class = "link" href="https://berylsystems.com/" target = "_blank">Visit Beryl Systems</a> 
+  <a class = "link" href="https://berylsystems.com/" target = "_blank">Visit Beryl Systems</a> 
+  <button class = "btn1" type = "button" onclick = "myFunction()">Click Me!</button>
 
-<button type="button"
-onclick = "document.getElementById('demo').innerHTML = Date()">
-Click me to display Date and Time.</button>
-
-<p id="demo"></p>
+  <button class = "btn1" type = "button" onclick = "document.getElementById('demo').innerHTML = Date()">Click me to display Date and Time.</button>
+  <p id="demo"></p>
+  
+</body>
+</html>
