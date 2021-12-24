@@ -21,7 +21,7 @@
 	  <td><%= student.department.name =%></td>
 	  <td><%= student.admission %></td>
 	  <td><%= (2022 - student.admission)*2 %></td>
-	  <td><%= link_to "Delete","/delete_student/#{student.id}", method: :delete, data: { confirm: 'Are you sure?' } %><br /></td>
+	  <td><button class = "button1"><%= link_to "Delete","/delete_student/#{student.id}", method: :delete, data: { confirm: 'Are you sure?' } %></button><br /></td>
 	 </tr>
 	<% end %> 
   </tbody>

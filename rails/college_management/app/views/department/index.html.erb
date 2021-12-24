@@ -20,7 +20,7 @@
 	   <td><%= department.students.size %></td>
 	   <td><%= department.staffs.size %></td>
 	   <td><%= department.location %></td>
-	   <td><%= link_to "Delete","/delete_department/#{department.id}", method: :delete,data: { confirm: 'Are you sure?' } %><br /></td>
+	   <td><button class = "button1"><%= link_to "Delete","/delete_department/#{department.id}", method: :delete,data: { confirm: 'Are you sure?' } %></button><br/></td>
 	 </tr>
 	<% end %> 
   </tbody>

@@ -20,7 +20,7 @@
 	      <td><%= staff.salary %></td>
 	      <td><%= staff.departments.size %></td>
 	      <td><%= staff.address %></td>
-	      <td><%= link_to "Delete","/delete_staff/#{staff.id}", method: :delete, data: { confirm: 'Are you sure?' } %><br/></td>
+	      <td> <button class="button1"><%= link_to "Delete","/delete_staff/#{staff.id}", method: :delete, data: { confirm: 'Are you sure?' } %></button><br/></td>
 	    </tr>
 	<% end %> 
   </tbody>
