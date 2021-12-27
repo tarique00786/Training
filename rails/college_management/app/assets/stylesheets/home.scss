@@ -8,15 +8,13 @@ body {
 .ul1 {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: violet;
   color: black;
 }
 
-li {
-  float: left;
+ul1.li {
   display: block;
-  padding: 14px 16px;
+  padding: 8px;
   text-decoration: none;
 }
 
