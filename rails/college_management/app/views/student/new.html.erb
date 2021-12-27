@@ -1,0 +1,26 @@
+<h1 class = "new">Create new student</h1>
+
+<%= form_with scope: :student, url: students_new_path, local: true do |f| %>
+	<p>
+		<%= f.label :department_Id %><br>
+		<%= f.text_field :department_Id %>
+	</p>
+
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :admission_Year %><br>
+		<%= f.text_field :admission_Year %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	
+<% end %>
+
+<p> <%= link_to "Back", "/students" %></p>
+
