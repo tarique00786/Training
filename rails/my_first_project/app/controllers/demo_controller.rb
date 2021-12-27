@@ -1,7 +1,7 @@
 class DemoController < ApplicationController
 
   def index
-    #render('index') 
+    render('index') 
     @id = params['id']
     @page = params[:page] 
   end
