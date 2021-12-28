@@ -1,9 +1,9 @@
-<ol class = "show">
+<ul class = "show">
 <li><strong>Name </strong><%= @student.name %></li>
 <li><strong>Department Name </strong><%= @student.department.name =%></li>
 <li><strong>Admission Year </strong><%= @student.admission %></li>
 <li><strong>Semester &nbsp;</strong><%= (2022 - @student.admission)*2 %></li>
-</ol><br>
+</ul><br>
 
 <div>
  <%= link_to "Back", "/students" %>
