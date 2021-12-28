@@ -13,7 +13,9 @@ class StudentController < ApplicationController
   end 
 
   def create
-
+    @student = Student.new(params.require(:student).
+      permit(:department_id, :name, :admission))
+    @student.save
   end 
 
   def delete_student
