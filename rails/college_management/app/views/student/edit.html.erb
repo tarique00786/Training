@@ -1,0 +1,27 @@
+<h1 class = "new">Edit student</h1>
+
+<%= form_with model: @student, url: students_path do |f| %>
+
+	<%= f.hidden_field :id, value: @student.id %>
+	<p>
+		<%= f.label :department_id %><br>
+		<%= f.text_field :department_id %>
+	</p>
+
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :admission%><br>
+		<%= f.text_field :admission %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	
+<% end %>
+
+<p> <%= link_to "Back", "/students" %></p>
