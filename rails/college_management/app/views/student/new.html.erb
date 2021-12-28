@@ -1,6 +1,15 @@
 <br>
 <h1 class = "new">Create new student</h1>
 
+<% if @student.errors.any? %>
+	<h2 class ="student" >These are the reasons for error</h2>
+	<ul>
+		<% @student.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>	
+	</ul>	
+<% end %>
+
 <%= form_with scope: :student, url: students_path, local: true do |f| %>
 	<p>
 		<%= f.label :department_id %><br>
