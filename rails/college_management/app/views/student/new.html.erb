@@ -1,9 +1,9 @@
 <h1 class = "new">Create new student</h1>
 
-<%= form_with scope: :student, url: students_new_path, local: true do |f| %>
+<%= form_with scope: :student, local: true do |f| %>
 	<p>
-		<%= f.label :department_Id %><br>
-		<%= f.text_field :department_Id %>
+		<%= f.label :department_id %><br>
+		<%= f.text_field :department_id %>
 	</p>
 
 	<p>
@@ -12,8 +12,8 @@
 	</p>
 
 	<p>
-		<%= f.label :admission_Year %><br>
-		<%= f.text_field :admission_Year %>
+		<%= f.label :admission%><br>
+		<%= f.text_field :admission %>
 	</p>
 
 	<p>
