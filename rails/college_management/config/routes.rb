@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
   get '/students', to: 'student#index'
-  get '/students/:id', to: 'student#show'
+  get '/student/:id', to: 'student#show'
   get '/departments', to: 'department#index'
   get '/staffs', to: 'staff#index'
   get '/students/new', to: 'student#new'
@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/home/index', to: 'home#index'
   get 'staff/index'
   get 'department/index'
-  get 'student/index'
+  get 'students/index', to: 'student#index'
+  post '/students/new', to: 'student#create'
   delete '/delete_department/:department_id', to: 'department#delete_department'
   delete '/delete_staff/:staff_id', to: 'staff#delete_staff'
   delete '/delete_student/:student_id', to: 'student#delete_student'
