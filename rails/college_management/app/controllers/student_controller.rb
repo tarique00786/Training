@@ -16,6 +16,16 @@ class StudentController < ApplicationController
     @student = Student.new(params.require(:student).
       permit(:department_id, :name, :admission))
     @student.save
+  end
+
+  def edit
+    @student = Student.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:student][:id])
+    @student.update(params.require(:student).
+      permit(:department_id, :name, :admission))
   end 
 
   def delete_student
