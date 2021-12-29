@@ -1,0 +1,11 @@
+<ul class = "show">
+  <li><strong>Name </strong><%= @department.name %></li>
+  <li><strong>Total students </strong><%= @department.students.size =%></li>
+  <li><strong>Total Staffs </strong><%= @department.staffs.size =%></li>
+  <li><strong>Location </strong><%= @department.location %></li>
+</ul><br>
+
+<div>
+  <%= link_to "Back", "/departments" %>
+  <%= link_to "Edit", "/departments/#{@department.id}/edit" %>
+</div>
