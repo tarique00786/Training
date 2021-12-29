@@ -14,6 +14,7 @@ class StudentController < ApplicationController
   end 
 
   def create
+    @departments = Department.all
     @student = Student.new(params.require(:student).
       permit(:department_id, :name, :admission))
     if @student.save
