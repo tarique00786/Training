@@ -32,6 +32,7 @@ class StudentController < ApplicationController
     @student = Student.find(params[:id])
     @student.update(params.require(:student).
       permit(:id, :department_id, :name, :admission))
+    redirect_to "/students/#{@student.id}"
   end 
 
   def delete_student
