@@ -1,8 +1,7 @@
 <h1 class = "new">Edit student</h1>
 
-<%= form_with model: @student, url: students_path do |f| %>
+<%= form_with model: @student, url: "/students/#{@student.id}" do |f| %>
 
-	<%= f.hidden_field :id, value: @student.id %>
 	<p>
 		<%= f.label :department_id %><br>
 		<%= f.text_field :department_id %>

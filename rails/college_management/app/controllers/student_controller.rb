@@ -16,7 +16,7 @@ class StudentController < ApplicationController
     @student = Student.new(params.require(:student).
       permit(:department_id, :name, :admission))
     if @student.save
-      redirect_to "/students"
+      redirect_to "/students/#{@student.id}"
     else
       render 'new' 
     end   
@@ -27,9 +27,9 @@ class StudentController < ApplicationController
   end
 
   def update
-    @student = Student.find(params[:student][:id])
+    @student = Student.find(params[:id])
     @student.update(params.require(:student).
-      permit(:department_id, :name, :admission))
+      permit(:id, :department_id, :name, :admission))
   end 
 
   def delete_student
