@@ -10,6 +10,7 @@ class StudentController < ApplicationController
 
   def new
     @student = Student.new
+    @departments = Department.all
   end 
 
   def create
