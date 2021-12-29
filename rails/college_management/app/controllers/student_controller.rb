@@ -1,7 +1,8 @@
 class StudentController < ApplicationController
 
   def index
-    @students = Student.all.order(name: :asc)  
+    @students = Student.search(params[:search])
+    #@students = Student.all.order(name: :asc)  
   end
 
   def show
@@ -40,4 +41,5 @@ class StudentController < ApplicationController
     student.destroy
     redirect_to :action => 'index'
   end
+  
 end
