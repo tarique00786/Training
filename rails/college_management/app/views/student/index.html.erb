@@ -1,5 +1,11 @@
 <br />
 
+<%= form_tag students_path, method: :get do%>
+  <%= label_tag(:search, "search by student name:") %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <h1><%= link_to("Visit Home",'/home/index') %></h1>
 
 <h2 id = "student">Student Details</h2>
