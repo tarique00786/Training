@@ -10,11 +10,12 @@ class DepartmentController < ApplicationController
 
   def new
     @department = Department.new
+    @department.students.build
   end  
 
   def create
     @department = Department.new(params.require(:department).
-      permit(:name, :location))
+      permit(:name, :location, students_attributes: [:name, :admission]))
     if @department.save
       redirect_to "/departments/#{@department.id}"
     else
