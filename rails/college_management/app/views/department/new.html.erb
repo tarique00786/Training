@@ -1,0 +1,22 @@
+<br>
+<h1 class = "new">Create new department</h1>
+
+<%= form_with scope: :department, url: departments_path, local: true do |f| %>
+	
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :location%><br>
+		<%= f.text_field :location %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	
+<% end %>
+
+<p> <%= link_to "Back", "/departments" %></p>
