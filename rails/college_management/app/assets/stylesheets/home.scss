@@ -5,20 +5,26 @@
 body {
 	background-image: url('1429640.jpg')
 }
-.ul1 {
-  margin: 0;
-  padding: 0;
-  background-color: violet;
-  color: black;
+
+.navbar {
+  background-color: black;
+  height: 60px;
+  border-radius: 10px;
 }
 
-ul1.li {
-  display: block;
-  padding: 8px;
+.navbar li {
+  font-size: 20px;
+  float: left;
+  list-style: none;
+  margin: 20px 20px; 
+}
+
+.navbar li a {
+  padding: 3px 3px; 
   text-decoration: none;
+  color: white;
 }
-
-li a:hover {
+homelist.li a:hover {
   background-color: white;
   color: grey;
 }
@@ -31,15 +37,6 @@ h3 {
     width: 300px;
     background-color: LightGray;
     text-align:center;
-}
-
-#Heading {
-	color: white;
-	border: 3px solid black;
-    margin: auto;
-    width: 500px;
-	text-align:center;
-	background-color: tomato;
 }
 
 
