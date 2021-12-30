@@ -1,0 +1,22 @@
+<h1 class = "new">Edit department</h1>
+
+<%= form_with model: @department, url: "/departments/#{@department.id}" do |f| %>
+
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :location%><br>
+		<%= f.text_field :location %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+	
+<% end %>
+
+<p> <%= link_to "Back", "/departments" %></p>
+<p><%= link_to "Show", "/departments/#{@department.id}" %></p>
