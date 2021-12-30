@@ -2,6 +2,7 @@ class DepartmentController < ApplicationController
 
   def index
     @departments = Department.all  
+    @departments = Department.paginate(:page => params[:page], :per_page => 2)
   end
 
   def show
