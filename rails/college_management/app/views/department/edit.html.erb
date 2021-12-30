@@ -2,20 +2,20 @@
 
 <%= form_with model: @department, url: "/departments/#{@department.id}" do |f| %>
 
-	<p>
-		<%= f.label :name %><br>
-		<%= f.text_field :name %>
-	</p>
+    <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+    </p>
 
-	<p>
-		<%= f.label :location%><br>
-		<%= f.text_field :location %>
-	</p>
+    <p>
+        <%= f.label :location%><br>
+        <%= f.text_field :location %>
+    </p>
 
-	<p>
-		<%= f.submit %>
-	</p>
-	
+    <p>
+        <%= f.submit %>
+    </p>
+    
 <% end %>
 
 <p> <%= link_to "Back", "/departments" %></p>
