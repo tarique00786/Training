@@ -1,5 +1,5 @@
 class Student < ApplicationRecord
-  belongs_to :department
+  belongs_to :department, optional: true
   validates :name, presence: true
   validates :admission, numericality: {message: "Enter between 2018 and 2021"}
   
