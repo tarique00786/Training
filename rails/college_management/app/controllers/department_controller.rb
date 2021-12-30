@@ -8,6 +8,20 @@ class DepartmentController < ApplicationController
     @department = Department.find(params[:id])
   end 
 
+  def new
+    @department = Department.new
+  end  
+
+  def create
+    @department = Department.new(params.require(:department).
+      permit(:name, :location))
+    if @department.save
+      redirect_to "/departments/#{@department.id}"
+    else
+      render 'new' 
+    end
+  end
+
   def edit
     @department = Department.find(params[:id])
   end
