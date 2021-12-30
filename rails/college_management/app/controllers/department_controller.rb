@@ -6,7 +6,18 @@ class DepartmentController < ApplicationController
 
   def show
     @department = Department.find(params[:id])
-  end  
+  end 
+
+  def edit
+    @department = Department.find(params[:id])
+  end
+
+  def update
+    @department = Department.find(params[:id])
+    @department.update(params.require(:department).
+      permit(:name, :location))
+    redirect_to "/departments/#{@department.id}"
+  end 
 
   def delete_department
     department = Department.find(params[:department_id])
