@@ -40,6 +40,55 @@ h3 {
 }
 
 
+#Heading {
+  text-align: center;
+}
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+.footer {
+      position:absolute;
+      bottom:0;
+      width:100%;
+      background-color: #24262b;
+      padding: 70px 0;
+    }
+    .container {
+      max-width: 1170px;
+      margin: auto;
+    }
+    .row {
+      display:  flex;
+      flex-wrap: wrap;
+    }
 
+    ul {
+      list-style: none;
+    }
+
+    .column {
+      width: 25%;
+      padding: 0 15px;
+    }
+
+    .column h4 {
+      font-size: 20px;
+      color: white;
+      text-transform: capitalize;
+      margin-bottom: 30px;
+    }
+
+    .column ul li {
+      margin-bottom: 15px;
+    }
+
+    .column ul li a{
+      color: white;
+    }
+    .column ul li a:hover{
+      padding-left: 10px;
+    }
 
