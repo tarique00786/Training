@@ -1,0 +1,92 @@
+<<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>footer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .footer {
+      background-color: #24262b;
+      padding: 70px 0;
+    }
+    .container {
+      max-width: 1170px;
+      margin: auto;
+    }
+    .row {
+      display:  flex;
+      flex-wrap: wrap;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .column {
+      width: 25%;
+      padding: 0 15px;
+    }
+
+    .column h4 {
+      font-size: 20px;
+      color: white;
+      text-transform: capitalize;
+      margin-bottom: 30px;
+    }
+
+    .column ul li {
+      margin-bottom: 15px;
+    }
+
+    .column ul li a{
+      color: white;
+    }
+    .column ul li a:hover{
+      padding-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <footer class = "footer">
+    <div class = "footer-content">
+      <div class = "container">
+        <div class = "row">
+          <div class = "column">
+            <h4>Home</h4>
+            <ul>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
+          <div class = "column">
+            <h4>Staffs</h4>
+            <ul>
+              <li><a href="#">Staff Details</a></li>
+              <li><a href="#">Create Staff</a></li>
+            </ul>
+          </div>
+          <div class = "column">
+            <h4>Departments</h4>
+            <ul>
+              <li><a href="#">Department Details</a></li>
+              <li><a href="#">Create Department</a></li>
+            </ul>
+          </div>
+          <div class = "column">
+            <h4>Students</h4>
+            <ul>
+              <li><a href="#">Student Details</a></li>
+              <li><a href="#">Create Student</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <%= yield %>
+</body>
+</html>
