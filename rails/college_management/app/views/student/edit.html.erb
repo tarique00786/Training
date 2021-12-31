@@ -2,25 +2,25 @@
 
 <%= form_with model: @student, url: "/students/#{@student.id}" do |f| %>
 
-	<p>
-		<%= f.label :department_id %><br>
-		<%= f.text_field :department_id %>
-	</p>
+  <p>
+    <%= f.label :department_id %><br>
+    <%= f.text_field :department_id %>
+  </p>
 
-	<p>
-		<%= f.label :name %><br>
-		<%= f.text_field :name %>
-	</p>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
 
-	<p>
-		<%= f.label :admission%><br>
-		<%= f.text_field :admission %>
-	</p>
+  <p>
+    <%= f.label :admission%><br>
+    <%= f.text_field :admission %>
+  </p>
 
-	<p>
-		<%= f.submit %>
-	</p>
-	
+  <p>
+    <%= f.submit %>
+  </p>
+
 <% end %>
 
 <p> <%= link_to "Back", "/students" %></p>
