@@ -6,7 +6,11 @@ class StaffController < ApplicationController
   def show
     @staff = Staff.find(params[:id])
   end 
-   
+  
+  def edit
+    @staff = Staff.find(params[:id])
+  end
+
   def delete_staff
     staff = Staff.find(params[:staff_id])
     staff.destroy
