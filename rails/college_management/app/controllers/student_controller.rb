@@ -17,8 +17,10 @@ class StudentController < ApplicationController
   def create
     @departments = Department.all
     @student = Student.new(params.require(:student).
-      permit(:department_id, :name, :admission))
+      permit(:department_id, :name, :admission, :email))
     if @student.save
+      StudentMailer.welcome_email(@student.id).deliver_now
+      StudentMailer.
       redirect_to "/students/#{@student.id}"
     else
       render 'new' 
@@ -32,7 +34,7 @@ class StudentController < ApplicationController
   def update
     @student = Student.find(params[:id])
     @student.update(params.require(:student).
-      permit(:id, :department_id, :name, :admission))
+      permit(:id, :department_id, :name, :admission, :email))
     redirect_to "/students/#{@student.id}"
   end 
 
