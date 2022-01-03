@@ -1,0 +1,24 @@
+<br>
+<h1 class = "new">Create new staff</h1>
+
+<%= form_for @staff do |f| %>
+  <p>
+    <%= f.label :Select_Department %><br>
+    <%= f.select :departments, @departments.collect{|d| [d.name,d.id]}%>
+  </p>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :salary%><br>
+    <%= f.text_field :salary %>
+  </p>
+  <p>
+    <%= f.label :address%><br>
+    <%= f.text_field :address %>
+  </p>
+  <%= f.submit %>
+<% end %>
+
+<p> <%= link_to "Back", "/staffs" %></p>
