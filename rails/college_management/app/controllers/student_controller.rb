@@ -19,8 +19,8 @@ class StudentController < ApplicationController
     @student = Student.new(params.require(:student).
       permit(:department_id, :name, :admission, :email))
     if @student.save
-      StudentMailer.welcome_email(@student.id).deliver_now
-      StudentMailer.
+      Sidekiq::Client.enqueue_to_in("default", Time.now, EmailWorker,@student.id)
+      #StudentMailer.welcome_email(@student.id).deliver_now
       redirect_to "/students/#{@student.id}"
     else
       render 'new' 
