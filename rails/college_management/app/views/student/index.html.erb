@@ -17,6 +17,7 @@
     <th>Department</th>
     <th>joined </th>
     <th>Semester</th>
+    <th>Email</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -27,6 +28,7 @@
     <td><%= student.department.name =%></td>
     <td><%= student.admission %></td>
     <td><%= (2022 - student.admission)*2 %></td>
+    <td><%= student.email %></td>
     <td>
       <button class = "button2"><%= link_to "Show","/students/#{student.id}" %></button>
       <button class = "button3"><%= link_to "Edit","/students/#{student.id}/edit" %></button>
@@ -35,7 +37,7 @@
     </td>
    </tr>
   <% end %> 
-  <p><%= link_to "Create New Student", "/student/new" %></p>
+  <p class = "new"><%= link_to "Create New Student", "/student/new" %></p>
   </tbody>
 </table> 
 <%= will_paginate @students %>
