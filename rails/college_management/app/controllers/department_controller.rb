@@ -16,7 +16,7 @@ class DepartmentController < ApplicationController
 
   def create
     @department = Department.new(params.require(:department).
-      permit(:name, :location, students_attributes: [:name, :admission]))
+      permit(:name, :location, images: [], students_attributes: [:name, :admission]))
     if @department.save
       redirect_to "/departments/#{@department.id}"
     else
@@ -31,7 +31,7 @@ class DepartmentController < ApplicationController
   def update
     @department = Department.find(params[:id])
     @department.update(params.require(:department).
-      permit(:name, :location))
+      permit(:name, :location, images: []))
     redirect_to "/departments/#{@department.id}"
   end 
 
