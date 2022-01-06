@@ -16,6 +16,10 @@
     <%= f1.text_field :name %><br><br>
     <%= f1.label :Joined %>
     <%= f1.text_field :admission %><br><br>
+    <div class = "department_images">
+    <%= f1.label :images %>
+    <%= f1.file_field :images, multiple: true %>
+  </div>
   <% end %> 
   <%= f.submit %>
 <% end %>
