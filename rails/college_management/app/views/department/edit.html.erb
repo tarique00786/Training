@@ -11,6 +11,10 @@
         <%= f.label :location%><br>
         <%= f.text_field :location %>
     </p>
+    <div class = "department_images">
+    <%= f.label :images %>
+    <%= f.file_field :images, multiple: true %>
+  </div>
 
     <p>
         <%= f.submit %>
