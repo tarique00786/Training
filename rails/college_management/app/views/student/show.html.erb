@@ -1,3 +1,8 @@
+<div class = "student_image">
+  <% if @student.image.attached? %>
+    <%= image_tag @student.image %>
+  <% end %>      
+</div>
 <ul class = "show">
 <li><strong>Name </strong><%= @student.name %></li>
 <li><strong>Department Name </strong><%= @student.department.name =%></li>
@@ -5,7 +10,6 @@
 <li><strong>Semester</strong><%= (2022 - @student.admission)*2 %></li>
 <li><strong>Email </strong><%= @student.email %></li>
 </ul><br>
-
 <div>
  <%= link_to "Back", "/students" %>
  <%= link_to "Edit", "/students/#{@student.id}/edit" %>
