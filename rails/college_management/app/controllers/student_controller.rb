@@ -17,7 +17,7 @@ class StudentController < ApplicationController
   def create
     @departments = Department.all
     @student = Student.new(params.require(:student).
-      permit(:department_id, :name, :admission, :email))
+      permit(:department_id, :name, :admission, :email, :image))
     if @student.save
       Sidekiq::Client.enqueue_to_in("default", Time.now, EmailWorker,@student.id)
       #StudentMailer.welcome_email(@student.id).deliver_now
@@ -34,7 +34,7 @@ class StudentController < ApplicationController
   def update
     @student = Student.find(params[:id])
     @student.update(params.require(:student).
-      permit(:id, :department_id, :name, :admission, :email))
+      permit(:id, :department_id, :name, :admission, :email, :image))
     redirect_to "/students/#{@student.id}"
   end 
 
