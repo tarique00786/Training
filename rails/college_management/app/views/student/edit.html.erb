@@ -1,27 +1,32 @@
 <h1 class = "new">Edit student</h1>
-
 <%= form_with model: @student, url: "/students/#{@student.id}" do |f| %>
-
   <p>
     <%= f.label :department_id %><br>
     <%= f.text_field :department_id %>
   </p>
-
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
-
   <p>
     <%= f.label :admission%><br>
     <%= f.text_field :admission %>
   </p>
+  <p>
+    <%= f.label :Email%><br>
+    <%= f.text_field :email%>
+  </p>
+  <div class = "student_image">
+    <% if @student.image.attached? %>
+      <%= image_tag @student.image %>
+    <% end %>  
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
 
   <p>
     <%= f.submit %>
   </p>
-
 <% end %>
-
 <p> <%= link_to "Back", "/students" %></p>
 <p><%= link_to "Show", "/students/#{@student.id}" %></p>
