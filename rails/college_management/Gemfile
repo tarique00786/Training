@@ -59,4 +59,9 @@ gem 'sidekiq'
 gem "image_processing", ">= 1.2"
 gem 'active_storage_validations'
 gem 'mini_magick', '>= 4.9.5'
+gem 'carrierwave'
+gem 'fog'
+gem 'figaro'
+gem 'unf'
+gem 'css3-progress-bar-rails'
 
