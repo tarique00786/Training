@@ -3,6 +3,9 @@
     <%= image_tag @student.image %>
   <% end %>      
 </div>
+<div class = "student_image">
+  <img src="<%= @student.avatar.url(:thumb) %>"/>  
+</div>
 <ul class = "show">
 <li><strong>Name </strong><%= @student.name %></li>
 <li><strong>Department Name </strong><%= @student.department.name =%></li>
