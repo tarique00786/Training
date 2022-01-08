@@ -6,18 +6,17 @@
 <div class = "student_image">
   <img src="<%= @student.avatar.url(:thumb) %>"/>  
 </div>
-<div style = "width: 400px; height: 400px;">
-  <% if @student.thumbnail.attached? %>
-    <%= image_tag (@student.thumbnail), style:'width:50%;height: auto' %>
-  <% end %> 
-</div>  
-<div style = "width: 100px; height: 100px;">
+<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> 
+<div style = "width: 50px; height: 300px;">
   <% if @student.clip.attached? %>
-    <%= video_tag (url_for(@student.clip)), style:'width:50%;height: auto' %>
+    <video width="320" height="240" controls poster="<%= rails_blob_url(@student.thumbnail) %>" data-setup="{}">>
+            <source src="<%= rails_blob_url(@student.clip)%>" type="<%= @student.clip.content_type %>">
+    </video>
   <% end %> 
 </div>
-
-
 <ul class = "show">
 <li><strong>Name </strong><%= @student.name %></li>
 <li><strong>Department Name </strong><%= @student.department.name =%></li>
