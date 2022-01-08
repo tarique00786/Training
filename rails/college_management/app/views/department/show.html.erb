@@ -10,10 +10,12 @@
       <% elsif attachment.video? %>
         <video width="320" height="240" controls>
             <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>">
-        </video>     
-      <% end %>
+        </video> 
+        <% else %>
+          <%=link_to attachment.filename, rails_blob_path(attachment, disposition: "attachment") %>    
+        <% end %>
     <% end %>  
-  <% end %>
+  <% end %>  
 </div>
 
 <ul class = "show">
