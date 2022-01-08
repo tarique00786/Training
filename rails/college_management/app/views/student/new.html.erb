@@ -33,7 +33,7 @@
   </div>
   <div class = "student_image">
     <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
+    <%= f.file_field :avatar, multiple: true, name: "students[avatar]" %>
   </div>
   <div class = "student_image">
     <%= f.label :clip %>
