@@ -3,10 +3,10 @@
     <% @department.images.each do |attachment| %>
       <% if attachment.image? %>
         <%= image_tag attachment, width: "200px" %>
-      <% elsif attachment.image? %>
-        <audio controls>
-          <source src = "<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>"/>
-        </audio>
+      <% elsif attachment.audio? %>
+         <audio controls>
+           <source src="rails_blob_url(attachment)" type="attachment.content_type">
+         </audio> 
       <% elsif attachment.video? %>
         <video width="320" height="240" controls>
             <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>">
