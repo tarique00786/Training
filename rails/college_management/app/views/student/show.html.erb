@@ -6,6 +6,18 @@
 <div class = "student_image">
   <img src="<%= @student.avatar.url(:thumb) %>"/>  
 </div>
+<div style = "width: 400px; height: 400px;">
+  <% if @student.thumbnail.attached? %>
+    <%= image_tag (@student.thumbnail), style:'width:50%;height: auto' %>
+  <% end %> 
+</div>  
+<div style = "width: 100px; height: 100px;">
+  <% if @student.clip.attached? %>
+    <%= video_tag (url_for(@student.clip)), style:'width:50%;height: auto' %>
+  <% end %> 
+</div>
+
+
 <ul class = "show">
 <li><strong>Name </strong><%= @student.name %></li>
 <li><strong>Department Name </strong><%= @student.department.name =%></li>
