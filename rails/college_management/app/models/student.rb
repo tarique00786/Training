@@ -4,6 +4,8 @@ class Student < ApplicationRecord
   validates :name, presence: true
   validates :admission, numericality: {message: "Enter between 2018 and 2021"}
   has_one_attached :image
+  has_one_attached :clip
+  has_one_attached :thumbnail
   validates :image, attached: true, content_type: 'image/jpeg', size: {less_than: 100.kilobytes, message: 'Not between size'}
   def self.search(search, page_number)
     if search
