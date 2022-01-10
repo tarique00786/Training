@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :uploads
   root 'home#index'
   get '/students', to: 'student#index'
   get '/students/:id', to: 'student#show'
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   patch '/students/:id', to: 'student#update'
   patch '/departments/:id', to: 'department#update'
   patch '/staffs/:id', to: 'staff#update'
-  delete '/delete_department/:department_id', to: 'department#delete_department'
+  delete '/departments/:id', to: 'department#destroy'
   delete '/delete_staff/:staff_id', to: 'staff#delete_staff'
   delete '/delete_student/:student_id', to: 'student#delete_student'
 =begin  
