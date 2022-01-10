@@ -5,6 +5,7 @@
 require activestorage
 require jquery
 require refile
+require rails-ujs
 require_tree
 require jquery-fileupload/basic
 import Rails from "@rails/ujs"
@@ -17,21 +18,14 @@ Turbolinks.start()
 ActiveStorage.start()
 import "direct_uploads"
 
-$(document).ready(function() {
- var uploadObj = $("#staff_clips").uploadFile({
-    url: "/staffs",
-    multiple: false,
-    fileName: "clips",
-    autoSubmit: false,
-    onSuccess:function(files,data,xhr)
-    {
-      window.location.href = data.to;
-    }
-  });
+$(document).ready(function(){
+  $('.destroy').on('click', function(){
+      $.ajax({
+        url: "/delete_student/id", 
+        type: "DELETE",
+        success: function(r){
 
-  $("#fileUpload").click(function(e) {
-    e.preventDefault();
-    $.rails.disableFormElements($($.rails.formSubmitSelector));
-    uploadObj.startUpload();
+        }
+      });
   });
 });
