@@ -19,10 +19,12 @@ ActiveStorage.start()
 import "direct_uploads"
 
 $(document).ready(function(){
-  $('.destroy').on('click', function(){
+  $('.destroy').click(function(){
+    console.log("jdsf")
       $.ajax({
-        url: "/delete_student/id", 
-        type: "DELETE",
+        
+        url: '/departments/' + this.parentElement.id.querySelector, 
+        type: 'DELETE',
         success: function(r){
 
         }
