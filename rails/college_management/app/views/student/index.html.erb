@@ -35,7 +35,7 @@
 
       <button class = "button1"><%= link_to "Delete","/delete_student/#{student.id}", method: :delete, data: { confirm: 'Are you sure?' } %></button>
     </td>
-    <td class = "destroy">Destroy</td>
+    <td> <button class = "destroy"><%= link_to "Delete","/delete_student/#{student.id}",method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></button></td>
    </tr>
   <% end %> 
   <p class = "new"><%= link_to "Create New Student", "/student/new" %></p>
