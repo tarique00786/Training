@@ -16,7 +16,7 @@
   </thead>
 <tbody>
   <% @departments.each do |department| %>
-    <tr>
+    <tr id = <%= department.id %>>
       <td><%= department.name %></td>
       <td><%= department.students.size %></td>
       <td><%= department.staffs.size %></td>
@@ -26,12 +26,29 @@
       </button>
       <button class = "button3"><%= link_to "Edit","/departments/#{department.id}/edit" %>
       </button>
-      <button class = "button1"><%= link_to "Delete","/delete_department/#{department.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <button class = "button1"><%= link_to "Delete","/departments/#{department.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
       </button>
       </td>
+      <td class = "destroy">Destroy</td>
     </tr>
   <% end %> 
   <p><%= link_to "Create New Department", "/department/new" %></p>
 </tbody>
 </table> 
 <%= will_paginate @departments %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.destroy').click(function(){
+      console.log("jdsf")
+        $.ajax({
+          
+          url: '/departments/' + $(this).parent().attr("id"), 
+          type: 'DELETE',
+          success: function(r){
+
+          }
+        });
+    });
+  });
+</script>
