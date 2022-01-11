@@ -17,15 +17,18 @@ class StudentController < ApplicationController
   def create
     @departments = Department.all
     @student = Student.new(params.require(:student).
-      permit(:department_id, :name, :admission, :email, :image, :clip, :thumbnail))
+      permit(:department_id, :name, :admission, :avatar, :email, :image, :clip, :thumbnail))
     if @student.save
       Sidekiq::Client.enqueue_to_in("default", Time.now, EmailWorker,@student.id)
       #StudentMailer.welcome_email(@student.id).deliver_now
       redirect_to "/students/#{@student.id}"
     else
       render 'new' 
-    end   
+    end  
   end
+  def my_department
+    
+  end 
 
   def edit
     @student = Student.find(params[:id])
