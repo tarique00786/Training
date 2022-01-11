@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :uploads
   root 'home#index'
+  get 'my_department', to: 'student#my_department'
+  get 'search_department', to: 'department#search'
   get '/students', to: 'student#index'
   get '/students/:id', to: 'student#show'
   get '/staffs/:id', to: 'staff#show'
