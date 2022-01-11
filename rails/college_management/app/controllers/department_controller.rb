@@ -35,10 +35,14 @@ class DepartmentController < ApplicationController
     redirect_to "/departments/#{@department.id}"
   end 
 
-  def delete_department
-    department = Department.find(params[:department_id])
-    department.destroy
+  def destroy
+    @department = Department.find(params[:id])
+    @department.destroy
     redirect_to :action => 'index' 
   end
+
+  def search
+    @departments = Department.where("name ILIKE ?","%#{params[:department]}%")
+  end  
 
 end
