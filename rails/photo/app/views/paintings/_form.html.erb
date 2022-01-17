@@ -1,0 +1,9 @@
+<%= form_for @painting, :html => {:multipart => true} do |f| %>
+    <%= f.file_field :image, multiple: true, name: "painting[image]" %>
+    <%= f.submit %>
+<% end %>
+<div id = "paintings">
+  
+</div>
+
+
