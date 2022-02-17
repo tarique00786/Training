@@ -1,0 +1,6 @@
+<div class = "mb-3 card card-body">
+	<%= tweet.body %>
+	<% if tweet.published? %>
+		<%= link_to "View Tweet", "https://twitter.com/#{tweet.twitter_account.name}/status/#{tweet.tweet_id}", target: :_blank %>
+	<% end %>	
+</div>

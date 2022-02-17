@@ -1,0 +1,7 @@
+<h1>Twitter Accounts</h1>
+<%= link_to "Connect twitter", "/auth/twitter", method: :post, class: "btn btn-primary" %>
+<% @twitter_accounts.each do |twitter_account| %>
+	<div>
+		<%= link_to "@#{twitter_account.username}", "https://twitter.com/#{twitter_account.username}", target: :_blank%>
+	</div>	
+<% end %>	
